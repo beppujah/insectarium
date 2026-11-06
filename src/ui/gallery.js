@@ -72,7 +72,6 @@ export function galleryNext() {
   if (state.i < state.photos.length - 1) { state.i++; show(); }
   else closeGallery();
 }
-function galleryPrev() { if (state && state.i > 0) { state.i--; show(); } }
 
 export function closeGallery() {
   if (!state) return;
@@ -93,13 +92,12 @@ $('gallery').addEventListener('click', e => {
   if (e.target.closest('#galVoice')) { toggleVoice(); return; }
   galleryNext();
 });
+const MODIFIERS = new Set(['Shift', 'Control', 'Alt', 'Meta', 'CapsLock', 'Tab', 'Fn']);
 // keyboard: capture phase, so keys don't reach the game while the gallery is open
 addEventListener('keydown', e => {
   if (!state) return;
   e.preventDefault(); e.stopImmediatePropagation();
   if (e.repeat) return;
-  if (['Space', 'Enter', 'ArrowRight', 'KeyD'].includes(e.code)) galleryNext();
-  else if (['ArrowLeft', 'KeyA'].includes(e.code)) galleryPrev();
-  else if (e.code === 'Escape') closeGallery();
-  else if (e.code === 'KeyV') toggleVoice();
+  if (e.code === 'Escape') closeGallery();
+  else if (!MODIFIERS.has(e.key)) galleryNext(); // any other key: next photo
 }, true);

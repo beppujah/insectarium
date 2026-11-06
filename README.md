@@ -69,7 +69,7 @@ Shared game state lives in the `G` object in `world/level.js`; control values ar
 ## Photos
 
 Each species has 3 photos from Wikimedia Commons, bundled with the project: the game never goes online.
-They appear one after another the first time a species is observed (click, tap, Space or Observe to advance)
+They appear one after another the first time a species is observed (click, tap, any key or Observe to advance; Esc closes)
 and can be viewed again from the notebook.
 
 ```
@@ -88,8 +88,8 @@ Authors and licenses are stored in `src/content/photo-credits.json` (shown in th
 When a species is observed for the first time, each photo comes with its own fact (`facts` in `species.json`,
 one per photo, matched by file name) read aloud in Italian. Recorded clips in `src/assets/voice/` are used when present:
 `nuova-specie.m4a`, `<id>-name.m4a` and `<id>-1.m4a` … `<id>-3.m4a`. Any line without a recording falls back to the
-browser's speech synthesis (Web Speech API, no network). The voice can be switched off from the gallery
-(button or `V` key); the choice is remembered.
+browser's speech synthesis (Web Speech API, no network). The voice can be switched off with the gallery's
+voice button; the choice is remembered.
 
 ## Roadmap
 
