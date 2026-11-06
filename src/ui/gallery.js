@@ -1,7 +1,7 @@
 import { $ } from '../core/util.js';
 import { photosFor } from '../content/photos.js';
 import { G } from '../world/level.js';
-import { setVoiceEnabled, speak, stopVoice, voiceAvailable, voiceEnabled } from '../audio/voice.js';
+import { narrate, setVoiceEnabled, stopVoice, voiceAvailable, voiceEnabled } from '../audio/voice.js';
 
 // Full-screen gallery: a species' photos, one after another.
 // The game stays paused until it is closed. Each photo has its own fact, read aloud by the voice.
@@ -13,10 +13,10 @@ const ext = (href, text) => '<a href="' + esc(href) + '" target="_blank" rel="no
 export const galleryOpen = () => !!state;
 
 /** Opens the gallery; returns false if the species has no photos. */
-export function openGallery(sp, { title, intro, onClose } = {}) {
+export function openGallery(sp, { title, isNew, onClose } = {}) {
   const photos = photosFor(sp.id);
   if (!photos.length) return false;
-  state = { openedAt: performance.now(), sp, photos, i: 0, wasPaused: !!G.paused, onClose, title: title || sp.name, intro: intro || sp.name };
+  state = { openedAt: performance.now(), sp, photos, i: 0, wasPaused: !!G.paused, onClose, title: title || sp.name, isNew: !!isNew };
   updateVoiceButton();
   G.paused = true;
   $('gallery').hidden = false;
@@ -31,19 +31,25 @@ function show() {
   img.src = p.src; img.alt = sp.name + ', foto ' + (i + 1);
   $('galTitle').textContent = title;
   $('galCount').textContent = (i + 1) + ' / ' + photos.length;
-  const fact = factFor(sp, p, i);
+  const k = factIndex(sp, p, i), fact = (sp.facts || [])[k] || sp.fact;
   $('galFact').textContent = fact;
   $('galCredit').innerHTML = 'Foto: ' + ext(p.page, esc(p.author === 'Unknown author' ? 'Autore sconosciuto' : p.author)) + ' · ' + (p.licenseUrl ? ext(p.licenseUrl, esc(p.license)) : esc(p.license));
   $('galNext').textContent = i < photos.length - 1 ? 'Avanti' : 'Torna a giocare';
   $('galDots').innerHTML = photos.map((_, k) => '<i' + (k === i ? ' class="on"' : '') + '></i>').join('');
-  speak(i === 0 ? state.intro + '. ' + fact : fact);
+  readFact(i, k, fact);
 }
 
-// the fact belonging to a photo: matched by file name, so a missing photo doesn't shift the others
-function factFor(sp, p, i) {
-  const facts = sp.facts || [];
+// first photo: "Nuova specie!" (only the first time) + name + fact; then just the fact
+function readFact(i, k, fact) {
+  const { sp, isNew } = state, clip = sp.id + '-' + (k + 1);
+  if (i > 0) narrate([clip], fact);
+  else narrate([...(isNew ? ['nuova-specie'] : []), sp.id + '-name', clip], (isNew ? 'Nuova specie: ' : '') + sp.name + '. ' + fact);
+}
+
+// index of the fact belonging to a photo: matched by file name, so a missing photo doesn't shift the others
+function factIndex(sp, p, i) {
   const k = (sp.photos || []).indexOf(p.file);
-  return facts[k >= 0 ? k : i] || sp.fact;
+  return k >= 0 ? k : i;
 }
 
 function updateVoiceButton() {
@@ -55,7 +61,10 @@ function updateVoiceButton() {
 function toggleVoice() {
   setVoiceEnabled(!voiceEnabled());
   updateVoiceButton();
-  if (voiceEnabled() && state) speak(factFor(state.sp, state.photos[state.i], state.i));
+  if (voiceEnabled() && state) {
+    const { sp, photos, i } = state, k = factIndex(sp, photos[i], i);
+    narrate([sp.id + '-' + (k + 1)], (sp.facts || [])[k] || sp.fact);
+  }
 }
 
 export function galleryNext() {

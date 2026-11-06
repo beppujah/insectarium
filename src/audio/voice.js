@@ -1,5 +1,5 @@
-// Narration with the browser's built-in speech synthesis (Web Speech API).
-// Free, no network requests: it uses the voices installed on the device.
+// Narration: recorded clips (src/assets/voice/<clip>.m4a) when available,
+// otherwise the browser's built-in speech synthesis (Web Speech API), which needs no network.
 
 const KEY = 'insettario-voice';
 const synth = typeof window !== 'undefined' ? window.speechSynthesis : null;
@@ -20,8 +20,8 @@ if (synth) {
   synth.addEventListener?.('voiceschanged', pickVoice);
 }
 
-export const voiceAvailable = () => !!synth;
-export const voiceEnabled = () => enabled && !!synth;
+export const voiceAvailable = () => !!synth || Object.keys(CLIPS).length > 0;
+export const voiceEnabled = () => enabled && voiceAvailable();
 
 export function setVoiceEnabled(on) {
   enabled = on;
@@ -30,7 +30,7 @@ export function setVoiceEnabled(on) {
 }
 
 export function speak(text) {
-  if (!voiceEnabled() || !text) return;
+  if (!enabled || !synth || !text) return;
   synth.cancel();
   const u = new SpeechSynthesisUtterance(text);
   u.lang = 'it-IT';
@@ -39,6 +39,32 @@ export function speak(text) {
   synth.speak(u);
 }
 
+// recorded clips: nuova-specie, <id>-name, <id>-1 … <id>-3
+const CLIPS = import.meta.glob('../assets/voice/*.{m4a,mp3}', { eager: true, query: '?url', import: 'default' });
+const clipUrl = name => CLIPS['../assets/voice/' + name + '.m4a'] || CLIPS['../assets/voice/' + name + '.mp3'];
+let player = null;
+let queueId = 0;
+
+/** Plays the recorded clips in order; if any is missing, reads `text` with speech synthesis instead. */
+export function narrate(clips, text) {
+  stopVoice();
+  if (!enabled) return;
+  const urls = clips.map(clipUrl);
+  if (!urls.length || urls.some(u => !u)) { speak(text); return; }
+  const id = ++queueId;
+  player = player || new Audio();
+  let k = 0;
+  const next = () => {
+    if (id !== queueId || k >= urls.length) return;
+    player.src = urls[k++];
+    player.play().catch(() => { /* autoplay refused or interrupted */ });
+  };
+  player.onended = next;
+  next();
+}
+
 export function stopVoice() {
+  queueId++;
+  if (player) { player.onended = null; player.pause(); }
   if (synth) synth.cancel();
 }

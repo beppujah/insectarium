@@ -86,9 +86,10 @@ Authors and licenses are stored in `src/content/photo-credits.json` (shown in th
 ## Narration
 
 When a species is observed for the first time, each photo comes with its own fact (`facts` in `species.json`,
-one per photo, matched by file name) and an Italian voice reads it aloud. It uses the Web Speech API,
-so it is free, works offline and uses the voices installed on the device; quality depends on the device.
-The voice can be switched off from the gallery (button or `V` key); the choice is remembered.
+one per photo, matched by file name) read aloud in Italian. Recorded clips in `src/assets/voice/` are used when present:
+`nuova-specie.m4a`, `<id>-name.m4a` and `<id>-1.m4a` … `<id>-3.m4a`. Any line without a recording falls back to the
+browser's speech synthesis (Web Speech API, no network). The voice can be switched off from the gallery
+(button or `V` key); the choice is remembered.
 
 ## Roadmap
 

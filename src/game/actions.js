@@ -31,7 +31,7 @@ function observe(){
   if(G.found.size===SPECIES.length)toast('Quaderno completo!','Hai trovato tutte le specie: sul prato, sotto terra e nello stagno. I progressi sono salvati. Usa "Nuovo prato" per ricominciare da capo in un prato diverso.',7000);
   else toast(sp.name+' · '+G.found.size+'/'+SPECIES.length,sp.fact,4500);};
  // first observation: real photos, one after another, game paused
- if(!openGallery(sp,{title:'Nuova specie: '+sp.name+' · '+G.found.size+'/'+SPECIES.length,intro:'Nuova specie: '+sp.name,onClose:()=>{if(G.found.size===SPECIES.length)done();}}))done();
+ if(!openGallery(sp,{title:'Nuova specie: '+sp.name+' · '+G.found.size+'/'+SPECIES.length,isNew:true,onClose:()=>{if(G.found.size===SPECIES.length)done();}}))done();
 }
 function jump(){if(lv.water){G.vz=1.6;return;}if(G.cz<=G.ground+.01)G.vz=1.9;}
 function photo(){G.flash=1;audio.chime(1.5);
