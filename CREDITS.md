@@ -101,6 +101,8 @@ Photos from Wikimedia Commons, used under their respective licenses.
 ## Larva di maggiolino (Melolontha melolontha)
 
 - [Melolontha melolontha 09.JPG](https://commons.wikimedia.org/wiki/File:Melolontha_melolontha_09.JPG) — AfroBrazilian, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- [Engerling (Melolontha melolontha).jpg](https://commons.wikimedia.org/wiki/File:Engerling_(Melolontha_melolontha).jpg) — Rasbak, [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
+- [Engerling in cocon (Melolontha melolontha).jpg](https://commons.wikimedia.org/wiki/File:Engerling_in_cocon_(Melolontha_melolontha).jpg) — Rasbak, [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
 
 ## Ninfa di cicala (Cicadidae)
 
