@@ -1,6 +1,6 @@
 import SPECIES from '../content/species.json';
 import { clamp, lerp, rng, vnoise } from '../core/util.js';
-import { CEIL, GM, GS, HEIGHT, N, SOLID, WCEIL } from './constants.js';
+import { CEIL, GM, GS, HEIGHT, N, PASS, SOLID, WCEIL } from './constants.js';
 
 const mkLevel=(key,name,o)=>Object.assign({key,name,under:false,water:false,oob:1,ceil:0,map:new Uint8Array(N*N),seen:new Uint8Array(N*N),insects:[],ground:null,light:null},o);
 const LV={surf:mkLevel('surf','Prato',{}),
@@ -22,7 +22,9 @@ function newWorld(seed){
  blob(16,8,1,2.2,.6);             // clover patches
  for(let c=0;c<55;c++)set(r()*N|0,r()*N|0,2);
  blob(14,3,0,1.2,.6);             // mushroom clusters
- for(let c=0;c<22;c++)set(r()*N|0,r()*N|0,4);
+ // fallen leaves lie flat on the ground (drawn into the ground texture, walkable)
+ const LEAF_COLS=[[112,166,62],[178,176,64],[226,184,64],[218,124,46],[160,98,52]];
+ lv.leaves=[];for(let c=0;c<46;c++){const len=1.6+r()*1.6;lv.leaves.push({x:2+r()*(N-4),y:2+r()*(N-4),a:r()*6.283,len,wid:len*(.32+r()*.16),col:LEAF_COLS[r()*LEAF_COLS.length|0],curl:r()});}
  for(let c=0;c<14;c++){let x=r()*N|0,y=r()*N|0;const dx=r()<.5?1:0,dy=1-dx,l=3+r()*4|0;for(let i=0;i<l;i++)set(x+dx*i,y+dy*i,5);}
  for(let c=0;c<34;c++)set(r()*N|0,r()*N|0,6);
  for(let c=0;c<18;c++)set(r()*N|0,r()*N|0,7);
@@ -47,7 +49,8 @@ function newWorld(seed){
  G.px=32.5;G.py=32.5;G.portalLock=false;
 }
 const cellAt=(x,y)=>(x<0||y<0||x>=N||y>=N)?lv.oob:map[(y|0)*N+(x|0)];
-const blocked=(x,y,z)=>{const t=cellAt(x,y);return SOLID[t]===1&&HEIGHT[t]>z-0.05;};
+// through=true: the player walks through plants (except the grass wall around the map's edge)
+const blocked=(x,y,z,through=false)=>{const t=cellAt(x,y);if(through&&PASS[t]&&x>=1&&y>=1&&x<N-1&&y<N-1)return false;return SOLID[t]===1&&HEIGHT[t]>z-0.05;};
 
 function genPond(r){
  map.fill(19);
@@ -128,6 +131,23 @@ function buildGround(r){
  for(let c=0;c<40;c++){const a=r()*6.28,d=r()*G.pond.r*.85,px=G.pond.x+Math.cos(a)*d,py=G.pond.y+Math.sin(a)*d,rad=.22+r()*.22,notch=r()*6.28;const R=rad*GS;
   for(let y=py*GS-R|0;y<py*GS+R;y++)for(let x=px*GS-R|0;x<px*GS+R;x++){if(x<0||y<0||x>=GM||y>=GM||!wmask[y*GM+x])continue;const dx=x-px*GS,dy=y-py*GS;if(dx*dx+dy*dy>R*R)continue;
    let an=Math.atan2(dy,dx)-notch;an=((an+Math.PI)%6.283+6.283)%6.283-Math.PI;if(Math.abs(an)<.25)continue;wmask[y*GM+x]=2;}}
+ // fallen leaves, stamped flat into the ground with midrib, veins, darker rim and the ground's shadows
+ const leafMask=lv.leafMask=new Uint8Array(GM*GM);
+ for(const L of lv.leaves||[]){const ca=Math.cos(L.a),sa=Math.sin(L.a),half=L.len/2,ext=(half+.4)*GS;
+  const cx=L.x*GS,cy=L.y*GS;
+  for(let y=cy-ext|0;y<cy+ext;y++)for(let x=cx-ext|0;x<cx+ext;x++){if(x<0||y<0||x>=GM||y>=GM||wmask[y*GM+x])continue;
+   const dx=(x+.5-cx)/GS,dy=(y+.5-cy)/GS,u=(dx*ca+dy*sa)/half,v=(-dx*sa+dy*ca);
+   let inside=false,k=1;
+   if(u>=-1&&u<=1){const hw=L.wid/2*Math.pow(1-u*u,.6)*(u>0?Math.pow(1-u,.25):1);
+    if(Math.abs(v)<hw){inside=true;const e=Math.abs(v)/hw;
+     k=.86+.14*(1-e);if(e>.82)k*=.78;                                  // rim
+     if(Math.abs(v)<.035*L.wid*2)k*=1.18;                               // midrib
+     const vein=((u*3.2+e*1.4)%1+1)%1;if(vein<.09&&e<.85)k*=1.1;        // side veins
+     k*=1-.18*L.curl*e;}}                                                // curled edges catch less light
+   else if(u<-1&&u>-1.28&&Math.abs(v)<.03){inside=true;k=.8;}          // stalk
+   if(!inside)continue;
+   const i=(y*GM+x)*3,sh=1-ao[y*GM+x]*.5,spot=.92+.16*vnoise(x*.09,y*.09,40);
+   ground[i]=L.col[0]*k*sh*spot;ground[i+1]=L.col[1]*k*sh*spot;ground[i+2]=L.col[2]*k*sh*spot;leafMask[y*GM+x]=1;}}
  // fallen petals and leaflets near flowers
  for(let cy=0;cy<N;cy++)for(let cx=0;cx<N;cx++){const t=map[cy*N+cx];if(t!==6&&t!==7)continue;
   for(let k=0;k<26;k++){const px=((cx+.5+(r()-.5)*3)*GS)|0,py=((cy+.5+(r()-.5)*3)*GS)|0;if(px<0||py<0||px>=GM||py>=GM)continue;

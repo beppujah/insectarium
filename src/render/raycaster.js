@@ -1,6 +1,6 @@
 import { $, clamp, hn, isTouch, lerp } from '../core/util.js';
 import { ctl } from '../input/controls.js';
-import { CEIL, EMIT, FULLH, GM, GS, HEIGHT, SWAY, WCEIL } from '../world/constants.js';
+import { CEIL, EMIT, FULLH, GM, GS, HEIGHT, PASS, SWAY, WCEIL } from '../world/constants.js';
 import { MOTES, SPR } from '../world/creatures.js';
 import { G, SUN_AZ, cellAt, ground, insects, lv } from '../world/level.js';
 import { PH, PW, cloudM, silM } from '../world/sky.js';
@@ -86,22 +86,29 @@ function castWalls(C){
   if(rx<0){sx=-1;sdx=(G.px-mx)*ddx;}else{sx=1;sdx=(mx+1-G.px)*ddx;}
   if(ry<0){sy=-1;sdy=(G.py-my)*ddy;}else{sy=1;sdy=(my+1-G.py)*ddy;}
   let covered=0,nh=0;
+  // standing inside a plant: its far side is drawn first, so the grass is all around you
+  const inside=PASS[cellAt(mx,my)]&&!under;
   for(let s=0;s<80&&nh<14&&covered<H;s++){
    let side,dist;
-   if(sdx<sdy){dist=sdx;sdx+=ddx;mx+=sx;side=0;}else{dist=sdy;sdy+=ddy;my+=sy;side=1;}
+   if(s===0&&inside){dist=Math.min(sdx,sdy);side=sdx<sdy?0:1;}
+   else if(sdx<sdy){dist=sdx;sdx+=ddx;mx+=sx;side=0;}else{dist=sdy;sdy+=ddy;my+=sy;side=1;}
    if(dist>maxD)break;
    const t=cellAt(mx,my);if(!t||t===13||t===14)continue;nh++;
    dist=Math.max(.04,dist);
    let wx=side===0?G.py+dist*ry:G.px+dist*rx;wx-=Math.floor(wx);
    if((side===0&&sx<0)||(side===1&&sy>0))wx=1-wx;
    const vars=TEX[t],T=vars[((mx*7+my*13)>>>0)%vars.length],tw=T.w,th=T.h,td=T.d;
-   const h=FULLH[t]?lv.ceil:HEIGHT[t]*(.85+hn(mx,my,3)*.3);
+   const plant=PASS[t]&&!under;
+   const h=FULLH[t]?lv.ceil:HEIGHT[t]*(t===1?(.55+hn(mx,my,3)*.9):(.85+hn(mx,my,3)*.3));
    const top=hz-(h-cz)*proj/dist,bot=hz+cz*proj/dist,span=bot-top;
    const y0=Math.max(0,Math.ceil(top)),y1=Math.min(H-1,Math.floor(bot));
    const nx=side===0?-sx:0,ny=side===1?-sy:0;
    const face=under?(.82+(side?-.1:0)):.72+.38*sunLight*Math.max(0,nx*sunX+ny*sunY)+(side?-.04:0);
    const sw=SWAY[t]*(water?.9:under?.25:wind)*.22*Math.sin((water?G.t*1.1:wt)+mx*1.3+my*.7);
    const tint=.9+hn(mx,my,5)*.2,emit=EMIT[t];
+   // light through the leaves when looking towards the sun
+   const back=plant?Math.pow(Math.max(0,(rx*sunX+ry*sunY)/Math.hypot(rx,ry)),2)*Math.max(.35,sunLight):0;
+   const tr=1+.7*back,tg=1+1.15*back,tb=1+.2*back;
    const lx=G.px+rx*(dist-.04),ly=G.py+ry*(dist-.04);
    for(let y=y0;y<=y1;y++){
     const o=y*W+x;if(dbuf[o]<1e9)continue;
@@ -109,8 +116,10 @@ function castWalls(C){
     let u=wx+sw*zz*zz;u-=Math.floor(u);
     const tx=(u*tw)|0,ty=((1-zz)*(th-1))|0,i=(ty*tw+tx)*4;
     if(td[i+3]<110)continue;
-    const ao=t===10?(.6+.4*Math.sin(Math.PI*clamp(zz,0,1))):water?(.5+.5*zz*h/WCEIL):.5+.5*Math.min(1,zz*h*2.2);
-    u32[o]=shade(td[i]*tint,td[i+1]*tint,td[i+2],dist,cx,face*ao,lx,ly,emit);dbuf[o]=dist;covered++;
+    const ao=t===10?(.6+.4*Math.sin(Math.PI*clamp(zz,0,1))):water?(.5+.5*zz*h/WCEIL):plant?.68+.32*Math.min(1,zz*h*3):.5+.5*Math.min(1,zz*h*2.2);
+    let cr=td[i]*tint*tr,cg=td[i+1]*tint*tg,cb=td[i+2]*tb;
+    if(plant&&zz<.14){const k=(1-zz/.14)*.75;cr+=(78-cr)*k;cg+=(72-cg)*k;cb+=(40-cb)*k;} // base fades into the soil
+    u32[o]=shade(cr,cg,cb,dist,cx,face*ao,lx,ly,emit);dbuf[o]=dist;covered++;
    }
    if(t===10||t===19)break; // solid soil and banks stop the ray
   }
@@ -120,7 +129,7 @@ function castWalls(C){
 function drawSurface(C){
  const {dX,dY,pX,pY,hz,cz,proj,tanH,fov,night,e}=C,shade=C.shade;
  castWalls(C);
- const hzi=Math.floor(hz),wmask=lv.wmask,wHor=e.hor.map((v,i)=>lerp(v,e.top[i],.3));
+ const hzi=Math.floor(hz),wmask=lv.wmask,lmask=lv.leafMask,wHor=e.hor.map((v,i)=>lerp(v,e.top[i],.3));
  const r0x=dX-pX,r0y=dY-pY,r1x=dX+pX,r1y=dY+pY;
  for(let y=Math.max(0,hzi+1);y<H;y++){
   const rd=cz*proj/(y-hz);const stx=rd*(r1x-r0x)/W,sty=rd*(r1y-r0y)/W;
@@ -135,7 +144,7 @@ function drawSurface(C){
     const sp=Math.max(0,rip)**3*.5*(.4+C.sunLight);r+=(255-r)*sp;g+=(250-g)*sp;b+=(235-b)*sp;
     u32[o+x]=shade(r*1.05,g*1.05,b*1.05,rd,x/W*2-1,1);dbuf[o+x]=rd;continue;}
    if(wm===2){const v=.85+.15*Math.sin(fx*40)*Math.sin(fy*40);u32[o+x]=shade(70*v,132*v,48*v,rd,x/W*2-1,1);dbuf[o+x]=rd;continue;}
-   const d=SOIL[ti]/150;
+   const d=lmask&&lmask[gy*GM+gx]?.93+SOIL[ti]/2100:SOIL[ti]/150;
    u32[o+x]=shade(ground[gi]*d,ground[gi+1]*d,ground[gi+2]*d,rd,x/W*2-1,1);dbuf[o+x]=rd;}}
  // sky (panorama)
  const [fr,fg,fb]=e.fog;
@@ -300,4 +309,4 @@ function render(){
  return C;
 }
 
-export { view, W, H, dbuf, resize, render };
+export { view, W, H, dbuf, u32, resize, render };

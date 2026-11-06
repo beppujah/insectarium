@@ -16,7 +16,7 @@ const CONTROLS=[
  {id:'wind',  label:'Vento',                  kind:'knob', def:.3},
  {id:'tempo', label:'Tempo degli insetti',    kind:'knob', def:.5},
  {id:'color', label:'Colore',                 kind:'knob', def:.5},
- {id:'pixel', label:'Grana dei pixel',        kind:'knob', def:.42},
+ {id:'pixel', label:'Grana dei pixel',        kind:'knob', def:.12},
  {id:'vol',   label:'Volume',                 kind:'knob', def:.7},
  // button-only controllers: held down like keyboard keys
  {id:'fwd',   label:'Avanti (tieni)',         kind:'hold', group:'pad'},

@@ -7,7 +7,8 @@ import { keys } from '../input/keyboard.js';
 import { stick } from '../input/touch.js';
 import { drawMini } from '../render/minimap.js';
 import { render, resize } from '../render/raycaster.js';
-import { CEIL, N, SOLID, WCEIL } from '../world/constants.js';
+import { updateDof } from '../render/dof.js';
+import { CEIL, N, PASS, SOLID, WCEIL } from '../world/constants.js';
 import { updateInsects } from '../world/creatures.js';
 import { G, blocked, cellAt, lv, seen } from '../world/level.js';
 import { portalCheck } from '../world/portals.js';
@@ -19,7 +20,8 @@ function loop(now){
  const dt=Math.min(.05,(now-lastT)/1000);lastT=now;if(!G.started)return;
  // knob smoothing
  for(const c of CONTROLS)if(c.kind==='knob'){const s=ctl[c.id];s.value+= (s.target-s.value)*Math.min(1,dt*10);}
- if(G.paused){resize();G.lastCam=render();return;}
+ if(G.paused){resize();G.lastCam=render();
+ updateDof(dt);return;}
  const tempo=lerp(.1,2.5,ctl.tempo.value);G.t+=dt*tempo;
  // keyboard
  if(keys.KeyQ||ctl.down.down)ctl.alt.target=clamp(ctl.alt.target-dt*.5,0,1);
@@ -43,9 +45,10 @@ function loop(now){
  else G.cz+=(G.ground-G.cz)*Math.min(1,dt*6);
  if(!lv.water&&G.cz<G.ground)G.cz+=(G.ground-G.cz)*Math.min(1,dt*6);
  if(lv.under&&G.cz>CEIL-.15){G.cz=CEIL-.15;G.vz=Math.min(0,G.vz);}
+ if(PASS[cellAt(G.px,G.py)]&&!lv.water)v*=.72; // pushing through grass and flowers
  if(v!==0){const r=.18,sx=Math.cos(G.ang)*v*dt,sy=Math.sin(G.ang)*v*dt;
-  if(!blocked(G.px+sx+Math.sign(sx)*r,G.py,G.cz))G.px+=sx;
-  if(!blocked(G.px,G.py+sy+Math.sign(sy)*r,G.cz))G.py+=sy;
+  if(!blocked(G.px+sx+Math.sign(sx)*r,G.py,G.cz,true))G.px+=sx;
+  if(!blocked(G.px,G.py+sy+Math.sign(sy)*r,G.cz,true))G.py+=sy;
   G.bob+=Math.abs(v)*dt*9;}
  // explored cells
  const R=7;for(let y=-R;y<=R;y++)for(let x=-R;x<=R;x++){const cx=(G.px|0)+x,cy=(G.py|0)+y;if(cx>=0&&cy>=0&&cx<N&&cy<N&&x*x+y*y<=R*R)seen[cy*N+cx]=1;}
@@ -53,6 +56,7 @@ function loop(now){
  updateInsects(dt*tempo);
  resize();
  G.lastCam=render();
+ updateDof(dt);
  G.flash=Math.max(0,G.flash-dt*2.5);G.fade=Math.max(0,G.fade-dt*1.8);
  audio.update();
  // crosshair
@@ -62,7 +66,7 @@ function loop(now){
   if(lv.key==='surf'&&t===9){label='Tana · cammina dentro per scendere';break;}
   if(lv.key==='surf'&&t===14){label='Stagno · entra in acqua per immergerti';break;}
   if(lv.under&&t===13){label='Uscita · cammina nella luce per risalire';break;}
-  if(SOLID[t])break;}
+  if(SOLID[t]&&!PASS[t])break;}
  if(!tg&&!label&&lv.water&&G.cz>WCEIL-.75)label='Superficie · continua a salire per uscire';
  if(tg!==G.currentTarget){G.currentTarget=tg;$('cross').classList.toggle('on',!!tg);}
  if(label!==G.label){G.label=label;$('target').hidden=!label;$('target').textContent=label;}

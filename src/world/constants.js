@@ -6,8 +6,10 @@ const HEIGHT=[0,2.7,.9,1.7,1.4,.65,3.6,3.1,1.05,.9,CEIL,.75,CEIL,0,0,0,3.1,2.0,W
 const SWAY  =[0,1,0,.15,.35,0,.8,.8,.5,0,0,0,.6,0,0,0,.7,1.4,.35,0];
 const SOLID =[0,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,1,0,0,1];
 const EMIT  =[0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0];
+// plants the player walks through (grass, daisy, poppy, clover, reeds, algae)
+const PASS  =[0,1,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0];
 const FULLH =[0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1,1];
 const TYPE_COL=['#000','#5f9a35','#8d877a','#d24a3a','#7a8a2c','#7a5233','#f2efe2','#e0342a','#3f8f3a','#1a0d05','#1a120c','#5ff0d0','#8a6a44','#dfeeff','#3f7f8f','#000','#6a8a3a','#4f8a3a','#7a9a4a','#4a3a24'];
-const GM=512,GS=GM/N;
+const GM=1024,GS=GM/N;
 
-export { N, CEIL, WCEIL, HEIGHT, SWAY, SOLID, EMIT, FULLH, TYPE_COL, GM, GS };
+export { N, CEIL, WCEIL, HEIGHT, SWAY, SOLID, PASS, EMIT, FULLH, TYPE_COL, GM, GS };
