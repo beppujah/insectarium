@@ -112,30 +112,84 @@ Photos from Wikimedia Commons, used under their respective licenses.
 
 ## Scorpione (Scorpiones)
 
+- [Androctonus australis 02.JPG](https://commons.wikimedia.org/wiki/File:Androctonus_australis_02.JPG) — HTO, Public domain
+- [Scorpion with babies in UV.jpg](https://commons.wikimedia.org/wiki/File:Scorpion_with_babies_in_UV.jpg) — https://www.reddit.com/user/Dozzer_22, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0)
 - [Scorpionwithyoung.JPG](https://commons.wikimedia.org/wiki/File:Scorpionwithyoung.JPG) — Fusion121 at English Wikipedia, Public domain
 
 ## Scarabeo sacro (Scarabaeus sacer)
 
 - [Dungbeetle.jpg](https://commons.wikimedia.org/wiki/File:Dungbeetle.jpg) — Unknown author, [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0)
+- [Winged Scarab Pectoral of Nany MET 30.3.34 EGDP021610.jpg](https://commons.wikimedia.org/wiki/File:Winged_Scarab_Pectoral_of_Nany_MET_30.3.34_EGDP021610.jpg) — Unknown author, [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en)
 - [Scarabaeus.sacer.jpg](https://commons.wikimedia.org/wiki/File:Scarabaeus.sacer.jpg) — Sarefo, [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
+
+## Formica argentata (Cataglyphis bombycina)
+
+- [Saharan Silver Ants Erg Chebbi 2011.jpg](https://commons.wikimedia.org/wiki/File:Saharan_Silver_Ants_Erg_Chebbi_2011.jpg) — Bjørn Christian Tørrissen, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0)
+- [Saharan silver ants capturing beetle.jpg](https://commons.wikimedia.org/wiki/File:Saharan_silver_ants_capturing_beetle.jpg) — Bjørn Christian Tørrissen, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0)
+- [Erg Chebbi Silver Ant Nest.jpg](https://commons.wikimedia.org/wiki/File:Erg_Chebbi_Silver_Ant_Nest.jpg) — Bjørn Christian Tørrissen, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0)
+
+## Tenebrione della nebbia (Onymacris unguicularis)
+
+- [Onymacris unguicularis MHNT.jpg](https://commons.wikimedia.org/wiki/File:Onymacris_unguicularis_MHNT.jpg) — Didier Descouens, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- [Onymacris plana - inat 581901684.jpg](https://commons.wikimedia.org/wiki/File:Onymacris_plana_-_inat_581901684.jpg) — Robert Webster Depicted place: Namib-Naukluft, NA-HA-GI, NA-HA, NA (24°43′25″S 15°28′16″E / 24.7236611117°S 15.4711361117°E / -24.7236611117; 15.4711361117), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- [Onymacris plana - inat 337514505.jpg](https://commons.wikimedia.org/wiki/File:Onymacris_plana_-_inat_337514505.jpg) — Reiner Jakubowski Depicted place: Hardap Region, Namibia (24°45′12″S 15°17′36″E / 24.7532694444°S 15.2932472222°E / -24.7532694444; 15.2932472222), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
 
 ## Solifugo (Solifugae)
 
 - [Galeodes caspius 46625523.jpg](https://commons.wikimedia.org/wiki/File:Galeodes_caspius_46625523.jpg) — Анатолий Озерной /Anatoliy Ozernoy, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
-- [CamelSpiderProfile.jpg](https://commons.wikimedia.org/wiki/File:CamelSpiderProfile.jpg) — No machine-readable author provided. Jalandoak~commonswiki assumed (based on copyright claims)., [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5)
+- [Sun Spider (Solifugae) (16255577778).jpg](https://commons.wikimedia.org/wiki/File:Sun_Spider_(Solifugae)_(16255577778).jpg) — Bernard DUPONT from FRANCE, [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0)
 - [Solifugae 2005 Mongolia Gobi Desert - 2.JPG](https://commons.wikimedia.org/wiki/File:Solifugae_2005_Mongolia_Gobi_Desert_-_2.JPG) — Bogomolov.PL, Public domain
+
+## Formicaleone (Myrmeleontidae)
+
+- [AmeisenlöwenTrichter.jpg](https://commons.wikimedia.org/wiki/File:Ameisenl%C3%B6wenTrichter.jpg) — Christian Fischer (Fice), [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
+- [Antlion larva.jpg](https://commons.wikimedia.org/wiki/File:Antlion_larva.jpg) — Djzanni, [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en)
+- [Myrmeleon formicarius 01.JPG](https://commons.wikimedia.org/wiki/File:Myrmeleon_formicarius_01.JPG) — AfroBrazilian, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0)
+
+## Mantide del deserto (Eremiaphilidae)
+
+- [Eremiaphila cerisyi.jpg](https://commons.wikimedia.org/wiki/File:Eremiaphila_cerisyi.jpg) — E. Giglio-Tos., Public domain
+- [Heteronutarsus at Wadi El-Rayan by Hatem Moushir.jpg](https://commons.wikimedia.org/wiki/File:Heteronutarsus_at_Wadi_El-Rayan_by_Hatem_Moushir.jpg) — Hatem Moushir, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- [Blepharopsis mendica mendica TPopp.jpg](https://commons.wikimedia.org/wiki/File:Blepharopsis_mendica_mendica_TPopp.jpg) — Tanja Popp, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+
+## Formica tagliafoglie (Atta (zoologia))
+
+- [Leafcutter ant carrying leaf.jpg](https://commons.wikimedia.org/wiki/File:Leafcutter_ant_carrying_leaf.jpg) — Alex Wild, [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en)
+- [Atta colombica workers cutting whole plant.jpg](https://commons.wikimedia.org/wiki/File:Atta_colombica_workers_cutting_whole_plant.jpg) — Photographer: Christian R. Linder, [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
+- [Leaf cutter ants CostaRica.jpg](https://commons.wikimedia.org/wiki/File:Leaf_cutter_ants_CostaRica.jpg) — Danieliralevy, Public domain
+
+## Morpho (Morpho (zoologia))
+
+- [Morpho menelaus huebneri MHNT Male.jpg](https://commons.wikimedia.org/wiki/File:Morpho_menelaus_huebneri_MHNT_Male.jpg) — Didier Descouens, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- [Blue Morpho (Morpho peleides) underside (8420566556).jpg](https://commons.wikimedia.org/wiki/File:Blue_Morpho_(Morpho_peleides)_underside_(8420566556).jpg) — Bernard DUPONT from FRANCE, [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0)
+- [Morpho peleides qtl1.jpg](https://commons.wikimedia.org/wiki/File:Morpho_peleides_qtl1.jpg) — Quartl, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0)
 
 ## Scarabeo ercole (Dynastes hercules)
 
 - [Dynastes hercules ecuatorianus MHNT.jpg](https://commons.wikimedia.org/wiki/File:Dynastes_hercules_ecuatorianus_MHNT.jpg) — Didier Descouens, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- [Hercules beetle (Dynastes hercules) - (2).jpg](https://commons.wikimedia.org/wiki/File:Hercules_beetle_(Dynastes_hercules)_-_(2).jpg) — Novita Estiti from Tokyo, Japan, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0)
 - [Dynastes hercules hercules01.JPG](https://commons.wikimedia.org/wiki/File:Dynastes_hercules_hercules01.JPG) — Furry yui, Public domain
+
+## Insetto foglia (Phylliidae)
+
+- [Phyllium Philippinicum.jpg](https://commons.wikimedia.org/wiki/File:Phyllium_Philippinicum.jpg) — Ebe.wiki, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- [Leaf insect in Pakke Tiger Reserve.JPG](https://commons.wikimedia.org/wiki/File:Leaf_insect_in_Pakke_Tiger_Reserve.JPG) — Nandini Velho, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0)
+- [Phylliidae eggs.jpg](https://commons.wikimedia.org/wiki/File:Phylliidae_eggs.jpg) — Drägü, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+
+## Mantide orchidea (Hymenopus coronatus)
+
+- [Mantis Hymenopus coronatus 1 Luc Viatour.jpg](https://commons.wikimedia.org/wiki/File:Mantis_Hymenopus_coronatus_1_Luc_Viatour.jpg) — Luc Viatour, [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
+- [Mantis Hymenopus coronatus 5 Luc Viatour.jpg](https://commons.wikimedia.org/wiki/File:Mantis_Hymenopus_coronatus_5_Luc_Viatour.jpg) — Luc Viatour, [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
+- [Mantis Hymenopus coronatus 6 Luc Viatour (cropped).jpg](https://commons.wikimedia.org/wiki/File:Mantis_Hymenopus_coronatus_6_Luc_Viatour_(cropped).jpg) — Luc Viatour, [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
 
 ## Rana dardo (Dendrobatidae)
 
+- [Dendrobates tinctorius - Suriname.jpg](https://commons.wikimedia.org/wiki/File:Dendrobates_tinctorius_-_Suriname.jpg) — Maarten Sepp, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- [Oophaga pumilio (Strawberry poision frog) (2532163201).jpg](https://commons.wikimedia.org/wiki/File:Oophaga_pumilio_(Strawberry_poision_frog)_(2532163201).jpg) — Marshal Hedin from San Diego, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0)
 - [Blue-poison.dart.frog.and.Yellow-banded.dart.frog.arp.jpg](https://commons.wikimedia.org/wiki/File:Blue-poison.dart.frog.and.Yellow-banded.dart.frog.arp.jpg) — Pixeltoo, Public domain
 
 ## Falena atlante (Attacus atlas)
 
 - [Attacus atlas qtl1.jpg](https://commons.wikimedia.org/wiki/File:Attacus_atlas_qtl1.jpg) — Quartl, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0)
-- [Atlasspinner - attacus atlas.jpg](https://commons.wikimedia.org/wiki/File:Atlasspinner_-_attacus_atlas.jpg) — Holger müller, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0)
-- [Attacus atlas Caput.jpg](https://commons.wikimedia.org/wiki/File:Attacus_atlas_Caput.jpg) — CaptainQuark, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- [Attacus atlas (15050883139).jpg](https://commons.wikimedia.org/wiki/File:Attacus_atlas_(15050883139).jpg) — Alias 0591 from the Netherlands, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0)
+- [Attacus atlas-botanical-garden-of-bern 10.jpg](https://commons.wikimedia.org/wiki/File:Attacus_atlas-botanical-garden-of-bern_10.jpg) — Max Burger, Public domain
