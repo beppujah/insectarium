@@ -1,5 +1,5 @@
 import { audio } from '../audio/audio.js';
-import SPECIES from '../content/species.json';
+import { SPECIES } from '../content/worlds.js';
 import { saveGame } from '../core/save.js';
 import { $ } from '../core/util.js';
 import { H, W, dbuf, view } from '../render/raycaster.js';
@@ -28,7 +28,7 @@ function observe(){
  G.found.add(sp.id);renderCatalog();saveGame();
  if(!$('notebook').hidden)openNotebook();
  const done=()=>{
-  if(G.found.size===SPECIES.length)toast('Quaderno completo!','Hai trovato tutte le specie: sul prato, sotto terra e nello stagno. I progressi sono salvati. Usa "Nuovo prato" per ricominciare da capo in un prato diverso.',7000);
+  if(G.found.size===SPECIES.length)toast('Quaderno completo!','Hai trovato tutte le specie di questo mondo. I progressi sono salvati: dalla mappa puoi visitare gli altri mondi o ricominciare da capo.',7000);
   else toast(sp.name+' · '+G.found.size+'/'+SPECIES.length,sp.fact,4500);};
  // first observation: real photos, one after another, game paused
  if(!openGallery(sp,{title:'Nuova specie: '+sp.name+' · '+G.found.size+'/'+SPECIES.length,isNew:true,onClose:()=>{if(G.found.size===SPECIES.length)done();}}))done();

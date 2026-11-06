@@ -1,11 +1,12 @@
-import SPECIES from '../content/species.json';
+import { SPECIES, world } from '../content/worlds.js';
 import { ctl } from '../input/controls.js';
 import { FULLH, N } from '../world/constants.js';
 import { G, LV, blocked, cellAt, lv, newWorld, seen, setLevel } from '../world/level.js';
 
 // ================= saving =================
 // progress stays in this browser (localStorage)
-const SAVE_KEY='insettario-save';
+// one save per world (the meadow keeps the original key, so older saves still load)
+const saveKey=id=>id==='prato'?'insettario-save':'insettario-save-'+id;
 const KEEP=['tod','fog','wind','tempo','color','pixel','vol','fov','alt'];
 const enc=a=>{const bits=new Uint8Array(N*N/8);for(let i=0;i<N*N;i++)if(a[i])bits[i>>3]|=1<<(i&7);let s='';for(const b of bits)s+=String.fromCharCode(b);return btoa(s);};
 const dec=(str,a)=>{try{const bin=atob(str);for(let i=0;i<N*N;i++)a[i]=(bin.charCodeAt(i>>3)>>(i&7))&1;}catch(e){}};
@@ -16,9 +17,10 @@ function saveGame(){
  const data={v:1,seed:G.seed,found:[...G.found],px:G.px,py:G.py,ang:G.ang,torch:G.torch,
   knobs:Object.fromEntries(KEEP.map(k=>[k,ctl[k].target])),seen:btoa(bin),at:Date.now(),
   v2:true,level:lv.key,seenS:enc(LV.surf.seen),seenU:enc(LV.under.seen),seenW:enc(LV.water.seen),wentDown:!!G.wentDown,wentWater:!!G.wentWater};
- try{localStorage.setItem(SAVE_KEY,JSON.stringify(data));}catch(e){}
+ data.world=world.id;
+ try{localStorage.setItem(saveKey(world.id),JSON.stringify(data));}catch(e){}
 }
-function loadSave(){try{const d=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');return d&&d.v===1?d:null;}catch(e){return null;}}
+function loadSave(id=world.id){try{const d=JSON.parse(localStorage.getItem(saveKey(id))||'null');return d&&d.v===1?d:null;}catch(e){return null;}}
 function applySave(d){
  newWorld(d.seed);
  G.found=new Set(d.found.filter(id=>SPECIES.some(s=>s.id===id)));if(lv.water)ctl.alt.target=.5;

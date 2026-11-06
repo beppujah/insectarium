@@ -4,6 +4,7 @@ import { CEIL, EMIT, FULLH, GM, GS, HEIGHT, PASS, SWAY, TWIG, WCEIL } from '../w
 import { MOTES, SPR } from '../world/creatures.js';
 import { G, SUN_AZ, cellAt, ground, insects, lv, twigAxisX } from '../world/level.js';
 import { PH, PW, cloudM, silM } from '../world/sky.js';
+import { onWorld } from '../content/worlds.js';
 import { SOIL, TEX, TWIG_END } from '../world/textures.js';
 
 // ================= rendering (raycaster) =================
@@ -19,10 +20,23 @@ function resize(){
 addEventListener('resize',resize);
 
 const STARS=Array.from({length:220},(_,i)=>({a:hn(i,1,20)*6.283,e:.04+hn(i,2,21)*.9,b:.4+hn(i,3,22)*.6}));
-const SKY=[ // day, sunset, night
+// sky and light for each world: day, sunset, night
+const SKYS={
+ prato:[
  {top:[70,140,222],hor:[198,224,238],fog:[176,204,214],light:1,sun:[255,246,220],cloud:[255,255,255],cloudSh:[170,190,215],sil:[120,160,150],amb:[1,1,.97]},
  {top:[54,62,140],hor:[255,150,84],fog:[214,146,108],light:.74,sun:[255,190,110],cloud:[255,190,150],cloudSh:[140,90,120],sil:[90,70,90],amb:[1.12,.9,.78]},
- {top:[4,7,22],hor:[24,34,64],fog:[16,22,40],light:.22,sun:[200,210,255],cloud:[60,70,100],cloudSh:[20,24,40],sil:[10,14,24],amb:[.8,.9,1.25]}];
+ {top:[4,7,22],hor:[24,34,64],fog:[16,22,40],light:.22,sun:[200,210,255],cloud:[60,70,100],cloudSh:[20,24,40],sil:[10,14,24],amb:[.8,.9,1.25]}],
+ deserto:[
+ {top:[74,140,214],hor:[246,226,196],fog:[236,212,176],light:1.1,sun:[255,244,214],cloud:[255,252,244],cloudSh:[214,196,176],sil:[196,150,110],amb:[1.08,1,.88]},
+ {top:[60,54,128],hor:[255,132,58],fog:[232,140,90],light:.78,sun:[255,170,90],cloud:[255,180,130],cloudSh:[150,80,90],sil:[110,60,60],amb:[1.18,.88,.72]},
+ {top:[6,8,30],hor:[30,34,70],fog:[22,24,48],light:.26,sun:[210,215,255],cloud:[70,74,110],cloudSh:[24,26,44],sil:[14,14,28],amb:[.82,.9,1.3]}],
+ giungla:[
+ {top:[120,170,150],hor:[170,206,170],fog:[104,140,104],light:.8,sun:[240,255,210],cloud:[40,84,46],cloudSh:[18,44,24],sil:[30,62,40],amb:[.9,1.04,.88]},
+ {top:[90,90,110],hor:[226,160,96],fog:[120,108,76],light:.58,sun:[255,200,130],cloud:[36,60,34],cloudSh:[16,30,18],sil:[30,40,30],amb:[1.05,.94,.8]},
+ {top:[4,10,10],hor:[14,30,26],fog:[10,22,18],light:.18,sun:[190,220,230],cloud:[8,20,12],cloudSh:[2,8,4],sil:[4,10,8],amb:[.78,.95,1.1]}],
+};
+let SKY=SKYS.prato;
+onWorld(w=>{SKY=SKYS[w.id]||SKYS.prato;});
 function env(t){const k=t*2,i=Math.min(1,Math.floor(k)),f=k-i,a=SKY[i],b=SKY[Math.min(2,i+1)];const o={};
  for(const key in a)o[key]=typeof a[key]==='number'?lerp(a[key],b[key],f):a[key].map((v,j)=>lerp(v,b[key][j],f));return o;}
 const pack=(r,g,b)=>0xff000000|(clamp(b,0,255)<<16)|(clamp(g,0,255)<<8)|clamp(r,0,255);

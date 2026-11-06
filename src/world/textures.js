@@ -169,4 +169,4 @@ const SOIL=(()=>{const a=new Uint8ClampedArray(64*64*3);const r=rng(17);
  return a;})();
 
 
-export { TEX, SOIL, TWIG_END };
+export { TEX, SOIL, TWIG_END, mkTex };

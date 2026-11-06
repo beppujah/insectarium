@@ -249,10 +249,179 @@ sprite('cicala',x=>{const d='#5e3e1a';
  limb(x,[26,51,22,62],d,1.6,.8);limb(x,[9,40,4,36],d,.6,.4);
  x.fillStyle='rgba(70,45,20,.35)';for(let i=0;i<14;i++){x.beginPath();x.arc(28+R()*24,38+R()*12,.4+R()*.6,0,7);x.fill();}});
 
+// ---------------- desert ----------------
+// scorpion: segmented tail curled over the back with a bulbous sting, big pincers, eight legs
+sprite('scorpione',x=>{const b='#c8a050',d='#7a5a24',k='#4a3410';
+ for(let i=0;i<4;i++)limb(x,[26+i*5,50,20+i*7,55,16+i*8,62],d,1.2,.6);
+ part(x,32,50,15,5.5,b,{gloss:.25});segs(x,32,50,14,5,7,'rgba(70,45,10,.5)',.6);
+ const t=[[46,48],[52,42],[55,34],[54,26],[50,20],[44,18]];t.forEach(([a,c],i)=>part(x,a,c,3.6-i*.25,3.4-i*.25,i%2?'#b88c40':b,{gloss:.3}));
+ part(x,39,20,4,3.2,'#d8a848',{gloss:.4});limb(x,[36,20,33,23,34,26],'#2a1a08',1.2,.5);
+ part(x,17,49,6,4.4,'#b8903e',{gloss:.25});eye(x,15,46,.9,'#201408');
+ limb(x,[16,50,10,54,7,47],d,2.4,1.8);part(x,6,42,6,4.2,b,{rot:-.5,gloss:.35});limb(x,[3,38,1,32,3,30],k,1.8,.8);limb(x,[8,38,8,32,6,30],k,1.6,.7);
+ for(let i=0;i<4;i++)limb(x,[24+i*5,51,19+i*7,57,15+i*8,63],k,1.3,.6);});
+
+// sacred scarab: matt black dome, toothed head shield, rolling a ball of dung with its hind legs
+sprite('scarabeo-sacro',x=>{const k='#0c0a08';
+ part(x,49,46,13,13,'#6a4a28',{gloss:0,dark:.5,light:.15});x.fillStyle='rgba(40,25,10,.4)';for(let i=0;i<40;i++){x.beginPath();x.arc(38+R()*22,35+R()*22,.4+R()*.9,0,7);x.fill();}
+ limb(x,[18,52,12,57,8,62],k,1.4,.7);
+ const g=x.createRadialGradient(24,40,1,28,48,16);g.addColorStop(0,'#5a5450');g.addColorStop(.4,'#1e1c1a');g.addColorStop(1,'#050404');
+ x.fillStyle=g;x.beginPath();x.moveTo(14,53);x.bezierCurveTo(14,36,42,34,42,53);x.closePath();x.fill();
+ x.strokeStyle='rgba(120,110,100,.4)';x.lineWidth=.4;for(let i=0;i<5;i++){x.beginPath();x.moveTo(17+i*1.5,52);x.quadraticCurveTo(27,38+i*1.8,40,52);x.stroke();}
+ part(x,12,49,5.5,5,'#141210',{gloss:.2});
+ x.fillStyle='#16130f';x.beginPath();x.moveTo(3,52);for(let i=0;i<6;i++)x.lineTo(3+i*1.4,47-(i%2)*1.6);x.lineTo(11,46);x.lineTo(10,53);x.fill();
+ limb(x,[8,53,4,58,1,62],k,1.6,.8);limb(x,[28,54,30,59,28,63],k,1.5,.7);limb(x,[38,52,44,54,40,44],k,1.6,.8);limb(x,[36,53,46,58,44,50],k,1.6,.8);});
+
+// Saharan silver ant: long legs, mirror-like silver body
+sprite('formica-argentata',x=>{const k='#4a4840',s='#c8ccd0';
+ limb(x,[30,44,38,52,46,62],k,1,.5);limb(x,[25,45,26,54,24,62],k,1,.5);limb(x,[20,44,12,53,6,61],k,1,.5);
+ part(x,47,40,10,7,s,{gloss:.7,light:.6,dark:.55});hairs(x,47,40,9,6,30,'rgba(255,255,255,.7)',.9);
+ part(x,35,42,2.2,3,'#9a9ea2',{gloss:.4});part(x,27,41,7,4,'#b4b8bc',{gloss:.6,light:.5});part(x,14,39,5.5,5,'#a8aaae',{gloss:.5});eye(x,11,37,1.6);
+ limb(x,[9,35,5,27,0,28],k,.8,.4);limb(x,[13,34,12,26,7,22],k,.8,.4);
+ limb(x,[32,45,41,53,50,63],k,1.2,.6);limb(x,[27,46,28,55,26,63],k,1.2,.6);limb(x,[22,45,14,54,8,63],k,1.2,.6);});
+
+// Namib fog-basking beetle in a headstand: high rear end, round black body with water drops
+sprite('tenebrione',x=>{const k='#0e0c0a';
+ limb(x,[38,40,46,50,52,62],k,1.2,.6);limb(x,[30,44,30,54,28,62],k,1.2,.6);
+ x.save();x.translate(30,40);x.rotate(-.5);
+ const g=x.createRadialGradient(-4,-6,1,0,0,15);g.addColorStop(0,'#6a6660');g.addColorStop(.35,'#26221e');g.addColorStop(1,'#060504');
+ x.fillStyle=g;x.beginPath();x.ellipse(2,0,14,10,0,0,7);x.fill();
+ x.fillStyle='rgba(200,230,255,.75)';[[0,-6,1.4],[6,-5,1.1],[-5,-3,1],[9,-1,.9],[3,-1,.8]].forEach(([a,b,r])=>{x.beginPath();x.arc(a,b,r,0,7);x.fill();});
+ x.fillStyle='#fff';[[-.4,-6.4],[5.7,-5.3]].forEach(([a,b])=>x.fillRect(a,b,.6,.6));
+ part(x,-14,1,5,4,'#1a1714',{gloss:.25});part(x,-20,3,3.4,3,'#141210',{gloss:.2});x.restore();
+ eye(x,13,52,.9,'#2a2420');limb(x,[11,54,7,58],k,.7,.4);limb(x,[12,51,8,46,5,44],k,.7,.4);
+ limb(x,[42,38,50,48,56,63],k,1.4,.7);limb(x,[34,42,36,53,34,63],k,1.4,.7);limb(x,[22,50,18,57,16,63],k,1.4,.7);});
+
+// camel spider: pale hairy body, huge forward pincers, long pedipalps used like legs
+sprite('solifugo',x=>{const b='#d8b880',d='#9a7440';
+ for(let i=0;i<3;i++)limb(x,[28+i*5,46,30+i*8,52,36+i*9,62],d,1.2,.6);
+ part(x,42,46,12,7,'#c8a468',{gloss:.15});segs(x,42,46,11,6.5,8,'rgba(90,60,20,.45)',.5);hairs(x,42,46,11,6,70,'rgba(255,240,210,.55)',1.4);
+ part(x,22,44,7,6,b,{gloss:.2});hairs(x,22,44,6,5,30,'rgba(255,240,210,.5)',1.2);
+ part(x,10,43,7,4,'#e0c088',{gloss:.35});part(x,8,47,6,2.4,'#c09858',{gloss:.2});
+ x.fillStyle='#3a2410';x.beginPath();x.moveTo(1,42);x.lineTo(5,41);x.lineTo(4,44);x.fill();x.beginPath();x.moveTo(2,48);x.lineTo(6,47);x.lineTo(5,49);x.fill();
+ eye(x,15,39,1,'#1a1208');
+ limb(x,[16,46,10,52,6,58,4,62],b,1.6,.9);hairs(x,8,56,3,5,12,'rgba(255,240,210,.5)',1);
+ for(let i=0;i<3;i++)limb(x,[24+i*5,48,20+i*7,55,18+i*8,63],b,1.3,.6);});
+
+// antlion larva at the bottom of its sand funnel: fat bristly body, long sickle jaws
+sprite('formicaleone',x=>{
+ x.fillStyle='#c8a468';x.beginPath();x.moveTo(0,40);x.quadraticCurveTo(32,66,64,40);x.lineTo(64,64);x.lineTo(0,64);x.fill();
+ x.fillStyle='rgba(120,90,40,.35)';for(let i=0;i<60;i++){const a=R()*64;x.fillRect(a,44+Math.abs(a-32)*-.25+R()*18,.8,.8);}
+ part(x,36,54,11,7,'#8a7048',{gloss:.1});segs(x,36,54,10,6.5,6,'rgba(50,35,15,.45)',.5);hairs(x,36,54,10,6,50,'rgba(60,40,15,.7)',1.4);
+ x.fillStyle='rgba(60,40,20,.5)';for(let i=0;i<14;i++){x.beginPath();x.arc(28+R()*16,50+R()*8,.6,0,7);x.fill();}
+ part(x,23,53,5,3.6,'#7a6038',{gloss:.15});eye(x,21,51,.7,'#201408');
+ limb(x,[19,52,13,47,9,44,8,47],'#3a2a14',1.2,.5);limb(x,[19,54,12,55,8,52,9,50],'#3a2a14',1.2,.5);
+ x.fillStyle='rgba(200,170,110,.9)';[[30,46],[25,43],[40,47]].forEach(([a,b])=>{x.beginPath();x.arc(a,b,.7,0,7);x.fill();});});
+
+// ground mantis of the desert: sandy, long thin legs, raised forelegs with spines, big eyes
+sprite('mantide-deserto',x=>{const b='#d0b07a',d='#9a7a48';
+ limb(x,[30,46,40,52,48,62],d,1,.5);
+ part(x,44,44,13,5.5,b,{gloss:.2,rot:-.08});segs(x,46,44,10,5,6,'rgba(110,80,40,.45)',.5);
+ x.fillStyle='rgba(150,110,60,.5)';for(let i=0;i<12;i++){x.beginPath();x.arc(36+R()*18,41+R()*6,.5,0,7);x.fill();}
+ part(x,24,40,9,2.6,'#c8a46a',{gloss:.2,rot:-.35});
+ part(x,13,32,4.6,4,'#d8b884',{gloss:.25});eye(x,10,30,2,'#6a5030');eye(x,15,29.5,1.6,'#6a5030');
+ limb(x,[12,28,6,22,2,18],d,.6,.3);limb(x,[14,28,12,20,10,14],d,.6,.3);
+ limb(x,[18,36,10,40,8,32],b,1.8,1.1);limb(x,[8,32,4,36,6,40],b,1.2,.6);for(let i=0;i<3;i++)limb(x,[9+i*.8,34+i*1.6,7+i*.8,35+i*1.6],'#4a3418',.5,.3);
+ limb(x,[26,44,22,53,18,62],d,1.1,.5);limb(x,[34,46,30,54,28,63],b,1.1,.5);limb(x,[38,45,48,54,56,63],b,1.1,.5);});
+
+// ---------------- jungle ----------------
+// leafcutter ant carrying a piece of leaf high above its head, a tiny worker riding on it
+sprite('tagliafoglie',x=>{const k='#4a1e0c',b='#8a3a18';
+ x.save();x.translate(17,21);x.rotate(-.2);x.fillStyle='#4a9a32';x.beginPath();x.moveTo(-14,4);x.lineTo(-8,-12);x.quadraticCurveTo(6,-16,16,-6);x.lineTo(10,8);x.quadraticCurveTo(-2,12,-14,4);x.fill();
+ x.strokeStyle='#7ac04e';x.lineWidth=.7;x.beginPath();x.moveTo(-12,3);x.lineTo(14,-6);x.stroke();for(let i=0;i<4;i++){x.beginPath();x.moveTo(-6+i*5,0.8-i*1.7);x.lineTo(-4+i*5,-8);x.moveTo(-6+i*5,0.8-i*1.7);x.lineTo(-3+i*5,7);x.stroke();}
+ x.fillStyle='#2a1208';x.beginPath();x.ellipse(2,-7,1.8,1.2,0,0,7);x.fill();x.beginPath();x.ellipse(-.6,-7,1.3,1.1,0,0,7);x.fill();x.restore();
+ limb(x,[34,46,40,54,46,62],'#6a2a10',1.2,.6);limb(x,[28,47,28,55,26,62],'#6a2a10',1.2,.6);
+ part(x,47,44,9,7,'#7a3014',{gloss:.25});hairs(x,47,44,8,6,30,'rgba(230,170,120,.5)',1);
+ part(x,36,44,2.2,3,b,{gloss:.2});part(x,30,42,6.5,4.6,b,{gloss:.25});for(let i=0;i<3;i++)limb(x,[27+i*3,38,26+i*3,35],k,.8,.4);
+ part(x,17,38,7.5,7,'#9a4420',{gloss:.25});eye(x,15,36,1.3);limb(x,[11,40,10,34,14,30],k,1.6,.8);limb(x,[13,35,12,26,8,22],k,.8,.4);
+ limb(x,[34,47,42,55,48,63],k,1.4,.7);limb(x,[29,48,29,56,27,63],k,1.4,.7);limb(x,[24,47,18,55,14,62],k,1.4,.7);});
+
+// blue morpho, wings spread: iridescent blue with a black border and white spots
+sprite('morpho',x=>{const ink='#0c0e18';
+ const fw=sx=>{x.save();x.translate(32,32);x.scale(sx,1);
+  x.fillStyle=ink;x.beginPath();x.moveTo(1,-2);x.bezierCurveTo(6,-22,26,-26,31,-20);x.quadraticCurveTo(30,-8,24,0);x.quadraticCurveTo(14,2,1,2);x.fill();
+  let g=x.createLinearGradient(2,-2,26,-18);g.addColorStop(0,'#1a5ad8');g.addColorStop(.5,'#3aa8ff');g.addColorStop(1,'#1a4ac0');
+  x.fillStyle=g;x.beginPath();x.moveTo(2,-2);x.bezierCurveTo(6,-18,20,-21,25,-17);x.quadraticCurveTo(24,-8,20,-1);x.quadraticCurveTo(12,1,2,1);x.fill();
+  x.fillStyle='rgba(200,240,255,.5)';x.beginPath();x.ellipse(13,-11,6,2,-.5,0,7);x.fill();
+  x.fillStyle='#f4f4f0';[[28,-18],[27,-12],[25.5,-6]].forEach(([a,b])=>{x.beginPath();x.arc(a,b,.9,0,7);x.fill();});
+  x.fillStyle=ink;x.beginPath();x.moveTo(1,2);x.bezierCurveTo(12,2,26,6,24,16);x.quadraticCurveTo(18,26,6,24);x.quadraticCurveTo(1,16,1,4);x.fill();
+  g=x.createLinearGradient(2,4,20,20);g.addColorStop(0,'#1a5ad8');g.addColorStop(.6,'#40b0ff');g.addColorStop(1,'#1a4ac0');
+  x.fillStyle=g;x.beginPath();x.moveTo(2,3);x.bezierCurveTo(12,3,22,7,21,14);x.quadraticCurveTo(16,21,7,21);x.quadraticCurveTo(2,14,2,4);x.fill();
+  x.fillStyle='#f4f4f0';[[21,18],[17,21.5],[12,23]].forEach(([a,b])=>{x.beginPath();x.arc(a,b,.8,0,7);x.fill();});
+  x.strokeStyle='rgba(10,20,60,.5)';x.lineWidth=.4;for(let i=0;i<5;i++){x.beginPath();x.moveTo(2,0);x.quadraticCurveTo(10,-4-i*2,22,-16+i*3.4);x.stroke();x.beginPath();x.moveTo(2,3);x.quadraticCurveTo(10,6+i,18-i*2.4,16+i*1.4);x.stroke();}
+  x.restore();};
+ fw(1);fw(-1);part(x,32,34,1.8,13,'#2a2418',{gloss:.25});part(x,32,19,2.2,2.4,'#2a2418',{gloss:.2});
+ limb(x,[31,18,27,8,25,6],ink,.6,.5);limb(x,[33,18,37,8,39,6],ink,.6,.5);});
+
+// hercules beetle: long upper horn over a shorter lower one, olive elytra with black spots
+sprite('scarabeo-ercole',x=>{const k='#0c0a08';
+ limb(x,[30,52,26,58,24,63],k,1.6,.8);limb(x,[44,52,50,58,54,63],k,1.6,.8);
+ const g=x.createRadialGradient(38,38,1,42,46,20);g.addColorStop(0,'#e8dca0');g.addColorStop(.4,'#b8a860');g.addColorStop(1,'#4a4020');
+ x.fillStyle=g;x.beginPath();x.moveTo(26,54);x.bezierCurveTo(26,34,62,32,62,50);x.quadraticCurveTo(60,56,26,54);x.fill();
+ [[40,42,1.6],[48,46,1.4],[54,44,1.2],[44,50,1.3],[36,48,1],[56,50,1]].forEach(([a,b,r])=>{x.fillStyle='#1a160c';x.beginPath();x.ellipse(a,b,r,r*.8,0,0,7);x.fill();});
+ x.fillStyle='rgba(255,255,230,.45)';x.beginPath();x.ellipse(38,38,8,2,-.2,0,7);x.fill();
+ part(x,21,44,8,7,'#16120c',{gloss:.6});
+ x.fillStyle='#2a2014';x.beginPath();x.moveTo(17,39);x.quadraticCurveTo(8,33,1,36);x.lineTo(1,39);x.lineTo(3,38);x.quadraticCurveTo(9,37,15,45);x.fill();
+ x.fillStyle='rgba(255,255,255,.35)';x.beginPath();x.ellipse(9,35.6,5,.7,-.15,0,7);x.fill();
+ x.fillStyle='rgba(200,150,90,.8)';for(let i=0;i<9;i++){x.beginPath();x.arc(4+i*1.2,38+i*.25,.45,0,7);x.fill();}
+ part(x,12,49,3.6,3,k,{gloss:.3});x.fillStyle='#1a140c';x.beginPath();x.moveTo(10,47);x.quadraticCurveTo(6,44,4,41);x.lineTo(6,41);x.quadraticCurveTo(9,44,12,46);x.fill();
+ limb(x,[16,52,10,58,6,63],k,1.7,.8);limb(x,[36,54,38,59,36,63],k,1.7,.8);});
+
+// leaf insect: flat green leaf-shaped body with a midrib and veins, leaf-like flaps on the legs
+sprite('insetto-foglia',x=>{const g='#6aa83a',d='#3a6a1c';
+ const leg=(pts)=>{limb(x,pts,d,1,.6);const [a,b,c,e]=pts;x.fillStyle=g;x.beginPath();x.ellipse((a+c)/2,(b+e)/2,2.6,1.4,Math.atan2(e-b,c-a),0,7);x.fill();};
+ leg([24,46,18,54,14,62]);leg([34,47,36,55,34,62]);
+ const gr=x.createLinearGradient(20,30,50,58);gr.addColorStop(0,'#9ad060');gr.addColorStop(.5,g);gr.addColorStop(1,'#3a7020');
+ x.fillStyle=gr;x.beginPath();x.moveTo(18,44);x.quadraticCurveTo(34,26,58,42);x.quadraticCurveTo(62,46,58,48);x.quadraticCurveTo(36,58,18,46);x.fill();
+ x.fillStyle='#b8a050';x.beginPath();x.moveTo(52,38);x.quadraticCurveTo(55,42,58,41);x.quadraticCurveTo(56,38,52,38);x.fill();
+ x.strokeStyle='#4a8a2a';x.lineWidth=.8;x.beginPath();x.moveTo(18,45);x.quadraticCurveTo(40,42,60,46);x.stroke();
+ x.lineWidth=.45;for(let i=0;i<6;i++){const px=24+i*5.5;x.beginPath();x.moveTo(px,44.5-i*.1);x.lineTo(px+4,37+i*.3);x.moveTo(px,44.8);x.lineTo(px+4,51-i*.3);x.stroke();}
+ part(x,14,42,5,3,g,{gloss:.2});part(x,9,42,3.2,2.8,'#7ab84a',{gloss:.2});eye(x,7.5,41,1,'#5a4020');
+ limb(x,[7,40,3,37],d,.5,.3);leg([12,44,6,52,4,60]);leg([22,47,22,56,20,63]);leg([40,48,46,55,50,63]);});
+
+// orchid mantis: white and pink, petal-shaped lobes on the legs, raised abdomen
+sprite('mantide-orchidea',x=>{const w='#f4eaf0',p='#e8a8c8';
+ const petal=(cx,cy,rx,ry,rot)=>{const g=x.createRadialGradient(cx,cy,0,cx,cy,Math.max(rx,ry));g.addColorStop(0,'#fff8fc');g.addColorStop(.7,w);g.addColorStop(1,p);x.fillStyle=g;x.beginPath();x.ellipse(cx,cy,rx,ry,rot,0,7);x.fill();};
+ limb(x,[32,46,30,54,26,62],'#e0c8d4',1,.5);petal(29,51,4.6,2.4,1.1);
+ x.save();x.translate(42,40);x.rotate(-.5);petal(0,0,11,6.5,0);x.strokeStyle='rgba(200,120,170,.45)';x.lineWidth=.5;for(let i=-3;i<4;i++){x.beginPath();x.moveTo(i*2.6,-6);x.quadraticCurveTo(i*2.6+1,0,i*2.6,6);x.stroke();}
+ x.fillStyle='rgba(210,150,90,.6)';x.beginPath();x.ellipse(-2,0,2,1.6,0,0,7);x.fill();x.restore();
+ part(x,26,44,7,2.2,'#f0dce6',{gloss:.3,rot:-.4});
+ part(x,16,36,4.2,3.6,w,{gloss:.3});x.fillStyle='#f8d0e2';x.beginPath();x.moveTo(14,33);x.lineTo(16,27);x.lineTo(18,33);x.fill();eye(x,13,35,1.6,'#d890b8');eye(x,18,34.5,1.4,'#d890b8');
+ limb(x,[20,40,12,44,10,38],'#f0dce6',1.4,.9);petal(14,43,3,1.6,.3);
+ limb(x,[24,46,18,54,14,62],'#e0c8d4',1,.5);petal(19,53,4.6,2.4,-1.1);limb(x,[36,46,44,54,50,62],'#e0c8d4',1,.5);petal(45,55,5,2.6,.9);});
+
+// poison dart frog: glossy blue legs and bright yellow back with black spots
+sprite('rana-dardo',x=>{const bl='#1a4ab8',k='#0a0a14';
+ limb(x,[44,50,54,54,48,60,40,62],bl,3,1.8);[[38,62],[41,63],[43,62]].forEach(([a,c])=>{x.fillStyle=bl;x.beginPath();x.arc(a,c,1.1,0,7);x.fill();});
+ const b=x.createRadialGradient(26,38,1,32,46,22);b.addColorStop(0,'#fff27a');b.addColorStop(.5,'#f4c818');b.addColorStop(1,'#8a6a08');
+ x.fillStyle=b;x.beginPath();x.moveTo(10,50);x.quadraticCurveTo(12,34,30,34);x.quadraticCurveTo(50,34,52,48);x.quadraticCurveTo(46,58,30,58);x.quadraticCurveTo(16,58,10,50);x.fill();
+ x.save();x.clip();[[26,40,4,2.6],[38,42,3.4,2.4],[46,46,2.4,3],[32,50,3,2],[20,50,2.6,2],[42,52,2,1.6]].forEach(([a,c,r1,r2])=>{x.fillStyle=k;x.beginPath();x.ellipse(a,c,r1,r2,.3,0,7);x.fill();});
+ x.fillStyle=bl;x.beginPath();x.ellipse(30,58,24,5,0,0,7);x.fill();x.restore();
+ x.fillStyle='rgba(255,255,255,.55)';x.beginPath();x.ellipse(24,37,7,1.6,-.15,0,7);x.fill();
+ part(x,17,37,4.6,4.6,'#101018',{gloss:.4,light:.3});x.fillStyle='#fff';x.beginPath();x.arc(15.8,35.6,.8,0,7);x.fill();
+ limb(x,[22,52,18,58,12,62],bl,2.2,1.2);[[10,62],[13,63],[15,62]].forEach(([a,c])=>{x.fillStyle=bl;x.beginPath();x.arc(a,c,1,0,7);x.fill();});});
+
+// atlas moth, wings spread: rust and ochre with white triangular windows and snake-head tips
+sprite('falena-atlante',x=>{const ink='#2a140a';
+ const fw=sx=>{x.save();x.translate(32,32);x.scale(sx,1);
+  let g=x.createLinearGradient(0,-20,30,0);g.addColorStop(0,'#7a2a14');g.addColorStop(.6,'#a8481c');g.addColorStop(1,'#c88a3a');
+  x.fillStyle=g;x.beginPath();x.moveTo(1,-1);x.bezierCurveTo(4,-20,22,-24,31,-25);x.quadraticCurveTo(33,-20,29,-16);x.quadraticCurveTo(28,-6,24,0);x.quadraticCurveTo(12,2,1,2);x.fill();
+  x.fillStyle='#e8c060';x.beginPath();x.moveTo(26,-24);x.quadraticCurveTo(33,-24,30,-17);x.quadraticCurveTo(27,-19,26,-24);x.fill();
+  x.fillStyle=ink;x.beginPath();x.arc(29,-21,.9,0,7);x.fill();
+  x.fillStyle='#f4ecd8';x.beginPath();x.moveTo(12,-12);x.lineTo(17,-14);x.lineTo(15,-9);x.fill();
+  x.strokeStyle='#f0d8a0';x.lineWidth=.8;x.beginPath();x.moveTo(3,-4);x.quadraticCurveTo(14,-8,26,-6);x.stroke();
+  g=x.createLinearGradient(0,2,20,24);g.addColorStop(0,'#8a3016');g.addColorStop(.7,'#b04c1e');g.addColorStop(1,'#d0a050');
+  x.fillStyle=g;x.beginPath();x.moveTo(1,2);x.bezierCurveTo(14,2,26,8,24,18);x.quadraticCurveTo(18,26,7,25);x.quadraticCurveTo(1,16,1,4);x.fill();
+  x.fillStyle='#f4ecd8';x.beginPath();x.moveTo(9,9);x.lineTo(14,8);x.lineTo(11,13);x.fill();
+  x.strokeStyle='#2a140a';x.lineWidth=.6;x.beginPath();x.moveTo(6,22);x.quadraticCurveTo(16,22,22,15);x.stroke();
+  x.strokeStyle='#f0d8a0';x.lineWidth=.6;x.beginPath();x.moveTo(5,23.5);x.quadraticCurveTo(16,24,23,17);x.stroke();
+  x.restore();};
+ fw(1);fw(-1);part(x,32,33,2.6,11,'#9a4a1e',{gloss:.2});hairs(x,32,30,2.2,7,30,'rgba(250,220,170,.6)',1);
+ x.strokeStyle='#6a3a18';x.lineWidth=.5;for(const s of[-1,1]){x.beginPath();x.moveTo(32,22);x.quadraticCurveTo(32+s*4,16,32+s*6,14);x.stroke();for(let i=0;i<5;i++){x.beginPath();x.moveTo(32+s*(1+i),21-i*1.4);x.lineTo(32+s*(2+i),19.6-i*1.4-1);x.stroke();}}});
+
 function updateInsects(dt){
  for(const b of insects){const sp=b.sp;
   b.dir+=(Math.random()-.5)*dt*2.4;
-  let sp2=sp.speed;if(sp.id==='coccinella'||sp.id==='scarabeo')sp2*=(.5+.5*Math.sin(G.t*.7+b.ph));
+  let sp2=sp.speed;if(sp.pause||sp.id==='coccinella'||sp.id==='scarabeo')sp2*=(.5+.5*Math.sin(G.t*.7+b.ph));
   const nx=b.x+Math.cos(b.dir)*sp2*dt,ny=b.y+Math.sin(b.dir)*sp2*dt;
   const zc=sp.fly?b.z:.01;
   const nt=cellAt(nx,ny),wrongWater=lv.key==='surf'&&!sp.fly&&(sp.habitat==='water'?nt!==14:nt===14);

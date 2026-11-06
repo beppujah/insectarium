@@ -115,3 +115,23 @@ body.is-touch .tl .nbbtn{display:block}
 .galdots{display:flex;gap:5px}.galdots i{width:7px;height:7px;border-radius:50%;background:#0003}.galdots i.on{background:var(--moss)}
 .sp:not(.miss){cursor:pointer}
 @media (max-height:520px){.galbox{padding:10px 12px;gap:6px}.galhead h2{font-size:18px}.galph img{max-height:52vh}#galFact{font-size:11.5px}}
+
+/* home: map of the worlds */
+.sheet.home{max-width:760px}
+.homehead{display:grid;gap:8px}
+.atlas{position:relative;background:#e9dcbc;border:2px solid var(--ink);border-radius:3px;aspect-ratio:2/1}
+.atlas svg{position:absolute;inset:0;width:100%;height:100%}
+.atlas .trail{fill:none;stroke:#1d1a1477;stroke-width:2;stroke-dasharray:4 6}
+.atlas .land{transition:filter .15s,opacity .15s;opacity:.72}
+.atlas .land.on{opacity:1;filter:drop-shadow(0 0 0 #000) drop-shadow(0 3px 0 #1d1a1455)}
+.atlas .rose text{font:10px var(--mono);fill:#1d1a14aa}
+.pin{position:absolute;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:1px;background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:2px;padding:4px 9px;cursor:pointer;font:600 12px var(--mono);box-shadow:0 2px 0 #1d1a1455}
+.pin b{font:15px/1.1 var(--display);font-weight:400}
+.pin span{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#4a4436}
+.pin[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.pin[aria-pressed="true"] span{color:var(--amber)}
+.pin:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.place{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:end;justify-content:space-between;border-top:2px solid var(--ink);padding-top:12px}
+.place>div:first-child{flex:1 1 300px;display:grid;gap:4px}
+#homeBtn{margin-top:0}
+@media (max-width:560px){.pin{padding:3px 6px}.pin b{font-size:13px}.sheet h1{font-size:34px}}

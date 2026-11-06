@@ -1,4 +1,4 @@
-import SPECIES from '../content/species.json';
+import { SPECIES, world } from '../content/worlds.js';
 import { clamp, lerp, rng, vnoise } from '../core/util.js';
 import { CEIL, GM, GS, HEIGHT, N, PASS, SOLID, TWIG, WCEIL } from './constants.js';
 
@@ -12,39 +12,62 @@ const G={lastCam:null,currentTarget:null,fade:0,portalLock:false,label:'',starte
 const SUN_AZ=-2.2; // sun direction (radians)
 
 function newWorld(seed){
- G.seed=seed;
+ G.seed=seed;const W=world;
+ LV.surf.name=W.levels.surf;LV.under.name=W.levels.under||'';LV.water.name=W.levels.water||'';
  const r=rng(seed);setLevel(LV.surf);map.fill(0);seen.fill(0);LV.under.seen.fill(0);LV.water.seen.fill(0);
+ LV.under.insects=[];LV.water.insects=[];
  const set=(x,y,t)=>{if(x>0&&y>0&&x<N-1&&y<N-1)map[y*N+x]=t;};
  const blob=(n,t,rmin,rmax,dens)=>{for(let c=0;c<n;c++){const cx=r()*N|0,cy=r()*N|0,rad=rmin+r()*(rmax-rmin);
   for(let y=-4;y<=4;y++)for(let x=-4;x<=4;x++)if(x*x+y*y<=rad*rad&&r()<dens)set(cx+x,cy+y,t);}};
+ const twigs=n=>{for(let c=0;c<n;c++){let x=r()*N|0,y=r()*N|0;const dx=r()<.5?1:0,dy=1-dx,l=3+r()*4|0;for(let i=0;i<l;i++)set(x+dx*i,y+dy*i,5);}};
+ const scatter=(n,t)=>{for(let c=0;c<n;c++)set(r()*N|0,r()*N|0,t);};
+ const leaves=(n,cols,lmin,lmax)=>{lv.leaves=[];for(let c=0;c<n;c++){const len=lmin+r()*(lmax-lmin);lv.leaves.push({x:2+r()*(N-4),y:2+r()*(N-4),a:r()*6.283,len,wid:len*(.32+r()*.16),col:cols[r()*cols.length|0],curl:r()});}};
  for(let i=0;i<N;i++){map[i]=map[(N-1)*N+i]=map[i*N]=map[i*N+N-1]=1;}
- blob(70,1,1,2.8,.7);             // grass tufts
- blob(16,8,1,2.2,.6);             // clover patches
- for(let c=0;c<55;c++)set(r()*N|0,r()*N|0,2);
- blob(14,3,0,1.2,.6);             // mushroom clusters
- // fallen leaves lie flat on the ground (drawn into the ground texture, walkable)
- const LEAF_COLS=[[112,166,62],[178,176,64],[226,184,64],[218,124,46],[160,98,52]];
- lv.leaves=[];for(let c=0;c<46;c++){const len=1.6+r()*1.6;lv.leaves.push({x:2+r()*(N-4),y:2+r()*(N-4),a:r()*6.283,len,wid:len*(.32+r()*.16),col:LEAF_COLS[r()*LEAF_COLS.length|0],curl:r()});}
- for(let c=0;c<14;c++){let x=r()*N|0,y=r()*N|0;const dx=r()<.5?1:0,dy=1-dx,l=3+r()*4|0;for(let i=0;i<l;i++)set(x+dx*i,y+dy*i,5);}
- for(let c=0;c<34;c++)set(r()*N|0,r()*N|0,6);
- for(let c=0;c<18;c++)set(r()*N|0,r()*N|0,7);
+ if(W.id==='deserto'){
+  blob(26,1,.8,2,.45);              // tufts of dry grass
+  blob(12,2,1,2.4,.75);scatter(40,2); // rock outcrops and loose stones
+  scatter(26,3);blob(5,3,.5,1.2,.5); // cacti
+  blob(10,8,.5,1.4,.6);             // agaves
+  twigs(8);                          // bleached dead branches
+  scatter(16,6);scatter(10,7);       // desert flowers
+  lv.leaves=[];
+ }else if(W.id==='giungla'){
+  blob(110,1,1,3,.75);              // ferns
+  blob(40,8,1,2.4,.6);              // broad leaves
+  for(let c=0;c<16;c++){const x=3+r()*(N-7)|0,y=3+r()*(N-7)|0;if(Math.hypot(x-32,y-32)<7)continue;
+   for(let yy=0;yy<2;yy++)for(let xx=0;xx<2;xx++)set(x+xx,y+yy,4);         // giant trunks
+   for(let k=0;k<3;k++)set(x-1+(r()*4|0),y-1+(r()*4|0),r()<.5?3:8);}      // fungi and leaves at their feet
+  scatter(25,2);twigs(18);
+  scatter(22,6);scatter(18,7);      // heliconias and orchids
+  leaves(110,[[52,96,40],[86,120,48],[120,96,52],[90,66,40],[60,80,36],[140,110,60]],2,3.6);
+ }else{
+  blob(70,1,1,2.8,.7);             // grass tufts
+  blob(16,8,1,2.2,.6);             // clover patches
+  scatter(55,2);
+  blob(14,3,0,1.2,.6);             // mushroom clusters
+  // fallen leaves lie flat on the ground (drawn into the ground texture, walkable)
+  leaves(46,[[112,166,62],[178,176,64],[226,184,64],[218,124,46],[160,98,52]],1.6,3.2);
+  twigs(14);
+  scatter(34,6);scatter(18,7);
+ }
  for(let y=-3;y<=3;y++)for(let x=-3;x<=3;x++)map[(32+y)*N+32+x]=0;
  // pond
- {let px=0,py=0;for(let k=0;k<200;k++){px=10+r()*(N-20);py=10+r()*(N-20);if(Math.hypot(px-32,py-32)>13)break;}
+ G.pond=null;
+ if(W.pond){let px=0,py=0;for(let k=0;k<200;k++){px=10+r()*(N-20);py=10+r()*(N-20);if(Math.hypot(px-32,py-32)>13)break;}
   const pr=4.2+r()*1.6;G.pond={x:px,y:py,r:pr};
   for(let y=-9;y<=9;y++)for(let x=-9;x<=9;x++){const cx=(px|0)+x,cy=(py|0)+y;if(cx<2||cy<2||cx>N-3||cy>N-3)continue;
    const d=Math.hypot(cx+.5-px,cy+.5-py),edge=pr+(vnoise(cx*.5,cy*.5,63)-.5)*2.4;
    if(d<edge)map[cy*N+cx]=14;else if(d<edge+1.6)map[cy*N+cx]=r()<.3?16:0;}}
  // burrows: tunnel entrances
  const portals=[];
- for(let k=0;k<400&&portals.length<5;k++){const x=3+(r()*(N-6))|0,y=3+(r()*(N-6))|0;
-  if(map[y*N+x]||Math.hypot(x-32,y-32)<6||Math.hypot(x-G.pond.x,y-G.pond.y)<G.pond.r+4||portals.some(p=>Math.hypot(p[0]-x,p[1]-y)<12))continue;
+ if(W.under)for(let k=0;k<400&&portals.length<5;k++){const x=3+(r()*(N-6))|0,y=3+(r()*(N-6))|0;
+  if(map[y*N+x]||Math.hypot(x-32,y-32)<6||(G.pond&&Math.hypot(x-G.pond.x,y-G.pond.y)<G.pond.r+4)||portals.some(p=>Math.hypot(p[0]-x,p[1]-y)<12))continue;
   for(let yy=-1;yy<=1;yy++)for(let xx=-1;xx<=1;xx++)map[(y+yy)*N+x+xx]=0;
   map[y*N+x]=9;portals.push([x,y]);}
  G.portals=portals;
  buildGround(r);spawnInsects(r);
- setLevel(LV.under);genUnder(r,portals);buildUnder();spawnInsects(r);
- setLevel(LV.water);genPond(r);buildPond(r);spawnInsects(r);
+ if(W.under){setLevel(LV.under);genUnder(r,portals);buildUnder();spawnInsects(r);}
+ if(W.pond){setLevel(LV.water);genPond(r);buildPond(r);spawnInsects(r);}
  setLevel(LV.surf);
  G.px=32.5;G.py=32.5;G.portalLock=false;
 }
@@ -102,7 +125,8 @@ function buildUnder(){
  for(let y=0;y<GM;y++)for(let x=0;x<GM;x++){const wx=x/GS,wy=y/GS,i=(y*GM+x)*3;
   const n=vnoise(wx*.4,wy*.4,51),damp=clamp((vnoise(wx*.15,wy*.15,52)-.5)*3,0,1);
   const sh=1-ao[y*GM+x]*.55;
-  ground[i]=(84+n*34-damp*22)*sh;ground[i+1]=(60+n*22-damp*14)*sh;ground[i+2]=(40+n*12-damp*4)*sh;}
+  if(world.id==='deserto'){ground[i]=(150+n*40-damp*20)*sh;ground[i+1]=(110+n*28-damp*14)*sh;ground[i+2]=(70+n*16-damp*6)*sh;}
+  else{ground[i]=(84+n*34-damp*22)*sh;ground[i+1]=(60+n*22-damp*14)*sh;ground[i+2]=(40+n*12-damp*4)*sh;}}
  const addLight=(cx,cy,rad,cr,cg,cb)=>{const R=rad*GS,x0=Math.max(0,cx*GS-R|0),x1=Math.min(GM-1,cx*GS+R|0),y0=Math.max(0,cy*GS-R|0),y1=Math.min(GM-1,cy*GS+R|0);
   for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++){const d=Math.hypot(x-cx*GS,y-cy*GS)/R;if(d>=1)continue;const f=(1-d)*(1-d),i=(y*GM+x)*3;Lm[i]+=cr*f;Lm[i+1]+=cg*f;Lm[i+2]+=cb*f;}};
  for(let y=0;y<N;y++)for(let x=0;x<N;x++){const t=map[y*N+x];
@@ -112,6 +136,7 @@ function buildUnder(){
 function boxBlur(a,rad){const b=new Float32Array(GM*GM);for(let y=0;y<GM;y++){let s=0;for(let x=-rad;x<GM+rad;x++){if(x+rad<GM)s+=a[y*GM+x+rad];if(x-rad-1>=0)s-=a[y*GM+x-rad-1];if(x>=0&&x<GM)b[y*GM+x]=s/(2*rad+1);}}
  const c=new Float32Array(GM*GM);for(let x=0;x<GM;x++){let s=0;for(let y=-rad;y<GM+rad;y++){if(y+rad<GM)s+=b[(y+rad)*GM+x];if(y-rad-1>=0)s-=b[(y-rad-1)*GM+x];if(y>=0&&y<GM)c[y*GM+x]=s/(2*rad+1);}}return c;}
 
+const PETALS={prato:[[235,230,215],[200,40,30]],deserto:[[240,200,60],[230,110,160]],giungla:[[210,40,30],[200,140,210]]};
 function buildGround(r){
  ground=lv.ground=new Uint8ClampedArray(GM*GM*3);const wmask=lv.wmask=new Uint8Array(GM*GM);
  const occ=new Float32Array(GM*GM);
@@ -123,14 +148,20 @@ function buildGround(r){
  for(let y=0;y<GM;y++)for(let x=0;x<GM;x++){const wx=x/GS,wy=y/GS,i=(y*GM+x)*3;
   const moss=clamp((vnoise(wx*.18,wy*.18,31)*.7+vnoise(wx*.7,wy*.7,32)*.3-.42)*2.6,0,1);
   const dry=vnoise(wx*.35,wy*.35,33);
-  let R=lerp(112,72,moss)+dry*14,Gc=lerp(84,104,moss)+dry*8,B=lerp(54,44,moss);
+  let R,Gc,B;
+  if(world.id==='deserto'){ // sand with wind ripples and darker, redder hollows between dunes
+   const dune=vnoise(wx*.08,wy*.08,34),rip=Math.sin((wx*.8+wy*.45)*2.6+vnoise(wx*.3,wy*.3,35)*7)*.5+.5,red=clamp((vnoise(wx*.12,wy*.12,36)-.5)*2,0,1);
+   const k=.86+dune*.18+rip*.07;R=(lerp(226,206,red))*k;Gc=(lerp(192,150,red))*k;B=(lerp(140,104,red))*k;}
+  else if(world.id==='giungla'){ // dark humus, damp patches and moss
+   const damp=clamp((vnoise(wx*.25,wy*.25,37)-.45)*2.5,0,1);R=lerp(70,48,moss)-damp*14+dry*10;Gc=lerp(52,70,moss)-damp*8+dry*6;B=lerp(34,32,moss)-damp*4;}
+  else{R=lerp(112,72,moss)+dry*14;Gc=lerp(84,104,moss)+dry*8;B=lerp(54,44,moss);}
   const near=cellAt(wx,wy);
   const sh=1-ao[y*GM+x]*.62;R*=sh;Gc*=sh;B*=sh;
   ground[i]=R;ground[i+1]=Gc;ground[i+2]=B;}
  // pond water, wet banks and water lilies
  const wet=new Float32Array(GM*GM);for(let y=0;y<GM;y++)for(let x=0;x<GM;x++)if(cellAt(x/GS,y/GS)===14){wmask[y*GM+x]=1;wet[y*GM+x]=1;}
  const wb=boxBlur(wet,6);for(let i=0;i<GM*GM;i++){const k=wb[i]*.6;ground[i*3]*=1-k*.45;ground[i*3+1]*=1-k*.25;ground[i*3+2]*=1-k*.4;}
- for(let c=0;c<40;c++){const a=r()*6.28,d=r()*G.pond.r*.85,px=G.pond.x+Math.cos(a)*d,py=G.pond.y+Math.sin(a)*d,rad=.22+r()*.22,notch=r()*6.28;const R=rad*GS;
+ if(G.pond)for(let c=0;c<40;c++){const a=r()*6.28,d=r()*G.pond.r*.85,px=G.pond.x+Math.cos(a)*d,py=G.pond.y+Math.sin(a)*d,rad=.22+r()*.22,notch=r()*6.28;const R=rad*GS;
   for(let y=py*GS-R|0;y<py*GS+R;y++)for(let x=px*GS-R|0;x<px*GS+R;x++){if(x<0||y<0||x>=GM||y>=GM||!wmask[y*GM+x])continue;const dx=x-px*GS,dy=y-py*GS;if(dx*dx+dy*dy>R*R)continue;
    let an=Math.atan2(dy,dx)-notch;an=((an+Math.PI)%6.283+6.283)%6.283-Math.PI;if(Math.abs(an)<.25)continue;wmask[y*GM+x]=2;}}
  // fallen leaves, stamped flat into the ground with midrib, veins, darker rim and the ground's shadows
@@ -153,18 +184,18 @@ function buildGround(r){
  // fallen petals and leaflets near flowers
  for(let cy=0;cy<N;cy++)for(let cx=0;cx<N;cx++){const t=map[cy*N+cx];if(t!==6&&t!==7)continue;
   for(let k=0;k<26;k++){const px=((cx+.5+(r()-.5)*3)*GS)|0,py=((cy+.5+(r()-.5)*3)*GS)|0;if(px<0||py<0||px>=GM||py>=GM)continue;
-   const i=(py*GM+px)*3;if(t===6){ground[i]=235;ground[i+1]=230;ground[i+2]=215;}else{ground[i]=200;ground[i+1]=40;ground[i+2]=30;}}}
+   const i=(py*GM+px)*3,c=PETALS[world.id][t===6?0:1];ground[i]=c[0];ground[i+1]=c[1];ground[i+2]=c[2];}}
 }
 const livesIn=(sp,k)=>sp.levels?sp.levels.includes(k):sp.both?(k==='surf'||k==='under'):sp.under?k==='under':k==='surf';
 function spawnInsects(r){const list=[];
  const open=[],water=[],shore=[];
  for(let y=2;y<N-2;y++)for(let x=2;x<N-2;x++){const t=map[y*N+x];
-  if(!t&&(lv.key!=='surf'||Math.hypot(x-32,y-32)>=5)){open.push([x,y]);if(lv.key==='surf'&&Math.hypot(x+.5-G.pond.x,y+.5-G.pond.y)<G.pond.r+2.6)shore.push([x,y]);}
+  if(!t&&(lv.key!=='surf'||Math.hypot(x-32,y-32)>=5)){open.push([x,y]);if(lv.key==='surf'&&G.pond&&Math.hypot(x+.5-G.pond.x,y+.5-G.pond.y)<G.pond.r+2.6)shore.push([x,y]);}
   if(t===14)water.push([x,y]);}
- SPECIES.forEach(sp=>{if(!livesIn(sp,lv.key))return;const cnt=lv.key==='under'&&sp.both?8:lv.key==='water'&&sp.id==='rana'?3:sp.count;
+ SPECIES.forEach(sp=>{if(!livesIn(sp,lv.key))return;const cnt=lv.key==='under'&&sp.both?8:lv.key==='water'&&sp.habitat==='shore'?3:sp.count;
   const pool=lv.key==='surf'&&sp.habitat==='water'?water:lv.key==='surf'&&sp.habitat==='shore'&&shore.length?shore:open;
   for(let i=0;i<cnt;i++){const c=pool[r()*pool.length|0],x=c[0]+.2+r()*.6,y=c[1]+.2+r()*.6;
-  const z=sp.fly?lerp(sp.fly[0],sp.fly[1],r()):lv.water&&sp.id==='rana'?.4+r()*1.4:0;
+  const z=sp.fly?lerp(sp.fly[0],sp.fly[1],r()):lv.water&&sp.habitat==='shore'?.4+r()*1.4:0;
   list.push({sp,x,y,z,z0:z,dir:r()*6.28,ph:r()*6.28,hopT:r()*3,vz:0});}});
  lv.insects=insects=list;}
 

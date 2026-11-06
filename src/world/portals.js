@@ -20,7 +20,7 @@ function dive(){
  if(!blocked(ux,uy,1.5)&&cellAt(ux,uy)!==19){G.px=ux;G.py=uy;}else{G.px=32.5;G.py=32.5;}
  G.cz=WCEIL-.45;G.vz=0;ctl.alt.target=.55;G.portalLock=true;G.fade=.8;audio.dig&&audio.dig(true);saveGame();
  if(!G.wentWater){G.wentWater=true;toast('Sott\'acqua','Nuoti: Sali e Scendi (o Q ed E, o il knob dell\'altezza) ti portano su e giù. Sali fino in cima per tornare a galla.',6500);}
- else toast('Stagno','Sei di nuovo sott\'acqua.',1800);
+ else toast(LV.water.name,'Sei di nuovo sott\'acqua.',1800);
 }
 function surfaceUp(){
  const p=G.pond;let tx=p.x+(G.px-32)/4,ty=p.y+(G.py-32)/4,best=null,bd=1e9;
@@ -29,14 +29,14 @@ function surfaceUp(){
   const d=Math.hypot(cx+.5-tx,cy+.5-ty);if(d<bd){bd=d;best=[cx+.5,cy+.5];}}
  if(best){G.px=best[0];G.py=best[1];G.ang=Math.atan2(G.py-p.y,G.px-p.x);}
  ctl.alt.target=.05;G.cz=.4;G.vz=0;G.portalLock=false;G.fade=.8;audio.dig&&audio.dig(false);saveGame();
- toast('A galla','Sei tornato sulla riva dello stagno.',1800);
+ toast('A galla','Sei tornato a riva.',1800);
 }
 function changeLevel(l){
  G.px=(G.px|0)+.5;G.py=(G.py|0)+.5;setLevel(l);G.portalLock=true;G.fade=1;G.vz=0;
  if(l.under){ctl.alt.target=Math.min(ctl.alt.target,.15);G.cz=Math.min(G.cz,.4);}
  audio.dig&&audio.dig(l.under);saveGame();
- if(l.under&&!G.wentDown){G.wentDown=true;toast('Sotto terra','Gallerie buie: la lanterna illumina intorno a te, la torcia più lontano. Cerca i funghi luminosi e i fasci di luce delle uscite.',6000);}
- else toast(l.name,l.under?'Sei di nuovo nelle gallerie.':'Sei tornato sul prato.',1800);
+ if(l.under&&!G.wentDown){G.wentDown=true;toast(l.name,'Gallerie buie: la lanterna illumina intorno a te, la torcia più lontano. Cerca i funghi luminosi e i fasci di luce delle uscite.',6000);}
+ else toast(l.name,l.under?'Sei di nuovo sotto terra.':'Sei tornato in superficie.',1800);
 }
 
 export { portalCheck };

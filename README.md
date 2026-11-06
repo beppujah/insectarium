@@ -1,6 +1,6 @@
 # Insectarium
 
-An exploration game: you are the size of an ant and search a meadow, its pond and the tunnels underneath for 18 species. Approach them and observe them to fill in your field notebook. The game is currently in Italian (title in game: *Insettario*).
+An exploration game: you are the size of an ant. Pick a place on the map (a meadow with its pond and tunnels, a desert, a jungle) and search it for the species that live there. Approach them and observe them to fill in your field notebook. The game is currently in Italian (title in game: *Insettario*).
 
 Play it at **https://beppujah.github.io/insectarium/**. Runs in the browser on desktop and mobile, with keyboard, touch or a MIDI controller (knobs and pads, with MIDI learn).
 
@@ -21,17 +21,18 @@ Requires Node.js 20 or newer. Every push to `main` is built and published to Git
 ```
 index.html            markup for screens, HUD and touch controls
 src/
-  main.js             startup: loads the save, builds the world, wires up the buttons
+  main.js             startup: the map of the worlds, loads the save, builds the world
   style.css
   content/
-    species.json      the 18 species: name, habitat, behaviour, fact, Wikipedia entry, photos
+    worlds.js         the worlds (meadow, desert, jungle): levels, texts, current world and its species
+    species.json      all species: world, name, habitat, behaviour, facts, Wikipedia entry, photos
     photo-credits.json author and license of every photo
     photos.js         bundled photos and their credits
   assets/photos/      the photos (<species>-1.jpg … -3.jpg)
   core/
     util.js           $, clamp, lerp, rng, noise
     loop.js           main loop: movement, physics, levels, HUD
-    save.js           saving to localStorage
+    save.js           saving to localStorage, one save per world
   input/
     controls.js       virtual knobs/buttons, MIDI learn, controller screen
     keyboard.js
@@ -39,8 +40,9 @@ src/
   world/
     constants.js      map size, cell types and their properties
     level.js          level state, generation of meadow, pond and tunnels
-    textures.js       procedural textures
-    sky.js            cloud and distant-meadow panorama
+    textures.js       procedural textures (meadow)
+    style.js          textures and plant heights of the desert and the jungle, swapped in when the world changes
+    sky.js            clouds and distant horizon of each world
     creatures.js      insect sprites and behaviour
     portals.js        passages between meadow, tunnels and pond
   render/
@@ -62,7 +64,7 @@ Shared game state lives in the `G` object in `world/level.js`; control values ar
 
 ## Adding a species
 
-1. Add an entry to `src/content/species.json` (unique `id`; `levels`, or `under`/`both`, for the habitat).
+1. Add an entry to `src/content/species.json` (unique `id`; `world`: `prato`, `deserto` or `giungla`, default `prato`; `levels`, or `under`/`both`, for the habitat).
 2. Draw its sprite with `sprite('<id>', x => { ... })` in `world/creatures.js`.
 3. Download its photos: `node tools/fetch-photos.mjs <id>`.
 
@@ -82,6 +84,12 @@ Only free licenses are accepted (CC0, public domain, CC BY, CC BY-SA; no GFDL, N
 Automatic picks come from the species' Wikipedia articles and are not always right, so most species
 have hand-picked files in `species.json` (`"photos": ["File:Name.jpg", ...]`).
 Authors and licenses are stored in `src/content/photo-credits.json` (shown in the game) and in `CREDITS.md`.
+
+## Worlds
+
+The start screen is a map with three places. The meadow (18 species) has a pond and tunnels underground;
+the desert (7 species) has dunes, rocks and cacti and a level under the sand; the jungle (7 species) has ferns, mossy trunks
+and a pool. Each world has its own textures, sky, ground and save; the "Cambia mondo" button goes back to the map.
 
 ## Look and feel
 

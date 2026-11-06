@@ -1,5 +1,5 @@
 import { audio } from '../audio/audio.js';
-import SPECIES from '../content/species.json';
+import { SPECIES } from '../content/worlds.js';
 import { $, clamp, lerp } from './util.js';
 import { findTarget } from '../game/actions.js';
 import { CONTROLS, ctl } from '../input/controls.js';
