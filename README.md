@@ -45,7 +45,6 @@ src/
     portals.js        passages between meadow, tunnels and pond
   render/
     raycaster.js      3D raycasting renderer
-    dof.js            macro-lens depth of field with autofocus (soft layer over the view)
     minimap.js
   game/
     actions.js        observe, jump, photo, toasts, catalog
@@ -87,8 +86,6 @@ Authors and licenses are stored in `src/content/photo-credits.json` (shown in th
 ## Look and feel
 
 - Finer pixels by default (the "Grana dei pixel" control still goes back to the chunky look).
-- Macro-lens depth of field: a softened copy of each frame is laid over the view wherever things are out of focus;
-  autofocus follows the insect in the crosshair, otherwise the centre of the view.
 - Grass of varying heights, bases that fade into the soil, and light through the blades when facing the sun.
 - Grass, flowers, clover and reeds can be walked through (a little slower); fallen leaves lie flat on the ground.
 

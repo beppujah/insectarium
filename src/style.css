@@ -7,7 +7,6 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html,body{margin:0;height:100%;background:#000;overflow:hidden;font:13px/1.4 var(--mono);color:var(--paper)}
-#dof{position:fixed;inset:0;width:100%;height:100%;display:block;pointer-events:none;image-rendering:auto}
 #view{position:fixed;inset:0;width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges;display:block}
 .hud{position:fixed;pointer-events:none;inset:0}
 .tl{position:absolute;left:16px;top:14px;display:grid;gap:4px}

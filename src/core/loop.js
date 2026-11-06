@@ -7,7 +7,6 @@ import { keys } from '../input/keyboard.js';
 import { stick } from '../input/touch.js';
 import { drawMini } from '../render/minimap.js';
 import { render, resize } from '../render/raycaster.js';
-import { updateDof } from '../render/dof.js';
 import { CEIL, N, PASS, SOLID, WCEIL } from '../world/constants.js';
 import { updateInsects } from '../world/creatures.js';
 import { G, blocked, cellAt, lv, seen } from '../world/level.js';
@@ -21,7 +20,7 @@ function loop(now){
  // knob smoothing
  for(const c of CONTROLS)if(c.kind==='knob'){const s=ctl[c.id];s.value+= (s.target-s.value)*Math.min(1,dt*10);}
  if(G.paused){resize();G.lastCam=render();
- updateDof(dt);return;}
+return;}
  const tempo=lerp(.1,2.5,ctl.tempo.value);G.t+=dt*tempo;
  // keyboard
  if(keys.KeyQ||ctl.down.down)ctl.alt.target=clamp(ctl.alt.target-dt*.5,0,1);
@@ -56,7 +55,7 @@ function loop(now){
  updateInsects(dt*tempo);
  resize();
  G.lastCam=render();
- updateDof(dt);
+
  G.flash=Math.max(0,G.flash-dt*2.5);G.fade=Math.max(0,G.fade-dt*1.8);
  audio.update();
  // crosshair
