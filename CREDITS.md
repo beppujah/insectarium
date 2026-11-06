@@ -6,6 +6,7 @@ Photos from Wikimedia Commons, used under their respective licenses.
 
 - [Mrowka rudnica formica rufa small.jpg](https://commons.wikimedia.org/wiki/File:Mrowka_rudnica_formica_rufa_small.jpg) — Unknown author, [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
 - [Ant Receives Honeydew from Aphid.jpg](https://commons.wikimedia.org/wiki/File:Ant_Receives_Honeydew_from_Aphid.jpg) — Dawidi, Johannesburg, South Africa, [CC BY 2.5](https://creativecommons.org/licenses/by/2.5)
+- [Formica rufa nest.jpg](https://commons.wikimedia.org/wiki/File:Formica_rufa_nest.jpg) — Unknown author, [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
 
 ## Coccinella (Coccinella septempunctata)
 
@@ -96,6 +97,10 @@ Photos from Wikimedia Commons, used under their respective licenses.
 - [Lasius-niger-colony.jpg](https://commons.wikimedia.org/wiki/File:Lasius-niger-colony.jpg) — Jason Berger, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
 - [Carpenter Ant Camponotus novaeboracensis Queen 1.jpg](https://commons.wikimedia.org/wiki/File:Carpenter_Ant_Camponotus_novaeboracensis_Queen_1.jpg) — Jacy Lucier, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
 - [Camponotus herculeanus queen high res.jpg](https://commons.wikimedia.org/wiki/File:Camponotus_herculeanus_queen_high_res.jpg) — Richard Bartz, Munich Makro Freak, [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5)
+
+## Larva di maggiolino (Melolontha melolontha)
+
+- [Melolontha melolontha 09.JPG](https://commons.wikimedia.org/wiki/File:Melolontha_melolontha_09.JPG) — AfroBrazilian, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
 
 ## Ninfa di cicala (Cicadidae)
 

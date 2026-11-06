@@ -15,6 +15,14 @@
    "author": "Dawidi, Johannesburg, South Africa",
    "license": "CC BY 2.5",
    "licenseUrl": "https://creativecommons.org/licenses/by/2.5"
+  },
+  {
+   "local": "formica-3.jpg",
+   "file": "File:Formica rufa nest.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Formica_rufa_nest.jpg",
+   "author": "Unknown author",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
   }
  ],
  "coccinella": [
@@ -407,7 +415,16 @@
    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
   }
  ],
- "larva": [],
+ "larva": [
+  {
+   "local": "larva-1.jpg",
+   "file": "File:Melolontha melolontha 09.JPG",
+   "page": "https://commons.wikimedia.org/wiki/File:Melolontha_melolontha_09.JPG",
+   "author": "AfroBrazilian",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
  "cicala": [
   {
    "local": "cicala-1.jpg",

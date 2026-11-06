@@ -52,14 +52,28 @@ async function api(host, params, tries = 5) {
 }
 
 async function download(url) {
-  for (let t = 0; t < 5; t++) {
+  for (let t = 0; t < 2; t++) {
     try {
       const r = await fetch(url, { headers: { 'User-Agent': UA } });
       if (r.status !== 429) return r;
     } catch { /* flaky network */ }
-    await sleep(5000 * (t + 1));
+    await sleep(3000);
   }
   return null;
+}
+
+// Download candidates, best first. Thumbnails may be served from thumb.wikimedia.org: the same file is on
+// upload.wikimedia.org. For images narrower than the requested width the API returns the original, which is
+// often refused (429) to scripts, so standard thumbnail widths below the original's are tried first.
+function downloadUrls(ii) {
+  const clean = u => u.replace('//thumb.wikimedia.org/', '//upload.wikimedia.org/').replace(/\?.*$/, '');
+  const out = [];
+  if (ii.thumburl && clean(ii.thumburl).includes('/thumb/')) out.push(clean(ii.thumburl));
+  const orig = clean(ii.url);
+  const m = orig.match(/^(https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\/)(.+\/)([^/]+)$/);
+  if (m) for (const w of [960, 500, 330]) if (w < ii.width) out.push(`${m[1]}thumb/${m[2]}${m[3]}/${w}px-${m[3]}`);
+  out.push(orig);
+  return [...new Set(out)];
 }
 
 const strip = html => String(html || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
@@ -100,8 +114,7 @@ async function imageInfos(files) {
     const m = ii.extmetadata || {};
     byTitle[norm[pg.title] || pg.title] = {
       file: pg.title,
-      // thumbnails may be served from thumb.wikimedia.org; the same file is on upload.wikimedia.org
-      url: (ii.thumburl || ii.url).replace('//thumb.wikimedia.org/', '//upload.wikimedia.org/').replace(/\?.*$/, ''),
+      urls: downloadUrls(ii),
       page: ii.descriptionurl,
       author: strip(m.Artist?.value) || 'Unknown author',
       license: strip(m.LicenseShortName?.value) || strip(m.UsageTerms?.value),
@@ -132,7 +145,8 @@ for (const sp of SPECIES) {
         if (list.length >= PER_SPECIES) break;
         if (!FREE.test(info.license) || /\b(NC|ND)\b/i.test(info.license)) { console.log(`   ${sp.id}: skipping ${info.file} (${info.license})`); continue; }
         if (dry) { list.push({ local: '-', ...info }); console.log(`?  ${sp.id} ${list.length}: ${info.file} — ${info.author}, ${info.license}`); continue; }
-        const r = await download(info.url);
+        let r = null;
+        for (const u of info.urls) { r = await download(u); if (r && r.ok) break; }
         let bytes, ext;
         if (r && r.ok) {
           bytes = Buffer.from(await r.arrayBuffer());
@@ -146,7 +160,7 @@ for (const sp of SPECIES) {
           continue;
         }
         const local = `${sp.id}-${list.length + 1}.${ext}`;
-        list.push({ local, bytes, ...(({ url, ...keep }) => keep)(info) });
+        list.push({ local, bytes, ...(({ urls, ...keep }) => keep)(info) });
         console.log(`+  ${sp.id} ${list.length}: ${info.file} — ${info.author}, ${info.license}`);
         await sleep(2000); // be gentle with Wikimedia's servers
       }
