@@ -446,7 +446,12 @@
    "Sotto la luce ultravioletta lo scorpione si illumina di un azzurro verde: la sostanza fluorescente è nel suo guscio. Nessuno sa ancora con certezza a cosa gli serva.",
    "La mamma scorpione porta i piccoli sulla schiena per le prime settimane, finché non fanno la loro prima muta e possono cavarsela da soli."
   ],
-  "fact": "Lo scorpione ha due pinze per afferrare le prede e una coda che finisce con un pungiglione velenoso."
+  "fact": "Lo scorpione ha due pinze per afferrare le prede e una coda che finisce con un pungiglione velenoso.",
+  "photos": [
+   "File:Androctonus australis 02.JPG",
+   "File:Scorpion with babies in UV.jpg",
+   "File:Scorpionwithyoung.JPG"
+  ]
  },
  {
   "id": "scarabeo-sacro",
@@ -465,7 +470,12 @@
    "Gli antichi Egizi lo veneravano: la pallina che rotola ricordava il sole che attraversa il cielo, e lo scarabeo era il simbolo del dio Khepri.",
    "Nella pallina la femmina depone un uovo: la larva nasce già circondata dal cibo e cresce al sicuro sotto terra."
   ],
-  "fact": "Lo scarabeo sacro fa rotolare palline di sterco molto più pesanti di lui, camminando all'indietro e spingendo con le zampe posteriori."
+  "fact": "Lo scarabeo sacro fa rotolare palline di sterco molto più pesanti di lui, camminando all'indietro e spingendo con le zampe posteriori.",
+  "photos": [
+   "File:Dungbeetle.jpg",
+   "File:Winged Scarab Pectoral of Nany MET 30.3.34 EGDP021610.jpg",
+   "File:Scarabaeus.sacer.jpg"
+  ]
  },
  {
   "id": "formica-argentata",
@@ -483,7 +493,12 @@
    "Esce a cercare cibo nelle ore più calde, quando la sabbia scotta e le lucertole che la mangerebbero si sono riparate all'ombra. Raccoglie gli insetti morti di caldo.",
    "È una delle formiche più veloci del mondo: corre a quasi un metro al secondo, più di cento volte la lunghezza del suo corpo ogni secondo."
   ],
-  "fact": "La formica argentata del Sahara è coperta di peli argentati a sezione triangolare, che riflettono la luce del sole e la aiutano a non surriscaldarsi."
+  "fact": "La formica argentata del Sahara è coperta di peli argentati a sezione triangolare, che riflettono la luce del sole e la aiutano a non surriscaldarsi.",
+  "photos": [
+   "File:Saharan Silver Ants Erg Chebbi 2011.jpg",
+   "File:Saharan silver ants capturing beetle.jpg",
+   "File:Erg Chebbi Silver Ant Nest.jpg"
+  ]
  },
  {
   "id": "tenebrione",
@@ -501,7 +516,12 @@
    "Al mattino sale in cima alle dune e si mette a testa in giù contro il vento: la nebbia che arriva dal mare si condensa in goccioline sul suo dorso e scivola fino alla bocca.",
    "Le zampe lunghe tengono il corpo sollevato dalla sabbia bollente, e quando fa troppo caldo si tuffa sotto la sabbia, dove è più fresco."
   ],
-  "fact": "Questo coleottero vive nel deserto del Namib, in Africa, uno dei posti più aridi della Terra, dove quasi non piove mai."
+  "fact": "Questo coleottero vive nel deserto del Namib, in Africa, uno dei posti più aridi della Terra, dove quasi non piove mai.",
+  "photos": [
+   "File:Onymacris unguicularis MHNT.jpg",
+   "File:Onymacris plana - inat 581901684.jpg",
+   "File:Onymacris plana - inat 337514505.jpg"
+  ]
  },
  {
   "id": "solifugo",
@@ -520,7 +540,12 @@
    "Davanti alla testa ha due enormi cheliceri, come una doppia tenaglia, con cui afferra e sminuzza insetti, ragni e perfino piccole lucertole.",
    "Non ha ghiandole velenose e non è pericoloso per le persone, anche se le leggende lo descrivono come un mostro del deserto."
   ],
-  "fact": "Il solifugo sembra un ragno, ma non lo è: appartiene a un gruppo di aracnidi tutto suo."
+  "fact": "Il solifugo sembra un ragno, ma non lo è: appartiene a un gruppo di aracnidi tutto suo.",
+  "photos": [
+   "File:Galeodes caspius 46625523.jpg",
+   "File:CamelSpiderProfile.jpg",
+   "File:Solifugae 2005 Mongolia Gobi Desert - 2.JPG"
+  ]
  },
  {
   "id": "formicaleone",
@@ -539,7 +564,12 @@
    "Quando una formica scivola nell'imbuto, la larva le lancia addosso granelli di sabbia per farla cadere fino in fondo, dove la afferra.",
    "Da adulto il formicaleone è un insetto con quattro ali trasparenti, simile a una piccola libellula, e vive solo poche settimane. Da larva invece può restare sotto la sabbia anche due o tre anni."
   ],
-  "fact": "La larva del formicaleone scava nella sabbia un imbuto perfetto e si nasconde sul fondo, con solo le mandibole che spuntano."
+  "fact": "La larva del formicaleone scava nella sabbia un imbuto perfetto e si nasconde sul fondo, con solo le mandibole che spuntano.",
+  "photos": [
+   "File:AmeisenlöwenTrichter.jpg",
+   "File:Antlion larva.jpg",
+   "File:Myrmeleon formicarius 01.JPG"
+  ]
  },
  {
   "id": "mantide-deserto",
@@ -550,15 +580,19 @@
   "count": 4,
   "pause": true,
   "wiki": [
-   "Eremiaphila",
-   "Eremiaphila"
+   "Eremiaphilidae",
+   "Eremiaphilidae"
   ],
   "facts": [
    "Questa piccola mantide vive sulla sabbia e sui sassi del deserto, del colore dei quali si mimetizza perfettamente.",
    "A differenza delle altre mantidi non aspetta ferma tra le foglie: corre veloce sul terreno con le zampe lunghe e sottili e insegue le prede.",
    "Come tutte le mantidi può girare la testa per guardarsi alle spalle, e afferra le prede con le zampe anteriori armate di spine."
   ],
-  "fact": "Questa piccola mantide vive sulla sabbia e sui sassi del deserto, del colore dei quali si mimetizza perfettamente."
+  "fact": "Questa piccola mantide vive sulla sabbia e sui sassi del deserto, del colore dei quali si mimetizza perfettamente.",
+  "photos": [
+   "File:Eremiaphila cerisyi.jpg",
+   "File:Heteronutarsus at Wadi El-Rayan by Hatem Moushir.jpg"
+  ]
  },
  {
   "id": "tagliafoglie",
@@ -576,7 +610,12 @@
    "Le foglie non le mangiano: le masticano e ci coltivano sopra un fungo, che è il loro vero cibo. Sono agricoltrici da milioni di anni.",
    "Una colonia può contare milioni di formiche di misure diverse: soldati enormi, operaie e operaie minuscole che viaggiano sopra le foglie per difenderle dalle mosche parassite."
   ],
-  "fact": "Le formiche tagliafoglie ritagliano pezzi di foglia e li portano al nido in lunghe file, tenendoli sollevati come piccole vele."
+  "fact": "Le formiche tagliafoglie ritagliano pezzi di foglia e li portano al nido in lunghe file, tenendoli sollevati come piccole vele.",
+  "photos": [
+   "File:Leafcutter ant carrying leaf.jpg",
+   "File:Atta colombica workers cutting whole plant.jpg",
+   "File:Leaf cutter ants CostaRica.jpg"
+  ]
  },
  {
   "id": "morpho",
@@ -599,7 +638,12 @@
    "Sotto, le ali sono marroni con delle macchie a forma di occhio. In volo il blu appare e scompare a ogni battito, e i predatori faticano a seguirla.",
    "Gli adulti non mangiano nettare dai fiori: succhiano il succo della frutta che marcisce a terra e la linfa degli alberi."
   ],
-  "fact": "Il blu delle ali della morpho non viene da un pigmento: sono minuscole scaglie con una struttura che riflette solo la luce blu."
+  "fact": "Il blu delle ali della morpho non viene da un pigmento: sono minuscole scaglie con una struttura che riflette solo la luce blu.",
+  "photos": [
+   "File:Morpho menelaus huebneri MHNT Male.jpg",
+   "File:Blue Morpho (Morpho peleides) underside (8420566556).jpg",
+   "File:Morpho peleides qtl1.jpg"
+  ]
  },
  {
   "id": "scarabeo-ercole",
@@ -618,7 +662,12 @@
    "I maschi usano le grandi corna come una pinza per sollevare i rivali e scaraventarli giù dal ramo, nelle sfide per le femmine.",
    "Il colore delle ali cambia con l'umidità: quando l'aria è secca sono giallo oliva, quando è umida diventano quasi nere."
   ],
-  "fact": "Lo scarabeo ercole è uno dei coleotteri più lunghi del mondo: il maschio, corna comprese, può superare i 17 centimetri."
+  "fact": "Lo scarabeo ercole è uno dei coleotteri più lunghi del mondo: il maschio, corna comprese, può superare i 17 centimetri.",
+  "photos": [
+   "File:Dynastes hercules ecuatorianus MHNT.jpg",
+   "File:Hercules beetle (Dynastes hercules) - (2).jpg",
+   "File:Dynastes hercules hercules01.JPG"
+  ]
  },
  {
   "id": "insetto-foglia",
@@ -636,7 +685,12 @@
    "Quando cammina dondola avanti e indietro, come una foglia mossa dal vento, così i predatori non lo riconoscono.",
    "Le femmine di molte specie possono deporre uova che si sviluppano anche senza un maschio. Le uova somigliano a semi di pianta."
   ],
-  "fact": "L'insetto foglia è identico a una foglia: piatto, verde, con le venature e perfino dei bordi che sembrano mangiucchiati."
+  "fact": "L'insetto foglia è identico a una foglia: piatto, verde, con le venature e perfino dei bordi che sembrano mangiucchiati.",
+  "photos": [
+   "File:Phyllium Philippinicum.jpg",
+   "File:Leaf insect in Pakke Tiger Reserve.JPG",
+   "File:Phylliidae eggs.jpg"
+  ]
  },
  {
   "id": "mantide-orchidea",
@@ -654,7 +708,12 @@
    "Le api e le mosche che si avvicinano scambiandola per un fiore finiscono afferrate. Gli esperimenti dicono che attira gli insetti perfino più dei fiori veri.",
    "Le giovani mantidi appena nate sono rosse e nere, e somigliano a un insetto puzzolente che nessuno vuole mangiare."
   ],
-  "fact": "La mantide orchidea è bianca e rosa, con le zampe allargate come petali."
+  "fact": "La mantide orchidea è bianca e rosa, con le zampe allargate come petali.",
+  "photos": [
+   "File:Mantis Hymenopus coronatus 1 Luc Viatour.jpg",
+   "File:Mantis Hymenopus coronatus 5 Luc Viatour.jpg",
+   "File:Hymenopus coronatus2.jpg"
+  ]
  },
  {
   "id": "rana-dardo",
@@ -678,7 +737,12 @@
    "Il veleno non lo producono da sole: lo ricavano dalle formiche e dagli acari che mangiano. Le rane allevate in cattività non sono velenose.",
    "Il papà porta i girini sulla schiena e li deposita uno per uno nelle piccole pozze d'acqua che si formano tra le foglie delle piante."
   ],
-  "fact": "Le rane dardo sono piccole e coloratissime: i colori vivaci avvisano i predatori che la loro pelle è velenosa."
+  "fact": "Le rane dardo sono piccole e coloratissime: i colori vivaci avvisano i predatori che la loro pelle è velenosa.",
+  "photos": [
+   "File:Dendrobates tinctorius - Suriname.jpg",
+   "File:Oophaga pumilio (Strawberry poision frog) (2532163201).jpg",
+   "File:Blue-poison.dart.frog.and.Yellow-banded.dart.frog.arp.jpg"
+  ]
  },
  {
   "id": "falena-atlante",
@@ -702,6 +766,11 @@
    "Le punte delle ali anteriori hanno la forma e il disegno della testa di un serpente, per spaventare gli uccelli.",
    "Da adulta non ha una bocca funzionante e non mangia: vive circa una settimana con l'energia accumulata da bruco, il tempo di trovare un compagno e deporre le uova."
   ],
-  "fact": "La falena atlante è una delle falene più grandi del mondo: le sue ali aperte possono superare i 25 centimetri."
+  "fact": "La falena atlante è una delle falene più grandi del mondo: le sue ali aperte possono superare i 25 centimetri.",
+  "photos": [
+   "File:Attacus atlas qtl1.jpg",
+   "File:Atlasspinner - attacus atlas.jpg",
+   "File:Attacus atlas Caput.jpg"
+  ]
  }
 ]
