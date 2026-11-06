@@ -1,9 +1,10 @@
 import { $ } from '../core/util.js';
 import { photosFor } from '../content/photos.js';
 import { G } from '../world/level.js';
+import { setVoiceEnabled, speak, stopVoice, voiceAvailable, voiceEnabled } from '../audio/voice.js';
 
 // Full-screen gallery: a species' photos, one after another.
-// The game stays paused until it is closed.
+// The game stays paused until it is closed. Each photo has its own fact, read aloud by the voice.
 let state = null; // {sp, photos, i, wasPaused, onClose}
 
 const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -12,10 +13,11 @@ const ext = (href, text) => '<a href="' + esc(href) + '" target="_blank" rel="no
 export const galleryOpen = () => !!state;
 
 /** Opens the gallery; returns false if the species has no photos. */
-export function openGallery(sp, { title, onClose } = {}) {
+export function openGallery(sp, { title, intro, onClose } = {}) {
   const photos = photosFor(sp.id);
   if (!photos.length) return false;
-  state = { openedAt: performance.now(), sp, photos, i: 0, wasPaused: !!G.paused, onClose, title: title || sp.name };
+  state = { openedAt: performance.now(), sp, photos, i: 0, wasPaused: !!G.paused, onClose, title: title || sp.name, intro: intro || sp.name };
+  updateVoiceButton();
   G.paused = true;
   $('gallery').hidden = false;
   show();
@@ -29,10 +31,31 @@ function show() {
   img.src = p.src; img.alt = sp.name + ', foto ' + (i + 1);
   $('galTitle').textContent = title;
   $('galCount').textContent = (i + 1) + ' / ' + photos.length;
-  $('galFact').textContent = sp.fact;
+  const fact = factFor(sp, p, i);
+  $('galFact').textContent = fact;
   $('galCredit').innerHTML = 'Foto: ' + ext(p.page, esc(p.author === 'Unknown author' ? 'Autore sconosciuto' : p.author)) + ' · ' + (p.licenseUrl ? ext(p.licenseUrl, esc(p.license)) : esc(p.license));
   $('galNext').textContent = i < photos.length - 1 ? 'Avanti' : 'Torna a giocare';
   $('galDots').innerHTML = photos.map((_, k) => '<i' + (k === i ? ' class="on"' : '') + '></i>').join('');
+  speak(i === 0 ? state.intro + '. ' + fact : fact);
+}
+
+// the fact belonging to a photo: matched by file name, so a missing photo doesn't shift the others
+function factFor(sp, p, i) {
+  const facts = sp.facts || [];
+  const k = (sp.photos || []).indexOf(p.file);
+  return facts[k >= 0 ? k : i] || sp.fact;
+}
+
+function updateVoiceButton() {
+  const b = $('galVoice');
+  b.hidden = !voiceAvailable();
+  b.textContent = voiceEnabled() ? 'Voce: sì' : 'Voce: no';
+  b.setAttribute('aria-pressed', String(voiceEnabled()));
+}
+function toggleVoice() {
+  setVoiceEnabled(!voiceEnabled());
+  updateVoiceButton();
+  if (voiceEnabled() && state) speak(factFor(state.sp, state.photos[state.i], state.i));
 }
 
 export function galleryNext() {
@@ -46,6 +69,7 @@ export function closeGallery() {
   if (!state) return;
   const { wasPaused, onClose } = state;
   state = null;
+  stopVoice();
   $('gallery').hidden = true;
   G.paused = wasPaused;
   if (onClose) onClose();
@@ -57,6 +81,7 @@ $('gallery').addEventListener('click', e => {
   if (!state || performance.now() - state.openedAt < 400) return;
   if (e.target.closest('a')) return;
   if (e.target.closest('#galClose')) { closeGallery(); return; }
+  if (e.target.closest('#galVoice')) { toggleVoice(); return; }
   galleryNext();
 });
 // keyboard: capture phase, so keys don't reach the game while the gallery is open
@@ -67,4 +92,5 @@ addEventListener('keydown', e => {
   if (['Space', 'Enter', 'ArrowRight', 'KeyD'].includes(e.code)) galleryNext();
   else if (['ArrowLeft', 'KeyA'].includes(e.code)) galleryPrev();
   else if (e.code === 'Escape') closeGallery();
+  else if (e.code === 'KeyV') toggleVoice();
 }, true);

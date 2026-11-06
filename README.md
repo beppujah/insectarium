@@ -53,6 +53,7 @@ src/
     gallery.js        the 3 photos shown on first observation (game paused)
   audio/
     audio.js          WebAudio synthesized sounds
+    voice.js          narration with the browser's speech synthesis
 tools/
   fetch-photos.mjs    downloads the photos from Wikimedia Commons with author and license
 ```
@@ -81,6 +82,13 @@ Only free licenses are accepted (CC0, public domain, CC BY, CC BY-SA; no GFDL, N
 Automatic picks come from the species' Wikipedia articles and are not always right, so most species
 have hand-picked files in `species.json` (`"photos": ["File:Name.jpg", ...]`).
 Authors and licenses are stored in `src/content/photo-credits.json` (shown in the game) and in `CREDITS.md`.
+
+## Narration
+
+When a species is observed for the first time, each photo comes with its own fact (`facts` in `species.json`,
+one per photo, matched by file name) and an Italian voice reads it aloud. It uses the Web Speech API,
+so it is free, works offline and uses the voices installed on the device; quality depends on the device.
+The voice can be switched off from the gallery (button or `V` key); the choice is remembered.
 
 ## Roadmap
 
