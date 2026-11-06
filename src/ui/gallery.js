@@ -28,7 +28,14 @@ export function openGallery(sp, { title, isNew, onClose } = {}) {
 function show() {
   const { sp, photos, i, title } = state, p = photos[i];
   const img = $('galImg');
-  img.src = p.src; img.alt = sp.name + ', foto ' + (i + 1);
+  // hide the previous photo until the new one has loaded (otherwise the last species flashes for a moment)
+  if (img.getAttribute('src') !== p.src) {
+    img.style.visibility = 'hidden';
+    img.onload = img.onerror = () => { img.style.visibility = ''; };
+    img.src = p.src;
+    if (img.complete && img.naturalWidth) img.style.visibility = '';
+  }
+  img.alt = sp.name + ', foto ' + (i + 1);
   $('galTitle').textContent = title;
   $('galCount').textContent = (i + 1) + ' / ' + photos.length;
   const k = factIndex(sp, p, i), fact = (sp.facts || [])[k] || sp.fact;
