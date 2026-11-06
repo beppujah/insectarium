@@ -6,6 +6,7 @@
 // To pick images by hand, add to the species in src/content/species.json:
 //         "photos": ["File:First.jpg", "File:Second.jpg", "File:Third.jpg"]
 // With fewer than 3, the rest are searched automatically; with 3, only those are used.
+// "Local:<file>" marks a photo added by hand to src/assets/photos: that species is skipped.
 // Output: src/assets/photos/<id>-1.jpg ..., src/content/photo-credits.json, CREDITS.md
 
 import fs from 'node:fs';
@@ -131,6 +132,8 @@ const complete = id => Array.isArray(credits[id]) && credits[id].length >= PER_S
 for (const sp of SPECIES) {
   if (only.length && !only.includes(sp.id)) continue;
   if (!force && !only.length && complete(sp.id)) { console.log(`=  ${sp.id}`); continue; }
+  // photos added by hand ("Local:<file>" in species.json) are not on Commons: edit the credits by hand instead
+  if ((sp.photos || []).some(f => f.startsWith('Local:'))) { console.log(`=  ${sp.id} (has local photos, skipped)`); continue; }
   try {
     // photos already on disk, reused if a new download of the same file fails
     const previous = new Map();

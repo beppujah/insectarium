@@ -148,9 +148,9 @@ Photos from Wikimedia Commons, used under their respective licenses.
 
 ## Mantide del deserto (Eremiaphilidae)
 
-- [Eremiaphila cerisyi.jpg](https://commons.wikimedia.org/wiki/File:Eremiaphila_cerisyi.jpg) — E. Giglio-Tos., Public domain
+- mantide-deserto-1.jpg (Blepharopsis mendica on a rock) — supplied by the game author; source and license to be confirmed
 - [Heteronutarsus at Wadi El-Rayan by Hatem Moushir.jpg](https://commons.wikimedia.org/wiki/File:Heteronutarsus_at_Wadi_El-Rayan_by_Hatem_Moushir.jpg) — Hatem Moushir, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
-- [Blepharopsis mendica mendica TPopp.jpg](https://commons.wikimedia.org/wiki/File:Blepharopsis_mendica_mendica_TPopp.jpg) — Tanja Popp, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- [Eremiaphila cerisyi.jpg](https://commons.wikimedia.org/wiki/File:Eremiaphila_cerisyi.jpg) — E. Giglio-Tos., Public domain
 
 ## Formica tagliafoglie (Atta (zoologia))
 

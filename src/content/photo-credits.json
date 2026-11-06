@@ -704,10 +704,10 @@
  "mantide-deserto": [
   {
    "local": "mantide-deserto-1.jpg",
-   "file": "File:Eremiaphila cerisyi.jpg",
-   "page": "https://commons.wikimedia.org/wiki/File:Eremiaphila_cerisyi.jpg",
-   "author": "E. Giglio-Tos.",
-   "license": "Public domain",
+   "file": "Local:mantide-deserto-1.jpg",
+   "page": "",
+   "author": "Unknown author",
+   "license": "",
    "licenseUrl": ""
   },
   {
@@ -720,11 +720,11 @@
   },
   {
    "local": "mantide-deserto-3.jpg",
-   "file": "File:Blepharopsis mendica mendica TPopp.jpg",
-   "page": "https://commons.wikimedia.org/wiki/File:Blepharopsis_mendica_mendica_TPopp.jpg",
-   "author": "Tanja Popp",
-   "license": "CC BY-SA 4.0",
-   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+   "file": "File:Eremiaphila cerisyi.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Eremiaphila_cerisyi.jpg",
+   "author": "E. Giglio-Tos.",
+   "license": "Public domain",
+   "licenseUrl": ""
   }
  ],
  "tagliafoglie": [

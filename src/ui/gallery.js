@@ -40,7 +40,9 @@ function show() {
   $('galCount').textContent = (i + 1) + ' / ' + photos.length;
   const k = factIndex(sp, p, i), fact = (sp.facts || [])[k] || sp.fact;
   $('galFact').textContent = fact;
-  $('galCredit').innerHTML = 'Foto: ' + ext(p.page, esc(p.author === 'Unknown author' ? 'Autore sconosciuto' : p.author)) + ' · ' + (p.licenseUrl ? ext(p.licenseUrl, esc(p.license)) : esc(p.license));
+  const who = esc(p.author === 'Unknown author' ? 'Autore sconosciuto' : p.author);
+  const lic = p.licenseUrl ? ext(p.licenseUrl, esc(p.license)) : esc(p.license || '');
+  $('galCredit').innerHTML = 'Foto: ' + (p.page ? ext(p.page, who) : who) + (lic ? ' · ' + lic : '');
   $('galNext').textContent = i < photos.length - 1 ? 'Avanti' : 'Torna a giocare';
   $('galDots').innerHTML = photos.map((_, k) => '<i' + (k === i ? ' class="on"' : '') + '></i>').join('');
   readFact(i, k, fact);
