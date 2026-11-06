@@ -91,6 +91,8 @@ Authors and licenses are stored in `src/content/photo-credits.json` (shown in th
   so they read as tufts from every side instead of boxes.
 - Detailed procedural textures: tapered grass blades with seed heads, trefoil clover, round barked twigs, lit stones
   with lichen, a crumb-built ant hill, a fly agaric with gills, soil crumbs lit from above.
+- Fallen twigs are real cylinders, intersected pixel by pixel, with bark wrapping around and cut ends showing growth rings.
+- Insect sprites are drawn at 128×128: segmented bodies lit from above, jointed legs, compound eyes, veined translucent wings.
 - Grass, flowers, clover and reeds can be walked through (a little slower); fallen leaves lie flat on the ground.
 
 ## Narration

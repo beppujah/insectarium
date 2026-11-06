@@ -1,10 +1,10 @@
 import { $, clamp, hn, isTouch, lerp } from '../core/util.js';
 import { ctl } from '../input/controls.js';
-import { CEIL, EMIT, FULLH, GM, GS, HEIGHT, PASS, SWAY, WCEIL } from '../world/constants.js';
+import { CEIL, EMIT, FULLH, GM, GS, HEIGHT, PASS, SWAY, TWIG, WCEIL } from '../world/constants.js';
 import { MOTES, SPR } from '../world/creatures.js';
-import { G, SUN_AZ, cellAt, ground, insects, lv } from '../world/level.js';
+import { G, SUN_AZ, cellAt, ground, insects, lv, twigAxisX } from '../world/level.js';
 import { PH, PW, cloudM, silM } from '../world/sky.js';
-import { SOIL, TEX } from '../world/textures.js';
+import { SOIL, TEX, TWIG_END } from '../world/textures.js';
 
 // ================= rendering (raycaster) =================
 const view=$('view');const vctx=view.getContext('2d');
@@ -92,11 +92,11 @@ function castWalls(C){
   const tr=1+.7*back,tg=1+1.15*back,tb=1+.2*back;
 
   // one vertical textured span of a cell, at distance `dist` and texture column `wx`
-  const span=(t,mx,my,dist,wx,face)=>{
+  const span=(t,mx,my,dist,wx,face,TT)=>{
    dist=Math.max(.04,dist);
-   const vars=TEX[t],T=vars[((mx*7+my*13)>>>0)%vars.length],tw=T.w,th=T.h,td=T.d;
+   const vars=TEX[t],T=TT||vars[((mx*7+my*13)>>>0)%vars.length],tw=T.w,th=T.h,td=T.d;
    const plant=PASS[t]===1;
-   const h=FULLH[t]?lv.ceil:HEIGHT[t]*(t===1?(.55+hn(mx,my,3)*.9):(.85+hn(mx,my,3)*.3));
+   const h=FULLH[t]?lv.ceil:t===5?TWIG:HEIGHT[t]*(t===1?(.55+hn(mx,my,3)*.9):(.85+hn(mx,my,3)*.3));
    const top=hz-(h-cz)*proj/dist,bot=hz+cz*proj/dist,sp=bot-top;
    const y0=Math.max(0,Math.ceil(top)),y1=Math.min(H-1,Math.floor(bot));
    const sw=SWAY[t]*(water?.9:under?.25:wind)*.22*Math.sin((water?G.t*1.1:wt)+mx*1.3+my*.7);
@@ -113,6 +113,42 @@ function castWalls(C){
     let cr=td[i]*tint*lr,cg=td[i+1]*tint*lg,cb=td[i+2]*lb;
     if(plant&&surf&&zz<.14){const k=(1-zz/.14)*.75;cr+=(78-cr)*k;cg+=(72-cg)*k;cb+=(40-cb)*k;} // base fades into the soil
     u32[o]=shade(cr,cg,cb,dist,cx,face*ao,lx,ly,emit);dbuf[o]=dist;covered++;
+   }
+  };
+
+  // fallen twig: a real cylinder lying along its row of cells, intersected pixel by pixel
+  // (bark wraps around it, light comes from above, open ends show the cut wood)
+  const twig=(mx,my,enter,exit)=>{
+   const alongX=twigAxisX(mx,my),R=TWIG/2;
+   const c=(alongX?my:mx)+.5,p0=(alongX?G.py:G.px)-c,d=alongX?ry:rx;
+   const a0=alongX?G.px:G.py,da=alongX?rx:ry,cell0=alongX?mx:my;
+   const endPrev=alongX?cellAt(mx-1,my)!==5:cellAt(mx,my-1)!==5,endNext=alongX?cellAt(mx+1,my)!==5:cellAt(mx,my+1)!==5;
+   // screen rows the cylinder can cover in this cell
+   const tmin=Math.max(.05,enter),tmax=Math.max(tmin,exit);
+   const yTop=Math.max(0,Math.floor(Math.min(hz-(TWIG-cz)*proj/tmin,hz-(TWIG-cz)*proj/tmax))),yBot=Math.min(H-1,Math.ceil(Math.max(hz+cz*proj/tmin,hz+cz*proj/tmax)));
+   const T=TEX[5][(alongX?my:mx)&1],tw=T.w,th=T.h,td=T.d,E=TWIG_END;
+   const tint=.92+hn(alongX?my:mx,7,5)*.16,sunN=alongX?sunY:sunX;
+   for(let y=yTop;y<=yBot;y++){
+    const o=y*W+x;if(dbuf[o]<1e9)continue;
+    const k=-(y-hz)/proj,qz=cz-R;                 // height along the ray: z = cz + t*k
+    const A=d*d+k*k,B=2*(p0*d+qz*k),Cc=p0*p0+qz*qz-R*R,disc=B*B-4*A*Cc;
+    let t=-1,end=false;
+    if(Cc<0){end=true;t=enter;}                     // the ray starts inside the bar's circle (can't happen for the player)
+    else if(disc>=0){t=(-B-Math.sqrt(disc))/(2*A);}
+    if(t<enter-1e-4&&disc>=0&&(-B+Math.sqrt(disc))/(2*A)>enter){t=enter;end=true;} // entered through the cell boundary
+    if(t<.05||t>exit+1e-4)continue;
+    const along=a0+t*da-cell0;
+    if(end){ // only at a real end of the twig: the cut face
+     const atPrev=along<.5;if(atPrev?!endPrev:!endNext)continue;
+     const lat=p0+t*d,z=cz+t*k,u=clamp(lat/TWIG+.5,0,.999),v=clamp(1-z/TWIG,0,.999);
+     const i=((v*(E.h-1)|0)*E.w+(u*(E.w-1)|0))*4;if(E.d[i+3]<110)continue;
+     u32[o]=shade(E.d[i],E.d[i+1],E.d[i+2],t,cx,.75+.25*sunLight,G.px+rx*t,G.py+ry*t,0);dbuf[o]=t;covered++;continue;}
+    const lat=p0+t*d,z=cz+t*k,nl=lat/R,nz=(z-R)/R;
+    // texture: along the axis horizontally, around the circumference vertically
+    let u=(along*1.0)%1;if(u<0)u+=1;const ang=Math.atan2(nl,nz),v=clamp(.5-ang/Math.PI*.9,0,.999);
+    const i=((v*(th-1)|0)*tw+(u*(tw-1)|0))*4;
+    const light=.42+.58*Math.max(0,nz*.8+.35)+.25*sunLight*Math.max(0,nl*sunN*(d>0?-1:1));
+    u32[o]=shade(td[i]*tint*1.15,td[i+1]*tint*1.15,td[i+2]*1.15,t,cx,light*.8,G.px+rx*t,G.py+ry*t,0);dbuf[o]=t;covered++;
    }
   };
 
@@ -143,6 +179,7 @@ function castWalls(C){
     }
     continue;
    }
+   if(t===5){twig(mx,my,dist,Math.min(sdx,sdy));nh--;continue;}
    let wx=side===0?G.py+dist*ry:G.px+dist*rx;wx-=Math.floor(wx);
    if((side===0&&sx<0)||(side===1&&sy>0))wx=1-wx;
    const nx=side===0?-sx:0,ny=side===1?-sy:0;
@@ -277,7 +314,7 @@ function drawCreatures(C){
  for(const[depth,b,lat]of vis){
   const sp=b.sp;let alpha=1;if(sp.night)alpha=night;if(alpha<.05)continue;
   const sx=W/2*(1+lat/depth);const size=sp.size*proj/depth;const baseY=hz+(cz-b.z)*proj/depth;const topY=baseY-size,left=sx-size/2;
-  const data=SPR[sp.id].data;const flap=sp.flap?.25+.75*Math.abs(Math.sin(G.t*9+b.ph)):1;
+  const data=SPR[sp.id].data,SS=SPR[sp.id].size,SF=SS-.01;const flap=sp.flap?.25+.75*Math.abs(Math.sin(G.t*9+b.ph)):1;
   const x0=Math.max(0,Math.ceil(left)),x1=Math.min(W-1,Math.floor(left+size)),y0=Math.max(0,Math.ceil(topY)),y1=Math.min(H-1,Math.floor(baseY));
   const glow=sp.glow?(.55+.45*Math.sin(G.t*2.5+b.ph*3))*alpha:0;
   if(b.z<1.2){const sw=size*.9*(1-b.z*.5),shY=hz+cz*proj/depth,shx0=Math.max(0,sx-sw/2|0),shx1=Math.min(W-1,sx+sw/2|0),k=.35*(1-b.z*.7)*(1-night*.6);
@@ -286,10 +323,10 @@ function drawCreatures(C){
      u32[o]=0xff000000|((((p>>16)&255)*m)<<16)|((((p>>8)&255)*m)<<8)|((p&255)*m);}}}
   for(let x=x0;x<=x1;x++){
    let u=(x-left)/size;if(sp.flap){u=.5+(u-.5)/flap;if(u<0||u>1)continue;}
-   const tx=(u*63.99)|0;const cx=x/W*2-1;
+   const tx=(u*SF)|0;const cx=x/W*2-1;
    for(let y=y0;y<=y1;y++){
     const o=y*W+x;if(depth>=dbuf[o])continue;
-    const ty=(((y-topY)/size)*63.99)|0;const i=(ty*64+tx)*4;const a=data[i+3];if(a<40)continue;
+    const ty=(((y-topY)/size)*SF)|0;const i=(ty*SS+tx)*4;const a=data[i+3];if(a<40)continue;
     let r=data[i],g=data[i+1],bb=data[i+2];let c;
     if(sp.glow&&g>200&&r>200){const k=.5+glow;c=pack(r*k,g*k,bb*k);}
     else c=shadeAt(r,g,bb,depth,cx,b.x,b.y);

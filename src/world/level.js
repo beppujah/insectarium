@@ -1,6 +1,6 @@
 import SPECIES from '../content/species.json';
 import { clamp, lerp, rng, vnoise } from '../core/util.js';
-import { CEIL, GM, GS, HEIGHT, N, PASS, SOLID, WCEIL } from './constants.js';
+import { CEIL, GM, GS, HEIGHT, N, PASS, SOLID, TWIG, WCEIL } from './constants.js';
 
 const mkLevel=(key,name,o)=>Object.assign({key,name,under:false,water:false,oob:1,ceil:0,map:new Uint8Array(N*N),seen:new Uint8Array(N*N),insects:[],ground:null,light:null},o);
 const LV={surf:mkLevel('surf','Prato',{}),
@@ -50,7 +50,9 @@ function newWorld(seed){
 }
 const cellAt=(x,y)=>(x<0||y<0||x>=N||y>=N)?lv.oob:map[(y|0)*N+(x|0)];
 // through=true: the player walks through plants (except the grass wall around the map's edge)
-const blocked=(x,y,z,through=false)=>{const t=cellAt(x,y);if(through&&PASS[t]&&x>=1&&y>=1&&x<N-1&&y<N-1)return false;return SOLID[t]===1&&HEIGHT[t]>z-0.05;};
+const twigAxisX=(mx,my)=>cellAt(mx-1,my)===5||cellAt(mx+1,my)===5;
+const blocked=(x,y,z,through=false)=>{const t=cellAt(x,y);if(through&&PASS[t]&&x>=1&&y>=1&&x<N-1&&y<N-1)return false;
+ if(t===5){const mx=Math.floor(x),my=Math.floor(y),lat=twigAxisX(mx,my)?y-my-.5:x-mx-.5;if(Math.abs(lat)>TWIG/2+.02)return false;}return SOLID[t]===1&&HEIGHT[t]>z-0.05;};
 
 function genPond(r){
  map.fill(19);
@@ -166,4 +168,4 @@ function spawnInsects(r){const list=[];
   list.push({sp,x,y,z,z0:z,dir:r()*6.28,ph:r()*6.28,hopT:r()*3,vz:0});}});
  lv.insects=insects=list;}
 
-export { LV, lv, map, seen, insects, ground, setLevel, G, SUN_AZ, newWorld, cellAt, blocked };
+export { LV, lv, map, seen, insects, ground, setLevel, G, SUN_AZ, newWorld, cellAt, blocked, twigAxisX };

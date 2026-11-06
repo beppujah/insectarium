@@ -68,18 +68,24 @@ TEX[4]=[mkTex(64,128,(x,w,h)=>{
  x.strokeStyle='rgba(240,230,160,.7)';x.lineWidth=1.5;x.beginPath();x.moveTo(32,128);x.lineTo(32,8);x.stroke();x.lineWidth=1;
  for(let y=110;y>16;y-=11){x.beginPath();x.moveTo(32,y);x.lineTo(6,y-14);x.moveTo(32,y);x.lineTo(58,y-14);x.stroke();}x.restore();
  x.fillStyle='#5b4a20';x.fillRect(31,118,3,10);})];
-// fallen twig seen from the side: round (lit on top, dark underneath), bark furrows along its length, lichen
+// fallen twig seen from the side: a round bar (lit on top, dark underneath), bark furrows along it, knots, lichen
 TEX[5]=[0,1].map(v=>mkTex(64,64,(x,w,h)=>{const r=rng(5+v*11);
- const top=18;for(let y=top;y<64;y++){const t=(y-top)/(64-top),k=Math.cos((t-.32)*Math.PI*.95);const l=Math.max(.12,k);
-  x.fillStyle=`rgb(${(58+92*l)|0},${(38+62*l)|0},${(22+34*l)|0})`;x.fillRect(0,y,64,1);}
- for(let i=0;i<22;i++){const y=top+3+r()*42;x.strokeStyle=`rgba(${r()<.6?'30,18,8':'190,160,120'},${.3+r()*.3})`;x.lineWidth=r()<.7?1:1.6;
-  x.beginPath();let px=-4;x.moveTo(px,y);while(px<68){const nx=px+6+r()*10;x.lineTo(nx,y+(r()-.5)*2.2);px=nx;}x.stroke();}
- for(let i=0;i<2;i++){const px=8+r()*48,py=top+10+r()*18;x.fillStyle='#3a2414';x.beginPath();x.ellipse(px,py,3.5,2.6,0,0,7);x.fill();
+ for(let y=0;y<64;y++){const l=.62+.08*Math.sin(y*.7);
+  x.fillStyle=`rgb(${(56+96*l)|0},${(37+64*l)|0},${(21+36*l)|0})`;x.fillRect(0,y,64,1);}
+ // furrows are periodic along x, so the bark tiles seamlessly from cell to cell
+ for(let i=0;i<26;i++){const y=2+r()*58,f1=1+(r()*3|0),f2=2+(r()*4|0),p1=r()*6.28,p2=r()*6.28,a1=.6+r()*1.2;x.strokeStyle=`rgba(${r()<.65?'30,18,8':'200,170,125'},${.28+r()*.3})`;x.lineWidth=r()<.7?1:1.6;
+  x.beginPath();for(let px=0;px<=64;px+=2){const yy=y+a1*Math.sin(px/64*6.283*f1+p1)+.6*Math.sin(px/64*6.283*f2+p2);px?x.lineTo(px,yy):x.moveTo(px,yy);}x.stroke();}
+ for(let i=0;i<2;i++){const px=12+r()*40,py=14+r()*30;x.fillStyle='#3a2414';x.beginPath();x.ellipse(px,py,3.5,2.6,0,0,7);x.fill();
   x.strokeStyle='rgba(200,170,120,.5)';x.beginPath();x.ellipse(px,py,5.5,4,0,0,7);x.stroke();}
- for(let i=0;i<4;i++){const px=r()*64,py=top+1+r()*10,c=r()<.6?'140,170,90':'190,190,150';
-  for(let k=0;k<7;k++){x.fillStyle=`rgba(${c},.6)`;x.beginPath();x.arc(px+(r()-.5)*8,py+r()*4,1+r()*2,0,7);x.fill();}}
- if(v){x.strokeStyle='#6a4a2c';x.lineWidth=3;x.beginPath();x.moveTo(40,top+2);x.quadraticCurveTo(46,8,56,1);x.stroke();
-  x.strokeStyle='rgba(220,190,140,.5)';x.lineWidth=1;x.beginPath();x.moveTo(40,top+1);x.quadraticCurveTo(45,7,55,0);x.stroke();}}));
+ for(let i=0;i<4;i++){const px=8+r()*48,py=1+r()*12,c=r()<.6?'140,170,90':'190,190,150';
+  for(let k=0;k<7;k++){x.fillStyle=`rgba(${c},.6)`;x.beginPath();x.arc(px+(r()-.5)*8,py+r()*4,1+r()*2,0,7);x.fill();}}}));
+// the cut end of a twig: growth rings inside a ring of bark
+const TWIG_END=mkTex(64,64,(x,w,h)=>{const r=rng(55);
+ x.fillStyle='#4a3020';x.beginPath();x.arc(32,32,31,0,7);x.fill();
+ const g=x.createRadialGradient(28,26,2,32,32,27);g.addColorStop(0,'#e2c08a');g.addColorStop(1,'#a77a48');x.fillStyle=g;x.beginPath();x.arc(32,32,26,0,7);x.fill();
+ x.strokeStyle='rgba(120,80,40,.45)';x.lineWidth=1;for(let k=4;k<26;k+=3+r()*2){x.beginPath();x.ellipse(32+(r()-.5),32+(r()-.5),k,k*.96,0,0,7);x.stroke();}
+ x.strokeStyle='rgba(80,50,25,.5)';x.beginPath();x.moveTo(32,32);x.lineTo(44,16);x.stroke();
+ x.fillStyle='#6a4426';x.beginPath();x.arc(32,32,2.2,0,7);x.fill();});
 function flowerTex(petal,center,poppy){return mkTex(64,192,(x,w,h)=>{
  x.strokeStyle='#4e7d2a';x.lineWidth=4;x.beginPath();x.moveTo(32,192);x.bezierCurveTo(30,140,36,90,32,44);x.stroke();
  x.fillStyle='#5a8f2f';x.beginPath();x.moveTo(32,150);x.quadraticCurveTo(10,128,4,104);x.quadraticCurveTo(22,118,33,138);x.fill();
@@ -163,4 +169,4 @@ const SOIL=(()=>{const a=new Uint8ClampedArray(64*64*3);const r=rng(17);
  return a;})();
 
 
-export { TEX, SOIL };
+export { TEX, SOIL, TWIG_END };
