@@ -77,50 +77,77 @@ function makeCam(){
 
 // walls and objects: nearest to farthest, only still-empty pixels are filled
 function castWalls(C){
- const {dX,dY,pX,pY,hz,cz,proj,maxD,wind}=C,shade=C.shade,under=lv.key!=='surf',water=lv.water;
+ const {dX,dY,pX,pY,hz,cz,proj,maxD,wind}=C,shade=C.shade,under=lv.key!=='surf',water=lv.water,surf=!under;
  const sunX=Math.cos(SUN_AZ),sunY=Math.sin(SUN_AZ),sunLight=C.sunLight||0,wt=G.t*1.8;
+ const R2=Math.SQRT1_2,NEAR=.22;
  for(let x=0;x<W;x++){
-  const cx=2*x/W-1,rx=dX+pX*cx,ry=dY+pY*cx;
+  const cx=2*x/W-1,rx=dX+pX*cx,ry=dY+pY*cx,rl=Math.hypot(rx,ry);
   let mx=G.px|0,my=G.py|0;const ddx=Math.abs(1/rx),ddy=Math.abs(1/ry);
   let sx,sy,sdx,sdy;
   if(rx<0){sx=-1;sdx=(G.px-mx)*ddx;}else{sx=1;sdx=(mx+1-G.px)*ddx;}
   if(ry<0){sy=-1;sdy=(G.py-my)*ddy;}else{sy=1;sdy=(my+1-G.py)*ddy;}
   let covered=0,nh=0;
-  // standing inside a plant: its far side is drawn first, so the grass is all around you
-  const inside=PASS[cellAt(mx,my)]&&!under;
-  for(let s=0;s<80&&nh<14&&covered<H;s++){
-   let side,dist;
-   if(s===0&&inside){dist=Math.min(sdx,sdy);side=sdx<sdy?0:1;}
-   else if(sdx<sdy){dist=sdx;sdx+=ddx;mx+=sx;side=0;}else{dist=sdy;sdy+=ddy;my+=sy;side=1;}
-   if(dist>maxD)break;
-   const t=cellAt(mx,my);if(!t||t===13||t===14)continue;nh++;
+  // light through the leaves when looking towards the sun
+  const back=surf?Math.pow(Math.max(0,(rx*sunX+ry*sunY)/rl),2)*Math.max(.35,sunLight):0;
+  const tr=1+.7*back,tg=1+1.15*back,tb=1+.2*back;
+
+  // one vertical textured span of a cell, at distance `dist` and texture column `wx`
+  const span=(t,mx,my,dist,wx,face)=>{
    dist=Math.max(.04,dist);
-   let wx=side===0?G.py+dist*ry:G.px+dist*rx;wx-=Math.floor(wx);
-   if((side===0&&sx<0)||(side===1&&sy>0))wx=1-wx;
    const vars=TEX[t],T=vars[((mx*7+my*13)>>>0)%vars.length],tw=T.w,th=T.h,td=T.d;
-   const plant=PASS[t]&&!under;
+   const plant=PASS[t]===1;
    const h=FULLH[t]?lv.ceil:HEIGHT[t]*(t===1?(.55+hn(mx,my,3)*.9):(.85+hn(mx,my,3)*.3));
-   const top=hz-(h-cz)*proj/dist,bot=hz+cz*proj/dist,span=bot-top;
+   const top=hz-(h-cz)*proj/dist,bot=hz+cz*proj/dist,sp=bot-top;
    const y0=Math.max(0,Math.ceil(top)),y1=Math.min(H-1,Math.floor(bot));
-   const nx=side===0?-sx:0,ny=side===1?-sy:0;
-   const face=under?(.82+(side?-.1:0)):.72+.38*sunLight*Math.max(0,nx*sunX+ny*sunY)+(side?-.04:0);
    const sw=SWAY[t]*(water?.9:under?.25:wind)*.22*Math.sin((water?G.t*1.1:wt)+mx*1.3+my*.7);
    const tint=.9+hn(mx,my,5)*.2,emit=EMIT[t];
-   // light through the leaves when looking towards the sun
-   const back=plant?Math.pow(Math.max(0,(rx*sunX+ry*sunY)/Math.hypot(rx,ry)),2)*Math.max(.35,sunLight):0;
-   const tr=1+.7*back,tg=1+1.15*back,tb=1+.2*back;
+   const lr=plant&&surf?tr:1,lg=plant&&surf?tg:1,lb=plant&&surf?tb:1;
    const lx=G.px+rx*(dist-.04),ly=G.py+ry*(dist-.04);
    for(let y=y0;y<=y1;y++){
     const o=y*W+x;if(dbuf[o]<1e9)continue;
-    const zz=(bot-y)/span;
+    const zz=(bot-y)/sp;
     let u=wx+sw*zz*zz;u-=Math.floor(u);
     const tx=(u*tw)|0,ty=((1-zz)*(th-1))|0,i=(ty*tw+tx)*4;
     if(td[i+3]<110)continue;
     const ao=t===10?(.6+.4*Math.sin(Math.PI*clamp(zz,0,1))):water?(.5+.5*zz*h/WCEIL):plant?.68+.32*Math.min(1,zz*h*3):.5+.5*Math.min(1,zz*h*2.2);
-    let cr=td[i]*tint*tr,cg=td[i+1]*tint*tg,cb=td[i+2]*tb;
-    if(plant&&zz<.14){const k=(1-zz/.14)*.75;cr+=(78-cr)*k;cg+=(72-cg)*k;cb+=(40-cb)*k;} // base fades into the soil
+    let cr=td[i]*tint*lr,cg=td[i+1]*tint*lg,cb=td[i+2]*lb;
+    if(plant&&surf&&zz<.14){const k=(1-zz/.14)*.75;cr+=(78-cr)*k;cg+=(72-cg)*k;cb+=(40-cb)*k;} // base fades into the soil
     u32[o]=shade(cr,cg,cb,dist,cx,face*ao,lx,ly,emit);dbuf[o]=dist;covered++;
    }
+  };
+
+  // standing inside a plant: draw it too, so the grass is all around you
+  const inside=surf&&PASS[cellAt(mx,my)];
+  for(let s=0;s<80&&nh<14&&covered<H;s++){
+   let side,dist,enter;
+   if(s===0&&inside){dist=0;side=-1;}
+   else if(sdx<sdy){dist=sdx;sdx+=ddx;mx+=sx;side=0;}else{dist=sdy;sdy+=ddy;my+=sy;side=1;}
+   if(dist>maxD)break;
+   const t=cellAt(mx,my);if(!t||t===13||t===14)continue;nh++;
+   if(PASS[t]){
+    // plants are not boxes: grass, clover, reeds and algae are two crossed planes through the cell,
+    // flowers are a single plane that always faces you
+    enter=dist;const exit=Math.min(sdx,sdy),ox=G.px-mx,oy=G.py-my;
+    if(t===6||t===7){
+     const qx=.5-ox,qy=.5-oy,tc=(qx*rx+qy*ry)/(rl*rl),off=(qx*ry-qy*rx)/rl;
+     if(tc>NEAR&&Math.abs(off)<.48)span(t,mx,my,tc,.5-off/.96,.9);
+    }else{
+     const den1=rx-ry,den2=rx+ry;
+     let t1=Math.abs(den1)>1e-6?-(ox-oy)/den1:-1,t2=Math.abs(den2)>1e-6?(1-ox-oy)/den2:-1;
+     const u1=ox+t1*rx,u2=ox+t2*rx;
+     // blades closer than NEAR are behind your eyes: skip them, or a plant you stand in would fill the screen
+     const ok1=t1>=Math.max(enter-1e-4,NEAR)&&t1<=exit+1e-4&&u1>=0&&u1<=1,ok2=t2>=Math.max(enter-1e-4,NEAR)&&t2<=exit+1e-4&&u2>=0&&u2<=1;
+     const f1=.74+.34*sunLight*Math.abs(R2*sunX-R2*sunY),f2=.74+.34*sunLight*Math.abs(R2*sunX+R2*sunY);
+     if(ok1&&ok2&&t2<t1){span(t,mx,my,t2,u2,f2);span(t,mx,my,t1,u1,f1);}
+     else{if(ok1)span(t,mx,my,t1,u1,f1);if(ok2)span(t,mx,my,t2,u2,f2);}
+    }
+    continue;
+   }
+   let wx=side===0?G.py+dist*ry:G.px+dist*rx;wx-=Math.floor(wx);
+   if((side===0&&sx<0)||(side===1&&sy>0))wx=1-wx;
+   const nx=side===0?-sx:0,ny=side===1?-sy:0;
+   const face=under?(.82+(side?-.1:0)):.72+.38*sunLight*Math.max(0,nx*sunX+ny*sunY)+(side?-.04:0);
+   span(t,mx,my,dist,wx,face);
    if(t===10||t===19)break; // solid soil and banks stop the ray
   }
  }

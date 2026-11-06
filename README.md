@@ -87,6 +87,10 @@ Authors and licenses are stored in `src/content/photo-credits.json` (shown in th
 
 - Finer pixels by default (the "Grana dei pixel" control still goes back to the chunky look).
 - Grass of varying heights, bases that fade into the soil, and light through the blades when facing the sun.
+- Plants are crossed planes through their cell (grass, clover, reeds, algae) or a plane that always faces you (flowers),
+  so they read as tufts from every side instead of boxes.
+- Detailed procedural textures: tapered grass blades with seed heads, trefoil clover, round barked twigs, lit stones
+  with lichen, a crumb-built ant hill, a fly agaric with gills, soil crumbs lit from above.
 - Grass, flowers, clover and reeds can be walked through (a little slower); fallen leaves lie flat on the ground.
 
 ## Narration
