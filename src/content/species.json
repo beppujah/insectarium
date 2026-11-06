@@ -1,0 +1,341 @@
+[
+ {
+  "id": "formica",
+  "name": "Formica",
+  "size": 0.32,
+  "speed": 0.7,
+  "count": 7,
+  "both": true,
+  "fact": "Può sollevare oggetti molte volte più pesanti del suo corpo.",
+  "wiki": [
+   "Formicidae",
+   "Formicidae"
+  ],
+  "photos": [
+   "File:Mrowka rudnica formica rufa small.jpg",
+   "File:Ant Receives Honeydew from Aphid.jpg",
+   "File:Formica rufa nest.jpg"
+  ]
+ },
+ {
+  "id": "coccinella",
+  "name": "Coccinella",
+  "size": 0.34,
+  "speed": 0.35,
+  "count": 4,
+  "fact": "Nella sua vita una coccinella mangia migliaia di afidi: è l'amica di ogni orto.",
+  "wiki": [
+   "Coccinella septempunctata",
+   "Coccinella septempunctata"
+  ]
+ },
+ {
+  "id": "farfalla",
+  "name": "Farfalla",
+  "size": 0.8,
+  "speed": 0.7,
+  "count": 4,
+  "fly": [
+   0.8,
+   1.6
+  ],
+  "flap": true,
+  "fact": "Sente i sapori con le zampe: si posa su un fiore e lo \"assaggia\".",
+  "wiki": [
+   "Rhopalocera",
+   "Rhopalocera"
+  ],
+  "photos": [
+   "File:Fesoj - Papilio machaon (by).jpg",
+   "File:Vanessa atalanta 9470.jpg",
+   "File:Common blue (Polyommatus icarus) male Turna.jpg"
+  ]
+ },
+ {
+  "id": "ape",
+  "name": "Ape",
+  "size": 0.42,
+  "speed": 1.1,
+  "count": 4,
+  "fly": [
+   0.35,
+   1.2
+  ],
+  "buzz": true,
+  "fact": "Indica alle compagne dove sono i fiori con una danza a forma di otto.",
+  "wiki": [
+   "Apis mellifera",
+   "Apis mellifera"
+  ],
+  "photos": [
+   "File:European honey bee extracts nectar.jpg",
+   "File:Apis mellifera 2 Luc Viatour.JPG",
+   "File:Bienenkoenigin 43a.jpg"
+  ]
+ },
+ {
+  "id": "cavalletta",
+  "name": "Cavalletta",
+  "size": 0.6,
+  "speed": 0.3,
+  "count": 4,
+  "hop": true,
+  "fact": "Le sue \"orecchie\" non sono sulla testa ma sui lati dell'addome.",
+  "wiki": [
+   "Caelifera",
+   "Caelifera"
+  ],
+  "photos": [
+   "File:SGR laying.jpg",
+   "File:Wuestenheuschrecke3.JPG",
+   "File:Noordwijk -Chorthippus biguttulus-groep (Chorthippus biguttulus-group) v2.jpg"
+  ]
+ },
+ {
+  "id": "scarabeo",
+  "name": "Scarabeo",
+  "size": 0.55,
+  "speed": 0.22,
+  "count": 3,
+  "fact": "Alcuni scarabei stercorari si orientano di notte guardando la Via Lattea.",
+  "wiki": [
+   "Scarabaeidae",
+   "Scarabaeidae"
+  ]
+ },
+ {
+  "id": "libellula",
+  "name": "Libellula",
+  "size": 0.85,
+  "speed": 1.5,
+  "count": 3,
+  "fly": [
+   0.9,
+   1.8
+  ],
+  "fact": "È una cacciatrice formidabile: cattura la preda in volo quasi a ogni tentativo.",
+  "wiki": [
+   "Anisoptera",
+   "Anisoptera"
+  ]
+ },
+ {
+  "id": "lucciola",
+  "name": "Lucciola",
+  "size": 0.22,
+  "speed": 0.4,
+  "count": 12,
+  "fly": [
+   0.3,
+   1.3
+  ],
+  "glow": true,
+  "night": true,
+  "fact": "La sua luce è \"fredda\": quasi tutta l'energia diventa luce, pochissima calore.",
+  "wiki": [
+   "Lampyridae",
+   "Lampyridae"
+  ]
+ },
+ {
+  "id": "rana",
+  "name": "Rana verde",
+  "size": 0.85,
+  "speed": 0.25,
+  "count": 5,
+  "hop": true,
+  "habitat": "shore",
+  "levels": [
+   "surf",
+   "water"
+  ],
+  "fact": "Respira con i polmoni ma anche attraverso la pelle: sott'acqua può restare a lungo senza risalire.",
+  "wiki": [
+   "Pelophylax esculentus",
+   "Pelophylax kl. esculentus"
+  ]
+ },
+ {
+  "id": "gerride",
+  "name": "Gerride",
+  "size": 0.55,
+  "speed": 1.3,
+  "count": 6,
+  "habitat": "water",
+  "levels": [
+   "surf"
+  ],
+  "fact": "Cammina sull'acqua: le zampe sono coperte di peli idrorepellenti che non rompono la pellicola della superficie.",
+  "wiki": [
+   "Gerris lacustris",
+   "Gerris lacustris"
+  ],
+  "photos": [
+   "File:Gerris.lacustris.jpg",
+   "File:Gerris lacustris 03.JPG",
+   "File:Gerris lacustris 2.jpg"
+  ]
+ },
+ {
+  "id": "girino",
+  "name": "Girino",
+  "size": 0.4,
+  "speed": 0.6,
+  "count": 9,
+  "fly": [
+   0.2,
+   1.6
+  ],
+  "swim": true,
+  "levels": [
+   "water"
+  ],
+  "fact": "Respira con le branchie e vive solo in acqua. Poi spuntano le zampe, la coda viene riassorbita e diventa una rana.",
+  "wiki": [
+   "Girino",
+   "larva degli anfibi anuri"
+  ],
+  "photos": [
+   "File:Litoria xanthomera tadpole.jpg",
+   "File:Girini.jpg",
+   "File:Giant Burrowing Frog (Heleioporus australiacus) tadpole.jpg"
+  ]
+ },
+ {
+  "id": "ditisco",
+  "name": "Ditisco",
+  "size": 0.55,
+  "speed": 1.1,
+  "count": 4,
+  "fly": [
+   0.3,
+   2
+  ],
+  "swim": true,
+  "levels": [
+   "water"
+  ],
+  "fact": "È un coleottero che vive sott'acqua: si porta dietro una bolla d'aria sotto le ali per respirare.",
+  "wiki": [
+   "Dytiscus marginalis",
+   "Dytiscus marginalis"
+  ],
+  "photos": [
+   "File:Great Diving Beetle (Dytiscus marginalis), Aviemore - geograph.org.uk - 3601574.jpg",
+   "File:Dytiscus marginalis - Gelbrandkäfer 20160822 (2).jpg",
+   "File:Dytiscidae001.JPG"
+  ]
+ },
+ {
+  "id": "notonetta",
+  "name": "Notonetta",
+  "size": 0.48,
+  "speed": 0.9,
+  "count": 4,
+  "fly": [
+   2,
+   2.35
+  ],
+  "swim": true,
+  "levels": [
+   "water"
+  ],
+  "fact": "Nuota a pancia in su, remando con le lunghe zampe posteriori proprio sotto la superficie.",
+  "wiki": [
+   "Notonecta glauca",
+   "Notonecta glauca"
+  ],
+  "photos": [
+   "File:Notonecta glauca1.jpg",
+   "File:Notonecta glauca P1010980 DxO8.jpg",
+   "File:Notonecta glauca (29705232687).jpg"
+  ]
+ },
+ {
+  "id": "ninfa",
+  "name": "Ninfa di libellula",
+  "size": 0.6,
+  "speed": 0.18,
+  "count": 4,
+  "levels": [
+   "water"
+  ],
+  "fact": "Vive in acqua da mesi a qualche anno e cattura le prede con una \"maschera\": un labbro che scatta in avanti.",
+  "wiki": [
+   "Odonata",
+   "larva di Odonata"
+  ],
+  "photos": [
+   "File:Aeshna cyanea (O.F. Müller 1764) ♀ larva.jpg",
+   "File:Aeshna cyanea - larva (aka).jpg",
+   "File:MosaikJungferExuvie09.JPG"
+  ]
+ },
+ {
+  "id": "grillotalpa",
+  "name": "Grillotalpa",
+  "size": 0.62,
+  "speed": 0.35,
+  "count": 4,
+  "under": true,
+  "fact": "Ha zampe anteriori a forma di pala per scavare. Il maschio canta da una galleria a imbuto che amplifica il suo richiamo.",
+  "wiki": [
+   "Gryllotalpa gryllotalpa",
+   "Gryllotalpa gryllotalpa"
+  ]
+ },
+ {
+  "id": "regina",
+  "name": "Formica regina",
+  "size": 0.58,
+  "speed": 0.06,
+  "count": 2,
+  "under": true,
+  "fact": "Depone quasi tutte le uova del formicaio e può vivere molti anni: in laboratorio una regina è arrivata a quasi trenta.",
+  "wiki": [
+   "Formicidae",
+   "Formicidae, la regina"
+  ],
+  "photos": [
+   "File:Lasius-niger-colony.jpg",
+   "File:Carpenter Ant Camponotus novaeboracensis Queen 1.jpg",
+   "File:Camponotus herculeanus queen high res.jpg"
+  ]
+ },
+ {
+  "id": "larva",
+  "name": "Larva di maggiolino",
+  "size": 0.45,
+  "speed": 0.1,
+  "count": 5,
+  "under": true,
+  "fact": "Vive sotto terra tre o quattro anni, mangiando radici, prima di diventare un maggiolino adulto.",
+  "wiki": [
+   "Melolontha melolontha",
+   "Melolontha melolontha"
+  ],
+  "photos": [
+   "File:Larva of Melolontha.jpg",
+   "File:Melolontha-melolontha-015.jpg",
+   "File:Engerling in cocon (Melolontha melolontha).jpg"
+  ]
+ },
+ {
+  "id": "cicala",
+  "name": "Ninfa di cicala",
+  "size": 0.5,
+  "speed": 0.14,
+  "count": 4,
+  "under": true,
+  "fact": "Alcune cicale americane restano sotto terra 13 o 17 anni, poi escono tutte insieme nella stessa primavera.",
+  "wiki": [
+   "Cicadidae",
+   "Cicadidae, la ninfa"
+  ],
+  "photos": [
+   "File:2021-05-15 20 35 58 Brood X periodical cicada nymph on a plant.jpg",
+   "File:2010 07 28 Cicala mutata.JPG",
+   "File:Dog-day cicada (53938966852).jpg"
+  ]
+ }
+]

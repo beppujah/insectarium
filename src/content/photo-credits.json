@@ -1,0 +1,437 @@
+{
+ "formica": [
+  {
+   "local": "formica-1.jpg",
+   "file": "File:Mrowka rudnica formica rufa small.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Mrowka_rudnica_formica_rufa_small.jpg",
+   "author": "Unknown author",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  {
+   "local": "formica-2.jpg",
+   "file": "File:Ant Receives Honeydew from Aphid.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Ant_Receives_Honeydew_from_Aphid.jpg",
+   "author": "Dawidi, Johannesburg, South Africa",
+   "license": "CC BY 2.5",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.5"
+  }
+ ],
+ "coccinella": [
+  {
+   "local": "coccinella-1.jpg",
+   "file": "File:Ladybird.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Ladybird.jpg",
+   "author": "Jon Sullivan (PD-PDphoto.org)",
+   "license": "Public domain",
+   "licenseUrl": ""
+  },
+  {
+   "local": "coccinella-2.jpg",
+   "file": "File:Larva di Coccinella septempunctata.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Larva_di_Coccinella_septempunctata.jpg",
+   "author": "Andrea Bonifazi",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "local": "coccinella-3.jpg",
+   "file": "File:7-Spotted-Ladybug-Coccinella-septempunctata-sq1.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:7-Spotted-Ladybug-Coccinella-septempunctata-sq1.jpg",
+   "author": "Photographer: Dominik Stodulski Graphic Processing: User:MathKnight",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  }
+ ],
+ "farfalla": [
+  {
+   "local": "farfalla-1.jpg",
+   "file": "File:Fesoj - Papilio machaon (by).jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Fesoj_-_Papilio_machaon_(by).jpg",
+   "author": "fesoj",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  {
+   "local": "farfalla-2.jpg",
+   "file": "File:Vanessa atalanta 9470.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Vanessa_atalanta_9470.jpg",
+   "author": "NobbiP",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "local": "farfalla-3.jpg",
+   "file": "File:Common blue (Polyommatus icarus) male Turna.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Common_blue_(Polyommatus_icarus)_male_Turna.jpg",
+   "author": "Charles J. Sharp",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "ape": [
+  {
+   "local": "ape-1.jpg",
+   "file": "File:European honey bee extracts nectar.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:European_honey_bee_extracts_nectar.jpg",
+   "author": "John Severns (Severnjc)",
+   "license": "Public domain",
+   "licenseUrl": ""
+  },
+  {
+   "local": "ape-2.jpg",
+   "file": "File:Apis mellifera 2 Luc Viatour.JPG",
+   "page": "https://commons.wikimedia.org/wiki/File:Apis_mellifera_2_Luc_Viatour.JPG",
+   "author": "Luc Viatour",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  {
+   "local": "ape-3.jpg",
+   "file": "File:Bienenkoenigin 43a.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Bienenkoenigin_43a.jpg",
+   "author": "Waugsberg",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+  }
+ ],
+ "cavalletta": [
+  {
+   "local": "cavalletta-1.jpg",
+   "file": "File:SGR laying.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:SGR_laying.jpg",
+   "author": "Christiaan Kooyman",
+   "license": "Public domain",
+   "licenseUrl": ""
+  },
+  {
+   "local": "cavalletta-2.jpg",
+   "file": "File:Wuestenheuschrecke3.JPG",
+   "page": "https://commons.wikimedia.org/wiki/File:Wuestenheuschrecke3.JPG",
+   "author": "böhringer friedrich",
+   "license": "CC BY-SA 2.5",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+  },
+  {
+   "local": "cavalletta-3.jpg",
+   "file": "File:Noordwijk -Chorthippus biguttulus-groep (Chorthippus biguttulus-group) v2.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Noordwijk_-Chorthippus_biguttulus-groep_(Chorthippus_biguttulus-group)_v2.jpg",
+   "author": "Rudolphous",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "scarabeo": [
+  {
+   "local": "scarabeo-1.jpg",
+   "file": "File:Copris lunaris05.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Copris_lunaris05.jpg",
+   "author": "Unknown author",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  {
+   "local": "scarabeo-2.png",
+   "file": "File:Amphimallon solstitiale (Linné, 1758) Male (19416867136).png",
+   "page": "https://commons.wikimedia.org/wiki/File:Amphimallon_solstitiale_(Linn%C3%A9,_1758)_Male_(19416867136).png",
+   "author": "Udo Schmidt from Deutschland",
+   "license": "CC BY-SA 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "local": "scarabeo-3.jpg",
+   "file": "File:Cetonia-aurata.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Cetonia-aurata.jpg",
+   "author": "Chrumps",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+  }
+ ],
+ "libellula": [
+  {
+   "local": "libellula-1.jpg",
+   "file": "File:Gemeine Heidelibelle (Sympetrum vulgatum) 4.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Gemeine_Heidelibelle_(Sympetrum_vulgatum)_4.jpg",
+   "author": "Darkone (talk · contribs) / Darkone",
+   "license": "CC BY-SA 2.5",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+  },
+  {
+   "local": "libellula-2.jpg",
+   "file": "File:Aeshna cyanea female 1.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Aeshna_cyanea_female_1.jpg",
+   "author": "Böhringer böhringer friedrich",
+   "license": "CC BY-SA 2.5",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+  },
+  {
+   "local": "libellula-3.jpg",
+   "file": "File:Broad-bodied Chaser.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Broad-bodied_Chaser.jpg",
+   "author": "Andreas Trepte",
+   "license": "CC BY-SA 2.5",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+  }
+ ],
+ "lucciola": [
+  {
+   "local": "lucciola-1.jpg",
+   "file": "File:Lampyris noctiluca.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Lampyris_noctiluca.jpg",
+   "author": "Wofl~commonswiki",
+   "license": "CC BY-SA 2.0 de",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en"
+  },
+  {
+   "local": "lucciola-2.jpg",
+   "file": "File:Lamprohiza-splendidula-10-fws.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Lamprohiza-splendidula-10-fws.jpg",
+   "author": "Kryp",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  {
+   "local": "lucciola-3.jpg",
+   "file": "File:Lampyridae - Lampyris raymondi.JPG",
+   "page": "https://commons.wikimedia.org/wiki/File:Lampyridae_-_Lampyris_raymondi.JPG",
+   "author": "Hectonichus",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  }
+ ],
+ "rana": [
+  {
+   "local": "rana-1.jpg",
+   "file": "File:Teichfrosch.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Teichfrosch.jpg",
+   "author": "Leo Bogert",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  {
+   "local": "rana-2.jpg",
+   "file": "File:Rana sylvatica SC 2.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Rana_sylvatica_SC_2.jpg",
+   "author": "Cephas",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+  },
+  {
+   "local": "rana-3.jpg",
+   "file": "File:Teichfrosch Pelophylax esculentus Gruga 003.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Teichfrosch_Pelophylax_esculentus_Gruga_003.jpg",
+   "author": "Tuxyso",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  }
+ ],
+ "gerride": [
+  {
+   "local": "gerride-1.jpg",
+   "file": "File:Gerris.lacustris.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Gerris.lacustris.jpg",
+   "author": "James K. Lindsey",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "local": "gerride-2.jpg",
+   "file": "File:Gerris lacustris 03.JPG",
+   "page": "https://commons.wikimedia.org/wiki/File:Gerris_lacustris_03.JPG",
+   "author": "AfroBrazilian",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "local": "gerride-3.jpg",
+   "file": "File:Gerris lacustris 2.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Gerris_lacustris_2.jpg",
+   "author": "Zoran Gavrilović",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "girino": [
+  {
+   "local": "girino-1.jpg",
+   "file": "File:Litoria xanthomera tadpole.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Litoria_xanthomera_tadpole.jpg",
+   "author": "Rainforest_harley",
+   "license": "CC BY-SA 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "local": "girino-2.jpg",
+   "file": "File:Girini.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Girini.jpg",
+   "author": "MariaChiara1993",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "local": "girino-3.jpg",
+   "file": "File:Giant Burrowing Frog (Heleioporus australiacus) tadpole.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Giant_Burrowing_Frog_(Heleioporus_australiacus)_tadpole.jpg",
+   "author": "Tnarg 12345 at English Wikipedia",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+  }
+ ],
+ "ditisco": [
+  {
+   "local": "ditisco-1.jpg",
+   "file": "File:Great Diving Beetle (Dytiscus marginalis), Aviemore - geograph.org.uk - 3601574.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Great_Diving_Beetle_(Dytiscus_marginalis),_Aviemore_-_geograph.org.uk_-_3601574.jpg",
+   "author": "Mike Pennington",
+   "license": "CC BY-SA 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "local": "ditisco-2.jpg",
+   "file": "File:Dytiscus marginalis - Gelbrandkäfer 20160822 (2).jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Dytiscus_marginalis_-_Gelbrandk%C3%A4fer_20160822_(2).jpg",
+   "author": "5snake5",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  {
+   "local": "ditisco-3.jpg",
+   "file": "File:Dytiscidae001.JPG",
+   "page": "https://commons.wikimedia.org/wiki/File:Dytiscidae001.JPG",
+   "author": "Hugo.arg",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+ ],
+ "notonetta": [
+  {
+   "local": "notonetta-1.jpg",
+   "file": "File:Notonecta glauca1.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Notonecta_glauca1.jpg",
+   "author": "Holger Gröschl",
+   "license": "CC BY-SA 2.0 de",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en"
+  },
+  {
+   "local": "notonetta-2.jpg",
+   "file": "File:Notonecta glauca P1010980 DxO8.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Notonecta_glauca_P1010980_DxO8.jpg",
+   "author": "Zieger M",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  {
+   "local": "notonetta-3.jpg",
+   "file": "File:Notonecta glauca (29705232687).jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Notonecta_glauca_(29705232687).jpg",
+   "author": "Ben Sale from Stevenage, UK",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  }
+ ],
+ "ninfa": [
+  {
+   "local": "ninfa-1.jpg",
+   "file": "File:Aeshna cyanea (O.F. Müller 1764) ♀ larva.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Aeshna_cyanea_(O.F._M%C3%BCller_1764)_%E2%99%80_larva.jpg",
+   "author": "Elena Regina",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "local": "ninfa-2.jpg",
+   "file": "File:Aeshna cyanea - larva (aka).jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Aeshna_cyanea_-_larva_(aka).jpg",
+   "author": "André Karwath aka Aka",
+   "license": "CC BY-SA 2.5",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+  },
+  {
+   "local": "ninfa-3.jpg",
+   "file": "File:MosaikJungferExuvie09.JPG",
+   "page": "https://commons.wikimedia.org/wiki/File:MosaikJungferExuvie09.JPG",
+   "author": "Böhringer Friedrich",
+   "license": "CC BY-SA 2.5",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+  }
+ ],
+ "grillotalpa": [
+  {
+   "local": "grillotalpa-1.jpg",
+   "file": "File:Grillotalpa 03.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Grillotalpa_03.jpg",
+   "author": "Syrio",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "local": "grillotalpa-2.jpg",
+   "file": "File:Gryllotalpa gryllotalpa bauch gerade.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Gryllotalpa_gryllotalpa_bauch_gerade.jpg",
+   "author": "Unknown author",
+   "license": "CC BY-SA 2.0 de",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en"
+  },
+  {
+   "local": "grillotalpa-3.jpg",
+   "file": "File:Gryllotalpa gryllotalpa vorne-oben.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Gryllotalpa_gryllotalpa_vorne-oben.jpg",
+   "author": "Eszter Kovács",
+   "license": "CC BY-SA 2.0 de",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en"
+  }
+ ],
+ "regina": [
+  {
+   "local": "regina-1.jpg",
+   "file": "File:Lasius-niger-colony.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Lasius-niger-colony.jpg",
+   "author": "Jason Berger",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "local": "regina-2.jpg",
+   "file": "File:Carpenter Ant Camponotus novaeboracensis Queen 1.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Carpenter_Ant_Camponotus_novaeboracensis_Queen_1.jpg",
+   "author": "Jacy Lucier",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "local": "regina-3.jpg",
+   "file": "File:Camponotus herculeanus queen high res.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Camponotus_herculeanus_queen_high_res.jpg",
+   "author": "Richard Bartz, Munich Makro Freak",
+   "license": "CC BY-SA 2.5",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+  }
+ ],
+ "larva": [],
+ "cicala": [
+  {
+   "local": "cicala-1.jpg",
+   "file": "File:2021-05-15 20 35 58 Brood X periodical cicada nymph on a plant.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:2021-05-15_20_35_58_Brood_X_periodical_cicada_nymph_on_a_plant.jpg",
+   "author": "G. Edward Johnson",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+  },
+  {
+   "local": "cicala-2.jpg",
+   "file": "File:2010 07 28 Cicala mutata.JPG",
+   "page": "https://commons.wikimedia.org/wiki/File:2010_07_28_Cicala_mutata.JPG",
+   "author": "Emilia.venturato",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "local": "cicala-3.jpg",
+   "file": "File:Dog-day cicada (53938966852).jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Dog-day_cicada_(53938966852).jpg",
+   "author": "U.S. Fish and Wildlife Service - Midwest Region",
+   "license": "Public domain",
+   "licenseUrl": ""
+  }
+ ]
+}

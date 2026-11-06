@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Insettario</title>
+</head>
+<body>
+<canvas id="view"></canvas>
+
+<div class="hud" id="hud" hidden>
+  <div class="tl">
+    <div class="brand">Insettario</div>
+    <div class="chip" id="levelChip">Prato</div>
+    <button class="nbbtn" id="nbBtn">Apri il quaderno</button>
+    <div class="chip" id="midiChip">MIDI: —</div>
+    <div class="chip" id="infoChip"></div>
+  </div>
+  <canvas id="mini" width="64" height="64"></canvas>
+  <div class="cross" id="cross"></div>
+  <div id="target" hidden></div>
+  <div id="toast" hidden><h3 id="toastT"></h3><p id="toastP"></p></div>
+  <div class="catalog" id="catalog"></div>
+</div>
+
+
+<div class="touch" id="touch" hidden>
+  <div id="lookpad" aria-label="Trascina per guardarti intorno"></div>
+  <div class="stick" id="stick" aria-label="Joystick: cammina e gira"><div class="knobdot" id="knobdot"></div></div>
+  <div class="tbtns">
+    <button class="tb" data-tap="tod" style="grid-area:tod">Ora</button>
+    <button class="tb" data-hold="up" style="grid-area:up">Sali</button>
+    <button class="tb" data-tap="torch" style="grid-area:torch">Torcia</button>
+    <button class="tb" data-tap="jump" style="grid-area:jump">Salta</button>
+    <button class="tb" data-hold="down" style="grid-area:down">Scendi</button>
+    <button class="tb" data-tap="map" style="grid-area:map">Mappa</button>
+    <button class="tb big" data-tap="observe">Osserva</button>
+  </div>
+</div>
+<div class="screen" id="startScreen">
+  <div class="sheet">
+    <h1>Insettario</h1>
+    <p>Sei grande come una formica, in un prato dove i fili d'erba sono alberi. Trova le diciotto specie nascoste, avvicinati e osservale per scriverle nel quaderno. Le lucciole si fanno vedere solo di notte. Alcune vivono sotto terra: cerca le tane e scendi nelle gallerie. Altre nello stagno: entra in acqua e immergiti.</p>
+    <p class="kbd only-touch">Sul telefono: joystick a sinistra per camminare e girare, trascina a destra per guardarti intorno. Gioca col telefono in orizzontale e senza modalità silenziosa per sentire i suoni.</p>
+    <p class="kbd no-touch">Tastiera: W S avanti e indietro · A D gira · Q E altezza · Spazio osserva · T ora del giorno · L torcia · N quaderno · M controlli MIDI</p>
+    <div class="row">
+      <button class="btn" id="continueBtn" hidden>Continua</button>
+      <button class="btn" id="enterBtn">Entra nel prato</button>
+      <button class="btn ghost no-touch" id="mapOpenBtn">Collega un controller MIDI</button>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="notebook" hidden>
+  <div class="sheet nb">
+    <div class="nbhead"><h2>Il quaderno <span id="nbCount"></span></h2><button class="btn ghost" id="nbClose">Chiudi</button></div>
+    <div id="nbBody"></div>
+  </div>
+</div>
+<div class="screen gal" id="gallery" hidden role="dialog" aria-modal="true" aria-labelledby="galTitle">
+  <div class="galbox">
+    <div class="galhead"><h2 id="galTitle"></h2><span id="galCount"></span><button class="btn ghost" id="galClose" aria-label="Chiudi la galleria">Chiudi</button></div>
+    <div class="galph"><img id="galImg" alt=""></div>
+    <p id="galFact"></p>
+    <div class="galfoot"><span class="credit" id="galCredit"></span><span class="galdots" id="galDots"></span><button class="btn" id="galNext">Avanti</button></div>
+  </div>
+</div>
+<div class="screen" id="mapScreen" hidden>
+  <div class="sheet">
+    <h2>Controller MIDI</h2>
+    <p class="kbd" id="midiStatus">Cerco dispositivi MIDI…</p>
+    <div class="row seg" role="group" aria-label="Tipo di controller">
+      <span class="kbd">Il tuo controller ha:</span>
+      <button class="btn ghost" data-mode="knob" aria-pressed="true">Knob e pulsanti</button>
+      <button class="btn ghost" data-mode="pad" aria-pressed="false">Solo pulsanti</button>
+    </div>
+    <div class="row">
+      <button class="btn" id="wizardBtn">Assegna tutto in sequenza</button>
+      <button class="btn ghost" id="mapCloseBtn">Chiudi</button>
+    </div>
+    <div id="learnMsg" hidden></div>
+    <div class="scroll"><div class="maptable" id="maptable"></div></div>
+    <p class="kbd">Muovi un knob o premi un pulsante: il messaggio che arriva (CC o nota) viene assegnato al controllo evidenziato. Le assegnazioni restano salvate in questo browser.</p>
+  </div>
+</div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
