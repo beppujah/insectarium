@@ -2,18 +2,19 @@
 
 An exploration game: you are the size of an ant and search a meadow, its pond and the tunnels underneath for 18 species. Approach them and observe them to fill in your field notebook. The game is currently in Italian (title in game: *Insettario*).
 
-Runs in the browser on desktop and mobile, with keyboard, touch or a MIDI controller (knobs and pads, with MIDI learn).
+Play it at **https://beppujah.github.io/insectarium/**. Runs in the browser on desktop and mobile, with keyboard, touch or a MIDI controller (knobs and pads, with MIDI learn).
 
 ## Commands
 
 ```
-npm install        # first time only
-npm run dev        # dev server with hot reload (http://localhost:5173)
-npm run build      # builds dist/index.html: a single file that also opens with a double click
-npm run typecheck  # type checking (for modules already converted to .ts)
+npm install          # first time only
+npm run dev          # dev server with hot reload (http://localhost:5173)
+npm run build        # regular build in dist/ (what GitHub Pages serves)
+npm run build:single # one self-contained dist/index.html that also opens with a double click
+npm run typecheck    # type checking (for modules already converted to .ts)
 ```
 
-Requires Node.js 20 or newer.
+Requires Node.js 20 or newer. Every push to `main` is built and published to GitHub Pages by `.github/workflows/deploy.yml`.
 
 ## Structure
 

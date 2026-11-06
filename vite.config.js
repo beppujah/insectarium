@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite';
 import { viteSingleFile } from 'vite-plugin-singlefile';
 
-// `npm run build` produces a single dist/index.html that also opens with a double click,
-// like the original prototype. The plugin will be dropped for the PWA and app stores.
-export default defineConfig({
+// `npm run build`         regular multi-file build in dist/ (used for GitHub Pages)
+// `npm run build:single`  one self-contained dist/index.html that also opens with a double click
+export default defineConfig(({ mode }) => ({
   base: './',
-  plugins: [viteSingleFile()],
+  plugins: mode === 'single' ? [viteSingleFile()] : [],
   build: { target: 'es2020' },
-});
+}));
