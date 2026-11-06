@@ -3,6 +3,8 @@ import { ctl } from '../input/controls.js';
 import { G, insects, lv } from '../world/level.js';
 
 // ================= audio =================
+// effects and ambience sit about 3 dB below full scale so the narration stays clear
+const FX_LEVEL=.7;
 const audio={ctx:null,
  init(){if(this.ctx)return;const C=window.AudioContext||window.webkitAudioContext;const ac=this.ctx=new C();
   this.master=ac.createGain();this.lp=ac.createBiquadFilter();this.lp.type='lowpass';this.lp.frequency.value=20000;this.master.connect(this.lp).connect(ac.destination);
@@ -42,7 +44,7 @@ const audio={ctx:null,
   o.type='triangle';o.frequency.value=660*mul*Math.pow(2,s/12);g.gain.setValueAtTime(0,t+i*.07);g.gain.linearRampToValueAtTime(.12,t+i*.07+.01);g.gain.exponentialRampToValueAtTime(.001,t+i*.07+.5);
   o.connect(g).connect(this.master);o.start(t+i*.07);o.stop(t+i*.07+.6);});},
  update(){if(!this.ctx)return;const t=this.ctx.currentTime;
-  this.master.gain.setTargetAtTime(G.soundOn?ctl.vol.value:0,t,.05);
+  this.master.gain.setTargetAtTime(G.soundOn?ctl.vol.value*FX_LEVEL:0,t,.05);
   const w=ctl.wind.value;this.windG.gain.setTargetAtTime(lv.water?.16:lv.under?.22:w*.35,t,.3);this.windF.frequency.setTargetAtTime(lv.water?160:lv.under?110:300+w*900,t,.3);
   this.lp.frequency.setTargetAtTime(lv.water?750:lv.under?1800:20000,t,.2);
   let best=null,bd=99;for(const b of insects)if(b.sp.buzz){const d=Math.hypot(b.x-G.px,b.y-G.py);if(d<bd){bd=d;best=b;}}
