@@ -109,3 +109,33 @@ Photos from Wikimedia Commons, used under their respective licenses.
 - [2021-05-15 20 35 58 Brood X periodical cicada nymph on a plant.jpg](https://commons.wikimedia.org/wiki/File:2021-05-15_20_35_58_Brood_X_periodical_cicada_nymph_on_a_plant.jpg) — G. Edward Johnson, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0)
 - [2010 07 28 Cicala mutata.JPG](https://commons.wikimedia.org/wiki/File:2010_07_28_Cicala_mutata.JPG) — Emilia.venturato, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0)
 - [Dog-day cicada (53938966852).jpg](https://commons.wikimedia.org/wiki/File:Dog-day_cicada_(53938966852).jpg) — U.S. Fish and Wildlife Service - Midwest Region, Public domain
+
+## Scorpione (Scorpiones)
+
+- [Scorpionwithyoung.JPG](https://commons.wikimedia.org/wiki/File:Scorpionwithyoung.JPG) — Fusion121 at English Wikipedia, Public domain
+
+## Scarabeo sacro (Scarabaeus sacer)
+
+- [Dungbeetle.jpg](https://commons.wikimedia.org/wiki/File:Dungbeetle.jpg) — Unknown author, [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0)
+- [Scarabaeus.sacer.jpg](https://commons.wikimedia.org/wiki/File:Scarabaeus.sacer.jpg) — Sarefo, [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
+
+## Solifugo (Solifugae)
+
+- [Galeodes caspius 46625523.jpg](https://commons.wikimedia.org/wiki/File:Galeodes_caspius_46625523.jpg) — Анатолий Озерной /Anatoliy Ozernoy, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- [CamelSpiderProfile.jpg](https://commons.wikimedia.org/wiki/File:CamelSpiderProfile.jpg) — No machine-readable author provided. Jalandoak~commonswiki assumed (based on copyright claims)., [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5)
+- [Solifugae 2005 Mongolia Gobi Desert - 2.JPG](https://commons.wikimedia.org/wiki/File:Solifugae_2005_Mongolia_Gobi_Desert_-_2.JPG) — Bogomolov.PL, Public domain
+
+## Scarabeo ercole (Dynastes hercules)
+
+- [Dynastes hercules ecuatorianus MHNT.jpg](https://commons.wikimedia.org/wiki/File:Dynastes_hercules_ecuatorianus_MHNT.jpg) — Didier Descouens, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- [Dynastes hercules hercules01.JPG](https://commons.wikimedia.org/wiki/File:Dynastes_hercules_hercules01.JPG) — Furry yui, Public domain
+
+## Rana dardo (Dendrobatidae)
+
+- [Blue-poison.dart.frog.and.Yellow-banded.dart.frog.arp.jpg](https://commons.wikimedia.org/wiki/File:Blue-poison.dart.frog.and.Yellow-banded.dart.frog.arp.jpg) — Pixeltoo, Public domain
+
+## Falena atlante (Attacus atlas)
+
+- [Attacus atlas qtl1.jpg](https://commons.wikimedia.org/wiki/File:Attacus_atlas_qtl1.jpg) — Quartl, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0)
+- [Atlasspinner - attacus atlas.jpg](https://commons.wikimedia.org/wiki/File:Atlasspinner_-_attacus_atlas.jpg) — Holger müller, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0)
+- [Attacus atlas Caput.jpg](https://commons.wikimedia.org/wiki/File:Attacus_atlas_Caput.jpg) — CaptainQuark, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)

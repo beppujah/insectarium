@@ -466,5 +466,113 @@
    "license": "Public domain",
    "licenseUrl": ""
   }
+ ],
+ "scorpione": [
+  {
+   "local": "scorpione-1.jpg",
+   "file": "File:Scorpionwithyoung.JPG",
+   "page": "https://commons.wikimedia.org/wiki/File:Scorpionwithyoung.JPG",
+   "author": "Fusion121 at English Wikipedia",
+   "license": "Public domain",
+   "licenseUrl": ""
+  }
+ ],
+ "scarabeo-sacro": [
+  {
+   "local": "scarabeo-sacro-1.jpg",
+   "file": "File:Dungbeetle.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Dungbeetle.jpg",
+   "author": "Unknown author",
+   "license": "CC BY-SA 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "local": "scarabeo-sacro-2.jpg",
+   "file": "File:Scarabaeus.sacer.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Scarabaeus.sacer.jpg",
+   "author": "Sarefo",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+  }
+ ],
+ "solifugo": [
+  {
+   "local": "solifugo-1.jpg",
+   "file": "File:Galeodes caspius 46625523.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Galeodes_caspius_46625523.jpg",
+   "author": "Анатолий Озерной /Anatoliy Ozernoy",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "local": "solifugo-2.jpg",
+   "file": "File:CamelSpiderProfile.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:CamelSpiderProfile.jpg",
+   "author": "No machine-readable author provided. Jalandoak~commonswiki assumed (based on copyright claims).",
+   "license": "CC BY-SA 2.5",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+  },
+  {
+   "local": "solifugo-3.jpg",
+   "file": "File:Solifugae 2005 Mongolia Gobi Desert - 2.JPG",
+   "page": "https://commons.wikimedia.org/wiki/File:Solifugae_2005_Mongolia_Gobi_Desert_-_2.JPG",
+   "author": "Bogomolov.PL",
+   "license": "Public domain",
+   "licenseUrl": ""
+  }
+ ],
+ "scarabeo-ercole": [
+  {
+   "local": "scarabeo-ercole-1.jpg",
+   "file": "File:Dynastes hercules ecuatorianus MHNT.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Dynastes_hercules_ecuatorianus_MHNT.jpg",
+   "author": "Didier Descouens",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "local": "scarabeo-ercole-2.jpg",
+   "file": "File:Dynastes hercules hercules01.JPG",
+   "page": "https://commons.wikimedia.org/wiki/File:Dynastes_hercules_hercules01.JPG",
+   "author": "Furry yui",
+   "license": "Public domain",
+   "licenseUrl": ""
+  }
+ ],
+ "rana-dardo": [
+  {
+   "local": "rana-dardo-1.jpg",
+   "file": "File:Blue-poison.dart.frog.and.Yellow-banded.dart.frog.arp.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Blue-poison.dart.frog.and.Yellow-banded.dart.frog.arp.jpg",
+   "author": "Pixeltoo",
+   "license": "Public domain",
+   "licenseUrl": ""
+  }
+ ],
+ "falena-atlante": [
+  {
+   "local": "falena-atlante-1.jpg",
+   "file": "File:Attacus atlas qtl1.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Attacus_atlas_qtl1.jpg",
+   "author": "Quartl",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "local": "falena-atlante-2.jpg",
+   "file": "File:Atlasspinner - attacus atlas.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Atlasspinner_-_attacus_atlas.jpg",
+   "author": "Holger müller",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "local": "falena-atlante-3.jpg",
+   "file": "File:Attacus atlas Caput.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Attacus_atlas_Caput.jpg",
+   "author": "CaptainQuark",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
  ]
 }

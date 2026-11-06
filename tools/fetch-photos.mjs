@@ -52,12 +52,12 @@ async function api(host, params, tries = 5) {
 }
 
 async function download(url) {
-  for (let t = 0; t < 2; t++) {
+  for (let t = 0; t < 4; t++) {
     try {
       const r = await fetch(url, { headers: { 'User-Agent': UA } });
       if (r.status !== 429) return r;
     } catch { /* flaky network */ }
-    await sleep(3000);
+    await sleep(4000 * (t + 1)); // rate limited: back off
   }
   return null;
 }
