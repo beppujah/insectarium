@@ -82,3 +82,10 @@ $('homeBtn').onclick = openHome;
 
 refreshPins(); choose(last); renderCatalog(); resize();
 requestAnimationFrame(loop);
+
+// ================= installable app =================
+// public/sw.js keeps a copy of the game on the device: it can then be added to the home
+// screen and played offline. Only in the built game, not in dev (browsers also skip it for local files).
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => { /* no offline copy */ }); });
+}

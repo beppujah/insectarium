@@ -4,6 +4,8 @@ An exploration game: you are the size of an ant. Pick a place on the map (a mead
 
 Play it at **https://beppujah.github.io/insectarium/**. Runs in the browser on desktop and mobile, with keyboard, touch or a MIDI controller (knobs and pads, with MIDI learn).
 
+On a phone it can be installed like an app: on iPhone tap **Share → Add to Home Screen**, on Android open the browser menu and tap **Install app** (or **Add to Home screen**). It then opens full screen and also works offline; photos and voice clips are kept on the device the first time they are shown. The installed app keeps its own saves, separate from the browser.
+
 ## Commands
 
 ```
@@ -20,6 +22,10 @@ Requires Node.js 20 or newer. Every push to `main` is built and published to Git
 
 ```
 index.html            markup for screens, HUD and touch controls
+public/               copied as is to the site root
+  manifest.webmanifest name, colours and icons of the installed app
+  sw.js               service worker: offline copy of the game
+  *.png               app icons (drawn by tools/make-icons.py)
 src/
   main.js             startup: the map of the worlds, loads the save, builds the world
   style.css
@@ -58,6 +64,7 @@ src/
     voice.js          narration with the browser's speech synthesis
 tools/
   fetch-photos.mjs    downloads the photos from Wikimedia Commons with author and license
+  make-icons.py       draws the app icons in public/ (needs Python with Pillow)
 ```
 
 Shared game state lives in the `G` object in `world/level.js`; control values are in `ctl` (`input/controls.js`).
